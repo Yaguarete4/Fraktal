@@ -1,0 +1,29 @@
+header{
+    background-color:black;
+    color: rgb(238, 238, 238);
+    padding: 20px;
+    position: sticky;
+    top: 0px;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+  .button.header{
+    color:rgb(238, 238, 238);
+    margin-left: 10px;
+    margin-right: 10px;
+    align-content: center;
+    font-size: large;
+    font-weight: bold;
+  }
+  .button.header:hover{
+    color: yellow;
+    cursor: pointer;
+    transition: ease-in-out 0.6s;
+  }
+  /* @media (min-width: 980px) and (max-width: 1161px) {
+    .ag-format-container {
+      width: 960px;
+    }
+  
+  } */
