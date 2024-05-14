@@ -1,7 +1,7 @@
 import '../style.css';
 import '../font.css'
 import logoK from './K.png';
-import logo from './sexoso.png';
+import logo from './frak.png';
 
 
 export const Navbar = () => {
@@ -22,12 +22,12 @@ export const Navbar = () => {
                 <img src={logoK} alt="Logo" className="logitoK" />
             </div>
             <label class="container">
-            <input type="checkbox"/>
-            <div class="checkmark">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+                <input type="checkbox"/>
+                <div class="checkmark">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </label>
             </div>
         </header>

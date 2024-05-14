@@ -7,8 +7,11 @@ import { Pag1 } from './components/Pag1';
 function App() {
   return (
     <>
+    <section>
     <Navbar />
-    <Pag1 />
+    <Pag1 />      
+    </section>
+
     </>
   );
 }

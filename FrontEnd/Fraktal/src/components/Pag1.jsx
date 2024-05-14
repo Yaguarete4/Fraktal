@@ -1,10 +1,9 @@
 import '../style1.css';
-import '../font.css'
+import { Barra } from './BarraPrincipal';
 
 
 export const Pag1 = () => {
     return (
-        <section>
-        </section>
+            <Barra/>
     );
 }

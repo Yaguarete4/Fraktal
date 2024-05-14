@@ -2,6 +2,8 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 600;
 }
 /* Si la fuente está alojada localmente */
 header{
@@ -12,13 +14,17 @@ header{
     position: sticky;
     top: 0px;
     align-items: center;
-    font-family: "IBM Plex Sans", sans-serif;
-    font-weight: 600;
+
 }
 .stuff{
     color: #BFC7D3;
     margin-left: 32px;
     margin-right: 32px;
+}
+.stuff:hover{
+    color: #FFAB07;
+    cursor: pointer;
+    transition: ease-in-out 0.6s;
 }
 .logito{
     height: 24px;
@@ -29,8 +35,6 @@ header{
 .logitoK{
     height: 20px;
     display: flex;
-    margin-left: 36px;
-    margin-right: 50px;
 }
 .caja, cajaK{
     display: flex;
@@ -45,24 +49,25 @@ header{
   }
   
   .container {
-    display: block;
+    display: flex;
+    flex-direction: column;
     position: relative;
     cursor: pointer;
     font-size: 20px;
     user-select: none;
-    height: 24px;
+    height: 18px;
+    width: 16px;
+    margin-right: 23px;
   }
   
   .checkmark {
     position: relative;
-    top: 0;
-    left: 0;
     height: 1.3em;
-    width: 1.3em;
+    /* width: 1.3em; */
   }
   
   .checkmark span {
-    width: 32px;
+    width: 100%;
     height: 3px;
     background-color: white;
     position: absolute;
@@ -114,14 +119,14 @@ header{
   .celu{
       display: none;
   }
+
 @media (min-width: 1px) and (max-width: 659px) {
     .stuff {
         display: none;
     }
     .celu {
-        display: block;
         display: flex;
-        width: 100%;
+        width: 100dvw;
         justify-content: space-between;
     }
     .container{
@@ -129,6 +134,9 @@ header{
     }
     .logito{
         display: none;
+    }
+    .logitoK{
+        margin-left: 25px;
     }
   
   } 
