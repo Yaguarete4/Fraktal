@@ -1,0 +1,9 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+section{
+    background-color: #0B0D13;
+    min-height: 100vh;
+}
