@@ -6,7 +6,7 @@ section{
     display: flex;
 }
 @media (min-width: 1px) and (max-width: 659px) {
-    .container {
+    .container1 {
       display: none;
     }
   }
