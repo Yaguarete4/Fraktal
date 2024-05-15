@@ -14,14 +14,14 @@ header{
     position: sticky;
     top: 0px;
     align-items: center;
-
+    z-index: 3;
 }
 .stuff{
     color: #BFC7D3;
     margin-left: 32px;
     margin-right: 32px;
 }
-.stuff:hover{
+.stuff:hover, .caja2:hover, .caja3:hover{
     color: #FFAB07;
     cursor: pointer;
     transition: ease-in-out 0.6s;
@@ -35,6 +35,17 @@ header{
 .logitoK{
     height: 20px;
     display: flex;
+}
+.logitok{
+  height: 16px;
+  display: flex;
+}
+.caja3{
+  margin-left: 400px;
+}
+.caja2{
+  margin-right: 20px;
+  margin-left: 40px;
 }
 .caja, cajaK{
     display: flex;
@@ -121,7 +132,7 @@ header{
   }
 
 @media (min-width: 1px) and (max-width: 659px) {
-    .stuff {
+    .stuff,.caja3,.caja2{
         display: none;
     }
     .celu {
