@@ -5,9 +5,16 @@ section{
 .container1{
     display: flex;
 }
+.cel{
+  display: none;
+}
 @media (min-width: 1px) and (max-width: 659px) {
     .container1 {
       display: none;
     }
+    .cel{
+      display: flex;
+    }
+
   }
   

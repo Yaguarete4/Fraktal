@@ -1,8 +1,8 @@
 
 import React, { useEffect } from 'react';
-import '../css/noLogin.css';
+import '../css/cel.css';
 
-export const NoLogin = () => {
+export const Cel = () => {
     useEffect(() => {
         const boxes = document.querySelectorAll(".box");
 
