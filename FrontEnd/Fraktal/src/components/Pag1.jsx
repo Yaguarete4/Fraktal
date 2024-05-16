@@ -1,4 +1,4 @@
-import '../style1.css';
+import '../css/style1.css';
 import { Barra } from './BarraPrincipal';
 
 

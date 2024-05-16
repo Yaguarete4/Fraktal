@@ -1,6 +1,6 @@
 import React from 'react';
-import '../style.css';
-import '../font.css'
+import '../css/style.css';
+import '../css/font.css'
 import logoK from './K.png';
 import logo from './frak.png';
 import logoConf from './confi.png';
@@ -43,7 +43,7 @@ export const Navbar = ({ onUserClick }) => {
             <span></span>
             <span></span>
           </div>
-        </label>
+        </label> 
       </div>
     </header>
   );

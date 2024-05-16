@@ -1,5 +1,5 @@
 import '../css/Barra.css';
-import '../font.css'
+import '../css/font.css'
 
 
 export const Barra = () => {

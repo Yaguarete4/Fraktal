@@ -1,5 +1,5 @@
 // import React, { useEffect } from 'react';
-import './App.css';
+import './css/App.css';
 import { Navbar } from './components/Navbar';
 import { Pag1 } from './components/Pag1';
 import { NoLogin } from './components/PagNoLogin';
