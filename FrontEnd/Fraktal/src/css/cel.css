@@ -30,11 +30,11 @@
             transition: transform 0.85s ease;
         }
         .box1 {
-            display: flex;
             align-items: center;
             justify-content: center;
-            width: 200px;
-            height: 200px;
+            width: 380px;
+            height: 390px;
+            display: flex;
             margin: 10px;
             justify-content: center;
             border-radius: 10px;
@@ -42,12 +42,7 @@
             transform: translate(400%);
             transition: transform 0.85s ease;
         }
-        .probando{
-            width: 336px;
-            height: 341px;
-            display: flex;
-        }
-        .box:nth-of-type(even), .box1:nth-of-type(even) {
+           .box:nth-of-type(even), .box1:nth-of-type(even) {
             transform: translate(-400%);
         }
 
