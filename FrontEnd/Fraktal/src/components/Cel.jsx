@@ -1,10 +1,11 @@
 
 import React, { useEffect } from 'react';
 import '../css/cel.css';
+import prueba from './Inversor.png';
 
 export const Cel = () => {
     useEffect(() => {
-        const boxes = document.querySelectorAll(".box");
+        const boxes = document.querySelectorAll(".box,.box1");
 
         const checkBoxes = () => {
             const triggerBottom = (window.innerHeight / 5) * 4;
@@ -21,7 +22,7 @@ export const Cel = () => {
 
     return (
         <body>
-            <div className="box"/> 
+            <img src={prueba} alt="Logo" className="box1" />
             <div className="box">
             </div> 
             <div className="box">

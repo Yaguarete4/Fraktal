@@ -29,12 +29,29 @@
             transform: translate(400%);
             transition: transform 0.85s ease;
         }
-
-        .box:nth-of-type(even) {
+        .box1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+            justify-content: center;
+            border-radius: 10px;
+            box-shadow: 0px 3px 12px #e4e4e4;
+            transform: translate(400%);
+            transition: transform 0.85s ease;
+        }
+        .probando{
+            width: 336px;
+            height: 341px;
+            display: flex;
+        }
+        .box:nth-of-type(even), .box1:nth-of-type(even) {
             transform: translate(-400%);
         }
 
-        .box.show {
+        .box.show, .box1.show {
             transform: translate(0);
         }
 
