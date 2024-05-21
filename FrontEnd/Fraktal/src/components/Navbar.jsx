@@ -16,13 +16,14 @@ export const Navbar = ({ onUserClick }) => {
       <div className="caja">
         <img src={logo} alt="Logo" className="logito" />
       </div>
-      <div className="stuff">Market</div>
-      <div className="stuff">Token</div>
-      <div className="stuff">Trade</div>
-      <div className="stuff">Wallet</div>
-      <div className="stuff">Global</div>
-      <div className="stuff">News</div>
-
+      <button>Market</button>
+      <button>Token</button>
+      <button>Trade</button>
+      <button>Wallet</button>
+      <button>Global</button>
+      <button>News</button>
+      <div className="ini">Iniciar sesion</div>
+      <div className="log">Registrarse</div>
       <div className="caja3" onClick={handleUserClick}>
         <img src={logoUser} alt="Logo" className="logoUser" />
       </div>

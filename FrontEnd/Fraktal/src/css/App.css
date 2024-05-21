@@ -9,14 +9,14 @@ section{
   display: none;
 }
 ::-webkit-scrollbar{
-  width: 17px;
+  width: 9px;
 }
 ::-webkit-scrollbar-thumb{
   background-color: #FFAB07;
-  border-radius: 20px;
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-track{
-  background-color: #111;
+  background-color: #0B0D13;
 }
 ::-webkit-scrollbar-thumb:hover{
   background: #d38f06;

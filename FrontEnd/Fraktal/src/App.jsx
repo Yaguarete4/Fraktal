@@ -5,7 +5,6 @@ import { Pag1 } from './components/Pag1';
 import { NoLogin } from './components/PagNoLogin';
 import { Cel } from './components/Cel';
 
-
 import { useState } from 'react'
 
 function App() {
@@ -14,6 +13,7 @@ function App() {
   const handleUserClick = () => {
     setIsLoggedIn(true);
   };
+  
   return (
     <>
       <section>
