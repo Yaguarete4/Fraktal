@@ -1,0 +1,25 @@
+{
+  "name": "fraktal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yaguarete4/Fraktal.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yaguarete4/Fraktal/issues"
+  },
+  "homepage": "https://github.com/Yaguarete4/Fraktal#readme",
+  "dependencies": {
+    "truffle": "^5.11.5"
+  },
+  "devDependencies": {
+    "hardhat": "^2.22.4"
+  }
+}
