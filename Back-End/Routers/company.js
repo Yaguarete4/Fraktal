@@ -51,12 +51,23 @@ router.post("/add", async (req, res) => {
         return;
     }
 
-    await makeQuery('INSERT INTO "Company" (name, description, members, sector, "imageURL", "tokenBenefits", "tokenImageURL", "tokenID") VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', [req.body.name, req.body.description, req.body.members, req.body.sector, req.body.imageURL, req.body.tokenBenefits, req.body.tokenImageURL, req.body.tokenID]);
+    const result = await makeQuery('INSERT INTO company (name, description, members, sector, "imageURL", "tokenBenefits", "tokenImageURL", "tokenID") VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', [req.body.name, req.body.description, req.body.members, req.body.sector, req.body.imageURL, req.body.tokenBenefits, req.body.tokenImageURL, req.body.tokenID]);
+
+    if(!result) {
+        res.sendStatus(400);
+        return;
+    }
+
     res.sendStatus(200);
 })
 
-router.get('/all', (req, res) => {
-
+router.get('/all', async (req, res) => {
+    const result = await makeQuery('SELECT * FROM company');
+    if(!result) {
+        res.sendStatus(502);
+        return;
+    }
+    res.json(result.rows).status(200);
 });
 
 module.exports = router;
