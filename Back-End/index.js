@@ -7,7 +7,7 @@ app.use(express.json());
 app.use('/company', require('./Routers/company'));
 
 
-app.get('/', (req, res) => console.log("API is running..."));
+app.get('/', (req, res) => res.send("API is running...").status(200));
 
 app.listen(3000, () => {
     console.log("Server listening on Port 3000")
