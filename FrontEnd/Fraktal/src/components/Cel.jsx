@@ -1,7 +1,7 @@
 
 import React, { useEffect } from 'react';
 import '../css/cel.css';
-import prueba from './Inversor.png';
+import prueba from '../img/Inversor.png';
 
 export const Cel = () => {
     useEffect(() => {

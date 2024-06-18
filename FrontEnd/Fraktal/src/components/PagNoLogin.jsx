@@ -20,24 +20,26 @@ export const NoLogin = () => {
     }, []);
 
     return (
-        <body>
-            <div className="box"/> 
-            <div className="box">
-            </div> 
-            <div className="box">
-            </div> 
-            <div className="box">
-            </div> 
-            <div className="box">
-            </div> 
-            <div className="box">
-            </div> 
-            <div className="box">
-            </div> 
-            <div className="box">
-            </div> 
-            <div className="box">
-            </div>
-        </body>
+        <>
+        </>
+        // <body>
+        //     <div className="box"/> 
+        //     <div className="box">
+        //     </div> 
+        //     <div className="box">
+        //     </div> 
+        //     <div className="box">
+        //     </div> 
+        //     <div className="box">
+        //     </div> 
+        //     <div className="box">
+        //     </div> 
+        //     <div className="box">
+        //     </div> 
+        //     <div className="box">
+        //     </div> 
+        //     <div className="box">
+        //     </div>
+        // </body>
     );
 }

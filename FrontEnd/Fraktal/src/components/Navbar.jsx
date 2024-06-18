@@ -1,10 +1,10 @@
 import React from 'react';
 import '../css/style.css';
 import '../css/font.css'
-import logoK from './K.png';
-import logo from './frak.png';
-import logoConf from './confi.png';
-import logoUser from './User_03.svg';
+import logoK from '../img/K.png';
+import logo from '../img/frak.png';
+import logoConf from '../img/confi.png';
+import logoUser from '../img/User_03.svg';
 
 export const Navbar = ({ onUserClick }) => {
   const handleUserClick = () => {
