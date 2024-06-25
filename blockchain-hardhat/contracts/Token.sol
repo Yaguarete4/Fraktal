@@ -41,7 +41,7 @@ contract MyToken is ERC1155, Ownable, ERC1155Burnable, ERC1155Supply {
     // string public name = "Token Fraktal";
     // string public symbol = "FRK";
 
-    // uint256 public totalSupply = 1000000;
+    // uint256 public totalSupply = 1000000;,
 
     // function crearTokens()
 }
