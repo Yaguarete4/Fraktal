@@ -2,7 +2,7 @@
 import './css/App.css';
 import { Navbar } from './components/Navbar';
 import { Pag1 } from './components/Pag1';
-import { NoLogin } from './components/PagNoLogin';
+import { Login } from './components/Login';
 import { Cel } from './components/Cel';
 
 import { useState } from 'react'
@@ -19,7 +19,7 @@ function App() {
       <section>
         <Navbar onUserClick={handleUserClick} />
         <div className="container1">        
-          {isLoggedIn ? <Pag1 /> : <NoLogin />}
+          {isLoggedIn ? <Pag1 /> : <Login />}
         </div>
         <div className="cel">
           <Cel/>

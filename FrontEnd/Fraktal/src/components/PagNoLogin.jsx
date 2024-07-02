@@ -41,5 +41,6 @@ export const NoLogin = () => {
         //     <div className="box">
         //     </div>
         // </body>
+        
     );
 }
