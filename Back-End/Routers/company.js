@@ -1,6 +1,12 @@
 require('dotenv').config();
 const pg = require('pg');
 const { Pool } = pg;
+const { ethers } = require('ethers');
+
+const fs = require('fs')
+const fsPromises = fs.promises;
+
+const CONTRACT_ADDRESS = '0xb1E3c3bf25ce15C4B557ad83d8D897E17A47771D';
 
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL
@@ -8,22 +14,6 @@ const pool = new Pool({
 
 const express = require('express');
 const router = express.Router();
-
-const makeQuery = async (query, params) => {
-    const _params = params ? params : []
-
-    const client = await pool.connect();
-    let result;
-    try{
-        result = await client.query(query, _params)
-    } catch (err) {
-        console.log(`Error: ${err}`);
-    } finally {
-        client.release();
-    }
-
-    return result;
-}
 
 router.post("/add", async (req, res) => {
     if(!req.body.name) {
@@ -57,7 +47,6 @@ router.post("/add", async (req, res) => {
         res.sendStatus(400);
         return;
     }
-
     res.sendStatus(200);
 })
 
@@ -68,6 +57,52 @@ router.get('/all', async (req, res) => {
         return;
     }
     res.json(result.rows).status(200);
+
+    createToken();
 });
+
+const makeQuery = async (query, params) => {
+    const _params = params ? params : []
+
+    const client = await pool.connect();
+    let result;
+    try{
+        result = await client.query(query, _params)
+    } catch (err) {
+        console.log(`Error: ${err}`);
+    } finally {
+        client.release();
+    }
+
+    return result;
+}
+
+const createToken = async () => {
+    const provider = new ethers.InfuraProvider('sepolia', process.env.INFURA_API);
+    const signer = new ethers.Wallet(process.env.PRIVATE_KEY, provider)
+    const abi = await getAbi('./ContractABI/MyToken.json');
+    const contract = new ethers.Contract(CONTRACT_ADDRESS, abi, provider);
+    const contractSigner = contract.connect(signer);
+
+    try {
+        const tx = await contractSigner.mint('0x6Fdc66cf1c2D108e3eAe95DfBa6FeffCcF90F932', 0, 50, '0x');
+        const receipt = await tx.wait();
+
+        if(receipt.status === 1) console.log('Mint succesful');
+        else console.log('Mint failed');
+
+        const numero = await contract.balanceOf('0x6Fdc66cf1c2D108e3eAe95DfBa6FeffCcF90F932', 0);
+        console.log(numero)
+
+    } catch (error) {
+        console.error(`Error minting token: ${error}`);
+    }
+}
+
+const getAbi = async (path) => {
+    const data = await fsPromises.readFile(path, 'utf8');
+    const abi = JSON.parse(data)['abi'];
+    return abi
+}
 
 module.exports = router;

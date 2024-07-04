@@ -2,14 +2,14 @@ POST http://localhost:3000/company/add
 Content-Type: application/json
 
 {
-    "name": "Tractores Fars",
+    "name": "Ronco Menso",
     "description": "Empresa que promueve empresas para que se financien y ganen tanta plata como puedan",
     "members": "Luca Chami/Joaco Barsky/Mati Bunes/Mati Ronco",
     "sector": "Tecnologico",
     "imageURL": "",
     "tokenBenefits": "1 token = 1 abrazo",
     "tokenImageURL": "",
-    "tokenID": 3
+    "tokenID": 4
 }
 
 ###
@@ -19,3 +19,19 @@ GET http://localhost:3000/company/all
 ###
 
 GET http://fraktalapi.vercel.app/company/all
+
+###
+
+POST http://fraktalapi.vercel.app/company/add
+Content-Type: application/json
+
+{
+    "name": "Fraktal esta perdido",
+    "description": "Empresa que promueve empresas para que se financien y ganen tanta plata como puedan",
+    "members": "Luca Chami/Joaco Barsky/Mati Bunes/Mati Ronco",
+    "sector": "Tecnologico",
+    "imageURL": "",
+    "tokenBenefits": "1 token = 1 abrazo",
+    "tokenImageURL": "",
+    "tokenID": 5
+}
