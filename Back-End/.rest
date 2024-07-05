@@ -2,7 +2,7 @@ POST http://localhost:3000/company/add
 Content-Type: application/json
 
 {
-    "name": "Granja Pablo",
+    "name": "El palacio boxeo",
     "description": "Empresa que promueve empresas para que se financien y ganen tanta plata como puedan",
     "members": "Luca Chami/Joaco Barsky/Mati Bunes/Mati Ronco",
     "sector": "Tecnologico",
@@ -10,8 +10,8 @@ Content-Type: application/json
     "tokenBenefits": "1 token = 1 abrazo",
     "tokenImageURL": "",
     "publicKey": "0x6Fdc66cf1c2D108e3eAe95DfBa6FeffCcF90F932",
-    "tokenID": 3,
-    "tokenAmount": 1
+    "tokenID": 2,
+    "tokenAmount": 10
 }
 
 ###
@@ -25,7 +25,7 @@ Content-Type: application/json
 
 {
     "publicKey": "0x6Fdc66cf1c2D108e3eAe95DfBa6FeffCcF90F932",
-    "tokenID": 1
+    "tokenID": 2
 }
 
 ###
@@ -46,4 +46,14 @@ Content-Type: application/json
     "tokenBenefits": "1 token = 1 abrazo",
     "tokenImageURL": "",
     "tokenID": 5
+}
+
+###
+
+POST http://fraktalapi.vercel.app/company/balance
+Content-Type: application/json
+
+{
+    "publicKey": "0x6Fdc66cf1c2D108e3eAe95DfBa6FeffCcF90F932",
+    "tokenID": 1
 }

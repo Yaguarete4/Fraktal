@@ -3,8 +3,7 @@ const pg = require('pg');
 const { Pool } = pg;
 const { ethers } = require('ethers');
 
-const fs = require('fs')
-const fsPromises = fs.promises;
+const tokenAbi = require('../ContractABI/MyToken.json')['abi'];
 
 const CONTRACT_ADDRESS = '0xb1E3c3bf25ce15C4B557ad83d8D897E17A47771D';
 
@@ -106,8 +105,7 @@ const makeQuery = async (query, params) => {
 const createToken = async (publicKey, tokenID, amount, data) => {
     const provider = new ethers.InfuraProvider('sepolia', process.env.INFURA_API);
     const signer = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
-    const abi = await getAbi('./ContractABI/MyToken.json');
-    const contract = new ethers.Contract(CONTRACT_ADDRESS, abi, provider);
+    const contract = new ethers.Contract(CONTRACT_ADDRESS, tokenAbi, provider);
     const contractSigner = contract.connect(signer);
 
     try {
@@ -131,8 +129,7 @@ const createToken = async (publicKey, tokenID, amount, data) => {
 
 const getBalance = async (publicKey, tokenID) => {
     const provider = new ethers.InfuraProvider('sepolia', process.env.INFURA_API);
-    const abi = await getAbi('./ContractABI/MyToken.json');
-    const contract = new ethers.Contract(CONTRACT_ADDRESS, abi, provider);
+    const contract = new ethers.Contract(CONTRACT_ADDRESS, tokenAbi, provider);
     let balance;
     try {
         balance = await contract.balanceOf(publicKey, tokenID);
@@ -142,12 +139,6 @@ const getBalance = async (publicKey, tokenID) => {
     }
 
     return balance;
-}
-
-const getAbi = async (path) => {
-    const data = await fsPromises.readFile(path, 'utf8');
-    const abi = JSON.parse(data)['abi'];
-    return abi
 }
 
 module.exports = router;
