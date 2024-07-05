@@ -78,7 +78,7 @@ router.post('/balance', async (req, res) => {
     }
 
     const validTokenID = await makeQuery('SELECT "tokenID" FROM company WHERE "tokenID" = $1', [tokenID]);
-    if(!validTokenID) return res.status(400).send("tokenID doesn't exist or is invalid");
+    if(!validTokenID.rows.length) return res.status(400).send("tokenID doesn't exist or is invalid");
 
     const balance = await getBalance(publicKey, tokenID);
     if(balance == null) return res.status(500).send("Something went wrong when getting balance");
