@@ -1,7 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: "IBM Plex Sans", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
+}
+.titulo{
+    font-size: 76px;
+    margin-top: 85px;
+    color: beige;
+    font-weight: bolder;
+    margin-bottom: 160px;
+}
+.animated-text{
+    margin-top: 85px;
+    font-size: 76px;
+    font-weight: bolder;
+    min-width: 35%;
+}
+
+.animated-text span{
+    position: relative;
+}
+
+.animated-text span::before{
+    content: ".";
+    color: #FFAB07;
+    animation: words 20s infinite;
+}
+
+.animated-text span::after{
+    content: "";
+    position: absolute;
+    width: calc(100% + 8px);
+    height: 100%;
+    background-color: #0B0D13;
+    border-left: 2px solid #FFAB07;
+    right: -8px;
+    animation: cursor .8s infinite, typing 20s steps(14) infinite;
+}
+
+.container1 {
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes cursor {
+    to{
+        border-left: 2px solid #ff7f5000;
+    }
+}
+
+@keyframes words {
+    0%,20%{
+        content: " en todo";
+        font-weight: bolder;
+    }
+    21%,40%{
+        content: " y descubrir";
+        font-weight: bolder;
+
+    }
+    41%,60%{
+        content: " seguro";
+        font-weight: bolder;
+
+    }
+    61%,80%{
+        content: " para todos";
+        font-weight: bolder;
+
+    }
+    81%,100%{
+        content: " y aprender";
+        font-weight: bolder;
+
+    }
+}
+
+@keyframes typing {
+    10%,15%,30%,35%,50%,55%,70%,75%,90%,95%{
+        width: 0;
+    }
+    5%,20%,25%,40%,45%,60%,65%,80%,85%{
+        width: calc(100% + 8px);
+    }
+}
+.conte{
+    justify-content: center;
+    display: flex;
+    margin-left: 80px;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+.wrapper {
+  margin-top: 2rem;
+  width: 90%;
+  display: block;
+  max-width: 1536px;
+  margin-inline: auto;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 1) 20%,
+    rgba(0, 0, 0, 1) 80%,
+    rgba(0, 0, 0, 0)
+  );
+}
+
+@keyframes scrollLeft {
+  to {
+    left: -200px;
+  }
+}
+
+@keyframes scrollRight {
+  to {
+    right: -200px;
+  }
+}
+
+.itemLeft,
+.itemRight {
+  width: 200px;
+  height: 100px;
+  background-color: #e11d48;
+  border-radius: 6px;
+  position: absolute;
+  animation-timing-function: linear;
+  animation-duration: 30s;
+  animation-iteration-count: infinite;
+}
+
+.itemLeft {
+  left: max(calc(200px * 8), 100%);
+  animation-name: scrollLeft;
+}
+
+/* .itemRight {
+  right: max(calc(200px * 8), calc(100% + 200px));
+  animation-name: scrollRight;
+} */
+
+.item1 {
+  animation-delay: calc(30s / 8 * (8 - 1) * -1);
+}
+
+.item2 {
+  animation-delay: calc(30s / 8 * (8 - 2) * -1);
+}
+
+.item3 {
+  animation-delay: calc(30s / 8 * (8 - 3) * -1);
+}
+
+.item4 {
+  animation-delay: calc(30s / 8 * (8 - 4) * -1);
+}
+
+.item5 {
+  animation-delay: calc(30s / 8 * (8 - 5) * -1);
+}
+
+.item6 {
+  animation-delay: calc(30s / 8 * (8 - 6) * -1);
+}
+
+.item7 {
+  animation-delay: calc(30s / 8 * (8 - 7) * -1);
+}
+
+.item8 {
+  animation-delay: calc(30s / 8 * (8 - 8) * -1);
 }

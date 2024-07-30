@@ -21,6 +21,7 @@ export const NoLogin = () => {
 
     return (
         <>
+        
         </>
         // <body>
         //     <div className="box"/> 

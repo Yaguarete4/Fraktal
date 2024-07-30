@@ -6,12 +6,9 @@ import logo from '../img/frak.png';
 import logoConf from '../img/confi.png';
 import logoUser from '../img/User_03.svg';
 
-export const Navbar = ({ onUserClick },{ onUserClick1}) => {
+export const Navbar = ({ onUserClick }) => {
   const handleUserClick = () => {
     onUserClick();
-  };
-  const handleUserClick1 = () => {
-    onUserClick1();
   };
 
   return (
@@ -22,7 +19,7 @@ export const Navbar = ({ onUserClick },{ onUserClick1}) => {
       <button>Market</button>
       <button>Token</button>
       <button>Trade</button>
-      <button  onClick={handleUserClick1}>Wallet</button>
+      <button>Wallet</button>
       <button>Global</button>
       <button>News</button>
       <div className="ini">Iniciar sesion</div>
