@@ -11,14 +11,16 @@ header{
     box-shadow: 0 8px 32px 0 ;
     backdrop-filter: blur( 16px );
     -webkit-backdrop-filter: blur( 16px );
+    justify-content: space-between;
     border-radius: 10px;
-    width: 100%;
+    width: 100vw;
     display: flex;
     height: 60px;
     position: sticky;
     top: 0px;
     align-items: center;
     z-index: 3;
+    padding: 0 40px;
 }
 button {
 
@@ -32,8 +34,6 @@ button {
 }
 button{
   color: #BFC7D3;
-  margin-left: 28px;
-  margin-right: 28px;
   cursor: pointer;
 }
 button:focus,
@@ -68,23 +68,32 @@ button:hover, .caja2:hover, .caja3:hover{
 .logito{
     height: 24px;
     display: flex;
-    margin-left: 26px;
-    margin-right: 22px;
 }
-.logitoK{
-    height: 20px;
-    display: flex;
+.navbar__logo-opciones{
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
 }
+
+.navbar__inicio-config {
+  display: flex;
+  flex-direction: row;
+  gap: 36px;
+}
+
+.navbar__opciones {
+  display: flex;
+  gap: 2.34vw;
+}
+
 .logitok{
   height: 16px;
   display: flex;
 }
 .caja3{
-  margin-left: 40px;
 }
 .caja2{
-  margin-right: 20px;
-  margin-left: 40px;
+
 }
 .caja, cajaK{
     display: flex;
@@ -169,33 +178,7 @@ button:hover, .caja2:hover, .caja3:hover{
   .celu{
       display: none;
   }
-  .log{
-    /* width: 107px;
-    height: 35px; */
-    background-color: #FFAB07;
-    border-radius: 7px;
-    color: black;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-    margin-left: 12px;
-    padding-top: 6px;
-    padding-bottom: 6px;
-    padding-right: 20px;
-    padding-left: 20px;
-  }
-  .ini{
-    width: 130px;
-    height: 35px;
-    border-radius: 7px;
-    color: white;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-    margin-left: 190px;
-  }
+
 @media (min-width: 1px) and (max-width: 659px) {
     .stuff,.caja3,.caja2{
         display: none;
@@ -208,7 +191,7 @@ button:hover, .caja2:hover, .caja3:hover{
     .container{
       
     }
-    .logito, .ini, .log,button{
+    .logito, .ini, button{
         display: none;
     }
     .logitoK{

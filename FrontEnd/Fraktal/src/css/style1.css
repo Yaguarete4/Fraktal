@@ -88,9 +88,8 @@
     }
 }
 .conte{
-    justify-content: center;
     display: flex;
-    margin-left: 80px;
+    margin-left: 70px;
 }
 *,
 *::before,
@@ -103,7 +102,6 @@
 }
 
 .wrapper {
-  margin-top: 2rem;
   width: 90%;
   display: block;
   max-width: 1536px;

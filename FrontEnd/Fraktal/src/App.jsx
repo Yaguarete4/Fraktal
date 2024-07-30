@@ -8,21 +8,24 @@ import { Wallet } from './components/Wallet';
 import { useState } from 'react';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentPage, setCurrentPage] = useState('home');
 
-  const handleUserClick = () => {
-    setIsLoggedIn(true);
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
   };
-  
+
   return (
     <>
       <section>
-        <Navbar onUserClick={handleUserClick} />
-        <div className="container1">        
-          {isLoggedIn ? <Wallet /> : <Pag1 />}
+        <Navbar onPageChange={handlePageChange} />
+        <div className="container1">
+          {currentPage === 'wallet' && <Wallet />}
+          {currentPage === 'home' && <Pag1 />}
+          {currentPage === 'user' && <Login />}
+          {/* Añade más condiciones para otras páginas según sea necesario */}
         </div>
         <div className="cel">
-          <Cel/>
+          <Cel />
         </div>
       </section>
     </>
