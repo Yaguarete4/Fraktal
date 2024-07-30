@@ -4,7 +4,7 @@ import { Pag1 } from './components/Pag1';
 import { Login } from './components/Login';
 import { Cel } from './components/Cel';
 import { Wallet } from './components/Wallet';
-
+import { Routes, Route } from 'react-router';
 import { useState } from 'react';
 
 function App() {
@@ -16,6 +16,10 @@ function App() {
 
   return (
     <>
+      <Routes>
+       <Route path="/wallet" elemet={<div>Hola</div>} />
+      </Routes>
+
       <section>
         <Navbar onPageChange={handlePageChange} />
         <div className="container1">

@@ -15,7 +15,7 @@ export const Navbar = ({ onPageChange }) => {
     <header>
       <div className="navbar__logo-opciones">
         <div className="caja">
-          <img src={logo} alt="Logo" className="logito" />
+          <img onClick={() => handlePageClick('home')} src={logo} alt="Logo" className="logito" />
         </div>
         <div className="navbar__opciones">
           <button onClick={() => handlePageClick('market')}>Market</button>

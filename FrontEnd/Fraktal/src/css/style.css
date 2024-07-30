@@ -97,6 +97,7 @@ button:hover, .caja2:hover, .caja3:hover{
 }
 .caja, cajaK{
     display: flex;
+    cursor: pointer;
 }
 /* Hide the default checkbox */
 .container input {
