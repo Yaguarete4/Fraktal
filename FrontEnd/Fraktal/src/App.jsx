@@ -4,7 +4,7 @@ import { Pag1 } from './components/Pag1';
 import { Login } from './components/Login';
 import { Cel } from './components/Cel';
 import { Wallet } from './components/Wallet';
-import { Routes, Route } from 'react-router';
+import { Routes, Route, Link } from 'react-router-dom';
 import { useState } from 'react';
 
 function App() {
@@ -15,23 +15,26 @@ function App() {
   };
 
   return (
-    <>
-      <Routes>
-       <Route path="/wallet" elemet={<div>Hola</div>} />
-      </Routes>
-
-      <section>
+    <>         
+    <section>     
+      <Navbar/>
+          <Routes>   
+                <Route path="/" element={<Pag1 />} />
+                <Route path="/wallet" element={<Link to="/login">Hola</Link>} />
+                <Route path="/login" element={<Login />} />
+        </Routes>
+    </section>
+      {/* <section>
         <Navbar onPageChange={handlePageChange} />
         <div className="container1">
           {currentPage === 'wallet' && <Wallet />}
           {currentPage === 'home' && <Pag1 />}
           {currentPage === 'user' && <Login />}
-          {/* Añade más condiciones para otras páginas según sea necesario */}
         </div>
         <div className="cel">
           <Cel />
         </div>
-      </section>
+      </section> */}
     </>
   );
 }

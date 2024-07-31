@@ -2,12 +2,6 @@ section{
     background-color: #0B0D13;
     min-height: calc(100vh);
 }
-.container1{
-    display: flex;
-}
-.cel{
-  display: none;
-}
 ::-webkit-scrollbar{
   width: 9px;
 }
@@ -23,13 +17,4 @@ section{
   transition: background-color 0.5s ease-in-out;
 }
 
-@media (min-width: 1px) and (max-width: 659px) {
-    .container1 {
-      display: none;
-    }
-    .cel{
-      display: flex;
-    }
-
-  }
   

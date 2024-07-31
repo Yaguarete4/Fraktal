@@ -5,6 +5,7 @@ import logoK from '../img/K.png';
 import logo from '../img/frak.png';
 import logoConf from '../img/confi.png';
 import logoUser from '../img/User_03.svg';
+import {Link} from 'react-router-dom';
 
 export const Navbar = ({ onPageChange }) => {
   const handlePageClick = (page) => {
@@ -21,7 +22,7 @@ export const Navbar = ({ onPageChange }) => {
           <button onClick={() => handlePageClick('market')}>Market</button>
           <button onClick={() => handlePageClick('token')}>Token</button>
           <button onClick={() => handlePageClick('trade')}>Trade</button>
-          <button onClick={() => handlePageClick('wallet')}>Wallet</button>
+          <Link to="/wallet" onClick={() => handlePageClick('wallet')}>Wallet</Link>
           <button onClick={() => handlePageClick('global')}>Global</button>
           <button onClick={() => handlePageClick('news')}>News</button>
         </div>

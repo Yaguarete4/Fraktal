@@ -117,7 +117,9 @@ button:hover, .caja2:hover, .caja3:hover{
     font-size: 20px;
     user-select: none;
     height: 18px;
-    width: 16px;
+    width: 16px;    
+    margin-right: 7vw;
+    margin-top: 3px;
   }
   
   .checkmark {
@@ -196,7 +198,7 @@ button:hover, .caja2:hover, .caja3:hover{
         display: none;
     }
     .logitoK{
-        margin-left: 0px;
+        margin-left: 3vw;
         height: 24px;
     }
     header{
