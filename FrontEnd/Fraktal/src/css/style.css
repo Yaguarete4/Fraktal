@@ -20,7 +20,7 @@ header{
     top: 0px;
     align-items: center;
     z-index: 3;
-    padding: 0 40px;
+    padding: 0 2.7vw;
 }
 button {
 
@@ -72,13 +72,13 @@ button:hover, .caja2:hover, .caja3:hover{
 .navbar__logo-opciones{
   display: flex;
   justify-content: space-between;
-  gap: 50px;
+  gap: 3.66vw;
 }
 
 .navbar__inicio-config {
   display: flex;
   flex-direction: row;
-  gap: 36px;
+  gap: 2.7vw;
 }
 
 .navbar__opciones {
@@ -89,6 +89,7 @@ button:hover, .caja2:hover, .caja3:hover{
 .logitok{
   height: 16px;
   display: flex;
+  margin-top: 7px;
 }
 .caja3{
 }
@@ -117,7 +118,6 @@ button:hover, .caja2:hover, .caja3:hover{
     user-select: none;
     height: 18px;
     width: 16px;
-    margin-right: 23px;
   }
   
   .checkmark {
@@ -127,7 +127,7 @@ button:hover, .caja2:hover, .caja3:hover{
   }
   
   .checkmark span {
-    width: 100%;
+    width: 18px;
     height: 3px;
     background-color: white;
     position: absolute;
@@ -196,7 +196,11 @@ button:hover, .caja2:hover, .caja3:hover{
         display: none;
     }
     .logitoK{
-        margin-left: 25px;
+        margin-left: 0px;
+        height: 24px;
+    }
+    header{
+      padding: 0px;
     }
   
   } 

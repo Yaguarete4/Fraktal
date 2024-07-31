@@ -7,7 +7,7 @@
     font-weight: 600;
 }
 .titulo{
-    font-size: 76px;
+    font-size: 68px;
     margin-top: 85px;
     color: beige;
     font-weight: bolder;
@@ -15,7 +15,7 @@
 }
 .animated-text{
     margin-top: 85px;
-    font-size: 76px;
+    font-size: 68px;
     font-weight: bolder;
     min-width: 35%;
 }
@@ -134,7 +134,7 @@
 .itemRight {
   width: 200px;
   height: 100px;
-  background-color: #e11d48;
+  background-color: #e1ad1d;
   border-radius: 6px;
   position: absolute;
   animation-timing-function: linear;
@@ -183,3 +183,15 @@
 .item8 {
   animation-delay: calc(30s / 8 * (8 - 8) * -1);
 }
+@media (min-width: 1px) and (max-width: 659px) {
+.titulo, .animated-text{
+  font-size: 27px;
+}
+/* .itemLeft{
+  height: 60px;
+  width: 160px;
+} */
+
+} 
+@media (min-width: 1370px){     
+} 
