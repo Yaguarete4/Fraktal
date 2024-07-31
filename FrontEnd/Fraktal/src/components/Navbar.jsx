@@ -5,7 +5,7 @@ import logoK from '../img/K.png';
 import logo from '../img/frak.png';
 import logoConf from '../img/confi.png';
 import logoUser from '../img/User_03.svg';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export const Navbar = ({ onPageChange }) => {
   const handlePageClick = (page) => {
@@ -19,12 +19,12 @@ export const Navbar = ({ onPageChange }) => {
           <img onClick={() => handlePageClick('home')} src={logo} alt="Logo" className="logito" />
         </div>
         <div className="navbar__opciones">
-          <button onClick={() => handlePageClick('market')}>Market</button>
-          <button onClick={() => handlePageClick('token')}>Token</button>
-          <button onClick={() => handlePageClick('trade')}>Trade</button>
-          <Link to="/wallet" onClick={() => handlePageClick('wallet')}>Wallet</Link>
-          <button onClick={() => handlePageClick('global')}>Global</button>
-          <button onClick={() => handlePageClick('news')}>News</button>
+          <Link to="/market" className="button" onClick={() => handlePageClick('market')}>Market</Link>
+          <Link to="/token" className="button" onClick={() => handlePageClick('token')}>Token</Link>
+          <Link to="/trade" className="button" onClick={() => handlePageClick('trade')}>Trade</Link>
+          <Link to="/wallet" className="button" onClick={() => handlePageClick('wallet')}>Wallet</Link>
+          <Link to="/global" className="button" onClick={() => handlePageClick('global')}>Global</Link>
+          <Link to="/news" className="button" onClick={() => handlePageClick('news')}>News</Link>
         </div>
       </div>
 
