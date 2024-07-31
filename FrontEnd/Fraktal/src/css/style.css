@@ -28,7 +28,7 @@ header{
 
 
 .button {
-
+  margin-top: 7px;
   position: relative;
   border: none;
   background: none;
@@ -36,6 +36,8 @@ header{
   transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
   transition-duration: 400ms;
   transition-property: color;
+  font-size: 14px;
+  font-weight: 600;
 }
 .button{
   color: #BFC7D3;
@@ -95,11 +97,6 @@ header{
   height: 16px;
   display: flex;
   margin-top: 7px;
-}
-.caja3{
-}
-.caja2{
-
 }
 .caja, cajaK{
     display: flex;
@@ -196,8 +193,8 @@ header{
         width: 100dvw;
         justify-content: space-between;
     }
-    .container{
-      
+    .button{
+      display: none;
     }
     .logito, .ini, button{
         display: none;

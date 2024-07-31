@@ -1,62 +1,61 @@
-.form-container {
-    width: 350px;
-    height: 1000px;
-    border-radius: 10px;
-    box-sizing: border-box;
-    padding: 20px 30px;
-    margin: 0 auto;
-    margin-top: 20px;   
-    background: rgba( 33, 33, 33, 0.05 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 14px );
-    -webkit-backdrop-filter: blur( 14px );
-    border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-    display: felx;
-    justify-content: center;
-  } 
-  .form-control {
-    position: relative;
-    margin: 20px 0 40px;
-    width: 190px;
-    margin: 0 auto;
-    margin-top: 30px;
-  }
-  
-  .form-control input {
-    background-color: transparent;
-    border: 0;
-    border-bottom: 2px #fff solid;
-    display: block;
-    width: 100%;
-    padding: 15px 0;
-    font-size: 18px;
-    color: #fff;
-  }
-  
-  .form-control input:focus,
-  .form-control input:valid {
-    outline: 0;
-    border-bottom-color: lightblue;
-  }
-  
-  .form-control label {
-    position: absolute;
-    top: 15px;
-    left: 0;
-    pointer-events: none;
-  }
-  
-  .form-control label span {
-    display: inline-block;
-    font-size: 18px;
-    min-width: 5px;
-    color: #fff;
-    transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  }
-  
-  .form-control input:focus+label span,
-  .form-control input:valid+label span {
-    color: lightblue;
-    transform: translateY(-30px);
-  }
+.loginContainer{
+  width: 34.8vw;
+  height: 586px;
+  background: rgba(34, 34, 34, 0.17);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(11.6px);
+  -webkit-backdrop-filter: blur(11.6px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.titu{
+  font-weight: bold;
+  font-size: 22px;
+  margin: 0 auto;
+  margin-top: 32px;
+  color: white;
+  margin-bottom: 42px;
+}
+.input {
+  background-color: rgba( 57, 57, 57, 0.05 );
+  height: 47px;
+  padding: 20px;
+  /* text-align: center; */
+  border: 1px solid #BCB3A3;
+  border-radius: 10px;
+  margin: 0 auto;
+  width: 25vw;
+  margin-bottom: 12px;
+}
+
+.input:focus {
+  color: #FFAB07;
+  background-color: #212121;
+  outline-color: #FFAB07;
+  box-shadow: -3px -3px 15px #FFAB07;
+  transition: .1s;
+  transition-property: box-shadow;
+}
+.regi {
+  background-color: #FFAB07;
+  height: 47px;
+  /* text-align: center; */
+  border-radius: 10px;
+  margin: 0 auto;
+  width: 25vw;
+  margin-top: 40px;
+  color: black;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.inicio-sesion{
+  color: white;
+  font-size: 13px;
+  font-weight: normal;
+  margin-left: 5.1vw;
+  margin-top: 18px;
+}
