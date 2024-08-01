@@ -22,6 +22,8 @@ function App() {
                 <Route path="/" element={<Pag1 />} />
                 <Route path="/wallet" element={<Link to="/login">Hola</Link>} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Pag1 />} />
+
         </Routes>
     </section>
       {/* <section>

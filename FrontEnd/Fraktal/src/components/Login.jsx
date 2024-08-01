@@ -1,6 +1,7 @@
 
 import React, { useEffect } from 'react';
 import '../css/login.css';
+import { Link } from 'react-router-dom';
 
 export const Login = () => {
 
@@ -14,7 +15,9 @@ export const Login = () => {
             <button className="regi">Registrarse</button>            
             <div className="caja-inicio-sesion">
                 <div className="inicio-sesion">¿Ya tienes una cuenta?</div>
-            </div>          
+                <Link to="/signup" className="linki">Iniciar sesion</Link>
+            </div>      
+            <button className="but">Registrate con Google</button>    
         </div>
   );
 };
