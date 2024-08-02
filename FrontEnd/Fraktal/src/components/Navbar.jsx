@@ -7,13 +7,13 @@ import logoConf from '../img/confi.png';
 import logoUser from '../img/User_03.svg';
 import { Link } from 'react-router-dom';
 
-export const Navbar = ({ onPageChange }) => {
+export const Navbar = ({ onPageChange, setShowLogin, isBlurry }) => {
   const handlePageClick = (page) => {
     onPageChange(page);
   };
 
   return (
-    <header>
+    <header className={isBlurry ? 'blur' : ''}>  {/* Agregar aquí la clase blur */}
       <div className="navbar__logo-opciones">
         <div className="caja">
           <img onClick={() => handlePageClick('home')} src={logo} alt="Logo" className="logito" />
@@ -30,7 +30,7 @@ export const Navbar = ({ onPageChange }) => {
 
       <div className="navbar__inicio-config">
         <div className="caja3">
-          <img onClick={() => handlePageClick('user')} src={logoUser} alt="Logo" className="logoUser" />
+          <img onClick={() => setShowLogin(true)} src={logoUser} alt="Logo" className="logoUser" />
         </div>
         <div className="caja2">
           <img src={logoConf} alt="Logo" className="logoConf" />
@@ -55,3 +55,4 @@ export const Navbar = ({ onPageChange }) => {
     </header>
   );
 };
+
