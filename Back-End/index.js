@@ -5,6 +5,7 @@ const app = express();
 app.use(express.json());
 
 app.use('/company', require('./Routers/company'));
+app.use('/auth', require('./Routers/authentication').router);
 
 
 app.get('/', (req, res) => res.send("API is running...").status(200));
