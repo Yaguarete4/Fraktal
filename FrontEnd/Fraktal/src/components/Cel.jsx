@@ -22,7 +22,7 @@ export const Cel = () => {
 
     return (
         <body>
-            <img src={prueba} alt="Logo" className="box1" />
+            {/* <img src={prueba} alt="Logo" className="box1" /> */}
             <div className="box">
             </div> 
             <div className="box">

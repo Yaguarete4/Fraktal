@@ -1,14 +1,14 @@
 async function main() {
     const [deployer] = await ethers.getSigners();
-    console.log("Deployeando el contrato con la cuenta: ", deployer.address);
+    console.log("Deploying contract with the account: ", deployer.address);
   
     const balance = await deployer.getBalance();
-    console.log("Balance de cuenta: ", balance.toString());
+    console.log("Account balance: ", balance.toString());
   
     const Token = await ethers.getContractFactory("MyToken");
     const token = await Token.deploy(deployer.address);
   
-    console.log("Dirección de token: ", token.address);
+    console.log("Token adress: ", token.address);
   }
   
   main()

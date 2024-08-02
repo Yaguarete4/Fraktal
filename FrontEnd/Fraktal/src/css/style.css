@@ -11,17 +11,24 @@ header{
     box-shadow: 0 8px 32px 0 ;
     backdrop-filter: blur( 16px );
     -webkit-backdrop-filter: blur( 16px );
+    justify-content: space-between;
     border-radius: 10px;
-    width: 100%;
+    width: 100vw;
     display: flex;
     height: 60px;
     position: sticky;
     top: 0px;
     align-items: center;
     z-index: 3;
+    padding: 0 2.7vw;
 }
-button {
+.button {
+  text-decoration: none;
+}
 
+
+.button {
+  margin-top: 7px;
   position: relative;
   border: none;
   background: none;
@@ -29,25 +36,25 @@ button {
   transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
   transition-duration: 400ms;
   transition-property: color;
+  font-size: 14px;
+  font-weight: 600;
 }
-button{
+.button{
   color: #BFC7D3;
-  margin-left: 28px;
-  margin-right: 28px;
   cursor: pointer;
 }
-button:focus,
-button:hover {
+.button:focus,
+.button:hover {
   color: #FFAB07;
 }
 
-button:focus:after,
-button:hover:after {
+.button:focus:after,
+.button:hover:after {
   width: 100%;
   left: 0%;
 }
 
-button:after {
+.button:after {
   content: "";
   pointer-events: none;
   bottom: -2px;
@@ -60,7 +67,7 @@ button:after {
   transition-duration: 400ms;
   transition-property: width, left;
 }
-button:hover, .caja2:hover, .caja3:hover{
+.button:hover, .caja2:hover, .caja3:hover{
     color: #FFAB07;
     transition: ease-in-out 0.6s;
     cursor: pointer;
@@ -68,26 +75,32 @@ button:hover, .caja2:hover, .caja3:hover{
 .logito{
     height: 24px;
     display: flex;
-    margin-left: 26px;
-    margin-right: 22px;
 }
-.logitoK{
-    height: 20px;
-    display: flex;
+.navbar__logo-opciones{
+  display: flex;
+  justify-content: space-between;
+  gap: 3.66vw;
 }
+
+.navbar__inicio-config {
+  display: flex;
+  flex-direction: row;
+  gap: 2.7vw;
+}
+
+.navbar__opciones {
+  display: flex;
+  gap: 2.34vw;
+}
+
 .logitok{
   height: 16px;
   display: flex;
-}
-.caja3{
-  margin-left: 40px;
-}
-.caja2{
-  margin-right: 20px;
-  margin-left: 40px;
+  margin-top: 7px;
 }
 .caja, cajaK{
     display: flex;
+    cursor: pointer;
 }
 /* Hide the default checkbox */
 .container input {
@@ -106,8 +119,9 @@ button:hover, .caja2:hover, .caja3:hover{
     font-size: 20px;
     user-select: none;
     height: 18px;
-    width: 16px;
-    margin-right: 23px;
+    width: 16px;    
+    margin-right: 7vw;
+    margin-top: 3px;
   }
   
   .checkmark {
@@ -117,7 +131,7 @@ button:hover, .caja2:hover, .caja3:hover{
   }
   
   .checkmark span {
-    width: 100%;
+    width: 18px;
     height: 3px;
     background-color: white;
     position: absolute;
@@ -169,33 +183,7 @@ button:hover, .caja2:hover, .caja3:hover{
   .celu{
       display: none;
   }
-  .log{
-    /* width: 107px;
-    height: 35px; */
-    background-color: #FFAB07;
-    border-radius: 7px;
-    color: black;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-    margin-left: 12px;
-    padding-top: 6px;
-    padding-bottom: 6px;
-    padding-right: 20px;
-    padding-left: 20px;
-  }
-  .ini{
-    width: 130px;
-    height: 35px;
-    border-radius: 7px;
-    color: white;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-    margin-left: 190px;
-  }
+
 @media (min-width: 1px) and (max-width: 659px) {
     .stuff,.caja3,.caja2{
         display: none;
@@ -205,14 +193,18 @@ button:hover, .caja2:hover, .caja3:hover{
         width: 100dvw;
         justify-content: space-between;
     }
-    .container{
-      
+    .button{
+      display: none;
     }
-    .logito, .ini, .log,button{
+    .logito, .ini, button{
         display: none;
     }
     .logitoK{
-        margin-left: 25px;
+        margin-left: 3vw;
+        height: 24px;
+    }
+    header{
+      padding: 0px;
     }
   
   } 
