@@ -1,4 +1,4 @@
-/* button {
+buttonn {
     border: 0;
     background: transparent;
     color: inherit;
@@ -7,7 +7,7 @@
     width: 100%;
   }
   
-  h1 {
+  h11 {
     margin: 0 16px 0 0;
     font-weight: 600;
     display: grid;
@@ -26,7 +26,6 @@
   }
   
   img {
-    display: none;
     transition: rotate 0.35s;
   }
   
@@ -50,6 +49,7 @@
     width: 72px;
     height: 72px;
     background-image: url("menu.svg");
+    background-color: #202024;
   }
   
   body.open .burger {
@@ -155,7 +155,7 @@
     display: block;
   }
   
-  @media (max-width: 500px) {
+  @media (min-width: 500px) {
     body.open .dropdowns {
       left: 10px;
       opacity: 1;
@@ -230,4 +230,4 @@
       height: 40px;
     }
   }
-   */
+  

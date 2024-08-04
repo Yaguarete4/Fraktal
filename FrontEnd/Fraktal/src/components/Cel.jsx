@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 export const Cel = () => {
     return (
         <nav className="navbar">
-        <button
+        <buttonn
           onClick={() => document.body.classList.toggle('open')}
           className="burger"
-        ></button>
-        <h1>J</h1>
+        ></buttonn>
+        <h11>J</h11>
         <div className="dropdowns">
           <div className="dropdown">
             <button>
