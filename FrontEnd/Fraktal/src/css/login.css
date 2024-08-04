@@ -1,6 +1,6 @@
 .loginContainer{
   width: 34.8vw;
-  height: 586px;
+  height: 556px;
   background: rgba(34, 34, 34, 0.17);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -9,7 +9,22 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  margin-top: 45px;
+  margin-top: 80px;
+  animation: fadeInDown 1.5s ease;
+}
+.signupContainer{
+  width: 34.8vw;
+  height: 468px;
+  background: rgba(34, 34, 34, 0.17);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(11.6px);
+  -webkit-backdrop-filter: blur(11.6px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0px;
+  animation: fadeInDown 1.5s ease;
 }
 .titu{
   font-weight: bold;
@@ -104,3 +119,13 @@
   background: #d38f06;
   transition: background-color 0.5s ease-in-out;
 }
+@keyframes fadeInDown {
+  0% {
+     opacity: 0;
+     transform: translateY(-20px);
+  }
+  100% {
+     opacity: 1;
+     transform: translateY(0);
+  }
+} 

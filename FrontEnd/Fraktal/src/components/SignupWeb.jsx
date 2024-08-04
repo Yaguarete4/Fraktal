@@ -3,9 +3,10 @@ import '../css/style1.css';
 import { Barra } from './BarraPrincipal';
 import { Login } from './Login';
 import { Navbar } from './Navbar'; // Asegúrate de importar el Navbar
+import { Signup } from './Signup';
 
-export const Pag1 = () => {
-    const [showLogin, setShowLogin] = useState(false);
+export const SignupWeb = () => {
+    const [showLogin, setShowLogin] = useState(true);
 
     const closeLogin = () => {
         setShowLogin(false);
@@ -30,8 +31,7 @@ export const Pag1 = () => {
             </div>
             {showLogin && (
                 <div className="modal">
-                    <Login />
-                    <button onClick={closeLogin}>Cerrar</button>
+                    <Signup />
                 </div>
             )}
         </>

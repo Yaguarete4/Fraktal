@@ -1,44 +1,58 @@
-
-import React, { useEffect } from 'react';
+import React from 'react';
 import '../css/cel.css';
-import prueba from '../img/Inversor.png';
-
-export const Cel = () => {
-    useEffect(() => {
-        const boxes = document.querySelectorAll(".box,.box1");
-
-        const checkBoxes = () => {
-            const triggerBottom = (window.innerHeight / 5) * 4;
-            boxes.forEach((box) => {
-                const boxTop = box.getBoundingClientRect().top;
-                if (boxTop < triggerBottom) box.classList.add("show");
-                else box.classList.remove("show");
-            });
-        };
+import { Link } from 'react-router-dom';
     
-        window.addEventListener("scroll", checkBoxes);
-        checkBoxes();
-    }, []);
-
+export const Cel = () => {
     return (
-        <body>
-            {/* <img src={prueba} alt="Logo" className="box1" /> */}
-            <div className="box">
-            </div> 
-            <div className="box">
-            </div> 
-            <div className="box">
-            </div> 
-            <div className="box">
-            </div> 
-            <div className="box">
-            </div> 
-            <div className="box">
-            </div> 
-            <div className="box">
-            </div> 
-            <div className="box">
+        <nav className="navbar">
+        <button
+          onClick={() => document.body.classList.toggle('open')}
+          className="burger"
+        ></button>
+        <h1>J</h1>
+        <div className="dropdowns">
+          <div className="dropdown">
+            <button>
+              Services
+              <img src="chevron.svg" alt="chevron" />
+            </button>
+            <div className="dropdown-menu">
+              <button>UX/UI Design</button>
+              <button>Web Applications</button>
+              <button>SEO Advice</button>
             </div>
-        </body>
+          </div>
+          {/* 2x more dropdowns */}
+        </div>
+        <div className="dropdowns">
+          <div className="dropdown">
+            <button>
+              Services
+              <img src="chevron.svg" alt="chevron" />
+            </button>
+            <div className="dropdown-menu">
+              <button>UX/UI Design</button>
+              <button>Web Applications</button>
+              <button>SEO Advice</button>
+            </div>
+          </div>
+          {/* 2x more dropdowns */}
+        </div>
+        <div className="dropdowns">
+          <div className="dropdown">
+            <button>
+              Services
+              <img src="chevron.svg" alt="chevron" />
+            </button>
+            <div className="dropdown-menu">
+              <button>UX/UI Design</button>
+              <button>Web Applications</button>
+              <button>SEO Advice</button>
+            </div>
+          </div>
+          {/* 2x more dropdowns */}
+        </div>
+      </nav>
     );
-}
+};
+
