@@ -140,3 +140,17 @@ body.open .dropdowns::before {
     margin-left: auto;
   }
 }
+@keyframes fadeInRight {
+  0% {
+     opacity: 0;
+     transform: translateX(20px);
+  }
+  100% {
+     opacity: 1;
+     transform: translateX(0);
+  }
+}
+
+.cel-enter {
+ animation: fadeInRight 1.5s ease;
+}

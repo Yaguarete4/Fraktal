@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import '../css/cel.css'; 
 import flech from '../img/chevron.svg';
 
-
-export const Cel = () => {
+export const Cel = ({ className }) => {
   return (
-    <div className="dropdowns">
+    <div className={`dropdowns ${className}`}>
       <div className="dropdown">
         <button className="button-class">
           Tokens
@@ -25,11 +24,11 @@ export const Cel = () => {
           <div className="celup">Login</div>
           <div className="celup">Signup</div>
         </div>
-        <div className="dropdown">
+      </div>
+      <div className="dropdown">
         <button className="button-class">
           Global
         </button>
-      </div>
       </div>
     </div>
   );
