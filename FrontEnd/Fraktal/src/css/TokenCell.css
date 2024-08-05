@@ -32,9 +32,3 @@
     max-height: 54px;
     overflow: hidden;
 }
-
-@media (max-width: 659px) {
-    .token-cell {
-        max-width: 200px;
-    }
-}
