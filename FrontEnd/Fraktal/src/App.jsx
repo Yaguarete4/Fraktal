@@ -4,6 +4,7 @@ import { Pag1 } from './components/Pag1';
 import { Login } from './components/Login';
 import { Cel } from './components/Cel';
 import { Wallet } from './components/Wallet';
+import { GlobalPage } from './pages/GlobalPage';
 import { Routes, Route, Link } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -16,13 +17,15 @@ function App() {
 
   return (
     <>         
-    <section>     
+    <section>    
+        <Navbar />
+
           <Routes>   
                 <Route path="/" element={<Pag1 />} />
                 <Route path="/wallet" element={<Link to="/login">Hola</Link>} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Pag1 />} />
-
+                <Route path="/global" element={<GlobalPage />} />
         </Routes>
     </section>
       {/* <section>

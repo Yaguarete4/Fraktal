@@ -13,7 +13,7 @@ export const Pag1 = () => {
 
     return (
         <>
-            <Navbar onPageChange={(page) => console.log(page)} setShowLogin={setShowLogin} isBlurry={showLogin} />
+            {/* <Navbar onPageChange={(page) => console.log(page)} setShowLogin={setShowLogin} isBlurry={showLogin} /> */}
             <div className={`conte ${showLogin ? "blur" : ""}`}>
                 <div className="titulo">Invertir&nbsp;</div>
                 <div className="animated-text"><span></span></div>

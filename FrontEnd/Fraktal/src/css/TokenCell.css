@@ -1,0 +1,40 @@
+.token-cell {
+    display: flex;
+    flex-direction: column;
+    background-color: #202020;
+    border-radius: 8px;
+    padding: 15px;
+    max-width: 288px;
+    height: 241px;
+    max-height: 241px;
+    gap: 10px;
+}
+
+.token-cell > img {
+    max-width: 138px;
+    margin: 0 auto;
+}
+
+.token-cell > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px
+}
+
+.token-cell > div > h1 {
+    color: white;
+    font-size: 1.2rem;
+}
+
+.token-cell > div > p {
+    color: #CFCCC7;
+    font-size: 0.9rem;
+    max-height: 54px;
+    overflow: hidden;
+}
+
+@media (max-width: 659px) {
+    .token-cell {
+        max-width: 200px;
+    }
+}
