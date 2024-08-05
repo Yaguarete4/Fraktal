@@ -15,7 +15,6 @@ function App() {
     <>         
     <section>    
         <Navbar />
-
           <Routes>   
                 <Route path="/" element={<PaginaPrincipal />} />
                 <Route path="/wallet" element={<Link to="/login">Hola</Link>} />

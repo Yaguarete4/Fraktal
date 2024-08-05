@@ -53,6 +53,7 @@ export const Navbar = ({ onPageChange, setShowLogin, isBlurry }) => {
             <span></span>
           </div>
         </label>
+        
       </div>
     </header>
   );
