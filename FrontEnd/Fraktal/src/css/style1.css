@@ -207,7 +207,7 @@
 /* Agrega esto a style1.css */
 
 .blur {
-  filter: blur(5px);
+  filter: blur(7px);
   transition: filter 0.3s ease;
 }
 
@@ -216,7 +216,6 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  margin-top: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */

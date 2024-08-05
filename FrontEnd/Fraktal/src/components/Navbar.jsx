@@ -30,7 +30,9 @@ export const Navbar = ({ onPageChange, setShowLogin, isBlurry }) => {
 
       <div className="navbar__inicio-config">
         <div className="caja3">
-          <img onClick={() => setShowLogin(true)} src={logoUser} alt="Logo" className="logoUser" />
+          <Link to="/login">
+            <img src={logoUser} alt="Logo" className="logoUser" onClick={() => setShowLogin(true)} />
+          </Link>
         </div>
         <div className="caja2">
           <img src={logoConf} alt="Logo" className="logoConf" />
