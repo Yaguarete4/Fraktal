@@ -26,7 +26,7 @@
     min-height: fit-content;
 }
 
-@media (max-width: 659px) {
+@media (max-width: 965px) {
     .global__tags > div {
         grid-template-columns: repeat(auto-fill, 45vw);
         gap: 5px;
