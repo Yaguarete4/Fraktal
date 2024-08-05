@@ -6,9 +6,13 @@ export const PaginaPrincipal = () => {
     return (
         <>
             <div className="conte">
-                <div className="titulo">Invertir&nbsp;</div>
+                <div className="titulo">Invertir&nbsp;</div>        
                 <div className="animated-text"><span></span></div>
-            </div>
+                </div>
+                <div className="subconte">
+                    <div className="subtitu">Inverti en proyectos con potencial mediante tokens</div>
+                </div>
+           
             <div className="wrapper">
                 <div className="itemLeft item1"></div>
                 <div className="itemLeft item2"></div>
