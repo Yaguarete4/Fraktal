@@ -19,16 +19,10 @@ function App() {
           <Routes>   
                 <Route path="/" element={<PaginaPrincipal />} />
                 <Route path="/wallet" element={<Link to="/login">Hola</Link>} />
-<<<<<<< HEAD
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<Pag1 />} />
-                <Route path="/global" element={<GlobalPage />} />
-=======
                 <Route path="/login" element={<LoginWeb />} />
                 <Route path="/signup" element={<SignupWeb />} />
                 <Route path="/cel" element={<Cel />} />
-
->>>>>>> ebc7292a9b79bab954f214bc1097f6c38b7b6ee1
+                <Route path="/global" element={<GlobalPage />} />
         </Routes>
     </section>
     </>

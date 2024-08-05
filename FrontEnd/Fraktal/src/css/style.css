@@ -13,7 +13,7 @@ header{
     -webkit-backdrop-filter: blur( 16px );
     justify-content: space-between;
     border-radius: 10px;
-    width: 100vw;
+    /* width: 100vw; */
     display: flex;
     height: 60px;
     position: sticky;
