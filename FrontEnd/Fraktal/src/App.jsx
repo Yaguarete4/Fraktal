@@ -18,7 +18,7 @@ function App() {
       <section>
         <Routes>   
           <Route path="/" element={<PaginaPrincipal />} />
-          <Route path="/wallet" element={<Link to="/login">Hola</Link>} />
+          <Route path="/wallet" element={<Wallet />} />
           <Route path="/login" element={<LoginWeb />} />
           <Route path="/signup" element={<SignupWeb />} />
           <Route path="/global" element={<GlobalPage />} />
