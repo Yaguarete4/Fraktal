@@ -87,21 +87,23 @@ router.post('/register', async (req, res) => {
 });
 
 router.delete('/deleteAccount', authenticateToken, async (req, res) => {
-    const [password] = await connection.query('SELECT password FROM Users WHERE email = ?', [req.user.email]);
-    if(password.length === 0){
+    const password = req.body.password ? req.body.password : "";
+    const query = await makeQuery('SELECT password FROM users WHERE username = $1', [req.user.username]);
+    if(query.rows.length === 0){
         res.sendStatus(403);
         return;
     }
     
-    const passwordChecked = await comparePassword(req.user.email, req.body.password);
-
+    const passwordChecked = await bcrypt.compare(password, query.rows[0].password);
+    console.log(passwordChecked);
     if(!passwordChecked){
         res.sendStatus(403);
         return;
     }
 
-    await connection.query('DELETE FROM Users WHERE email = ?', [req.user.email]);
-    await connection.query('DELETE FROM Historial WHERE userEmail = ?', [req.user.email]);
+    const success = await makeQuery('DELETE FROM users WHERE username = $1', [req.user.username]);
+    if(!success) return res.sendStatus(500);
+
     res.sendStatus(200);
 });
 
@@ -145,13 +147,16 @@ router.post('/login', async (req, res) => {
 
 router.delete('/logout', async (req, res) => {
     res.clearCookie('refreshToken');
-    deleteRefreshToken(req.cookies.refreshToken);
-    res.sendStatus(204);
+    const success = await deleteRefreshToken(req.cookies.refreshToken);
+    if(!success) return res.sendStatus(500);
+
+    res.sendStatus(200);
 });
 
 router.get('/token', async (req, res) => { 
     const refreshToken = req.cookies.refreshToken;
-    const [sqlRefreshToken] = await connection.query('SELECT refreshToken FROM Users WHERE refreshToken = ?', [refreshToken]);
+    let sqlRefreshToken = await makeQuery('SELECT refreshtoken FROM users WHERE refreshtoken = $1', [refreshToken]);
+    sqlRefreshToken = sqlRefreshToken.rows;
     if(!refreshToken) return res.sendStatus(401);
     if(sqlRefreshToken.length == 0) return res.sendStatus(403);
 
@@ -174,7 +179,7 @@ router.get('/tablas', async (req, res) => {
 });
 
 async function comparePassword(email, password){
-    const [query] = await connection.query('SELECT password FROM Users WHERE email = ?', [email]);
+    const [query] = await connection.query('SELECT password FROM Users WHERE email = ?', [user]);
     if(query.length === 0){
         return false;
     } else {
@@ -203,7 +208,9 @@ function getRefreshToken(payload){
 }
 
 async function deleteRefreshToken(token){
-    await connection.query('UPDATE users SET refreshtoken = NULL WHERE refreshtoken = ?', [token]);
+    const query = await makeQuery('UPDATE users SET refreshtoken = NULL WHERE refreshtoken = $1', [token]);
+    if(!query) return false;
+    return true;
 }
 
 function authenticateToken(req, res, next) {

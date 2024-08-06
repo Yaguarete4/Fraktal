@@ -3,7 +3,7 @@ GET http://localhost:3000/tablas
 ###
 
 GET http://localhost:3000/auth/authenticate
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hdHV0ZXJvbmNvIiwiaWF0IjoxNzIyNjE5MTAwLCJleHAiOjE3MjI2MjA5MDB9.b55I8tS_PKY5uy38KlM0iYpkIP7KBvEwgfUvItlxAt8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hdHV0ZXJvbmNvIiwiaWF0IjoxNzIyOTUzODMwLCJleHAiOjE3MjI5NTU2MzB9.fzOxxrSDaND-_yDNsi35XUiB8JMDCPINxHYls4oJeeE
 
 ###
 
@@ -11,7 +11,7 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "usernameEmail": "Bunuelo",
+    "usernameEmail": "Matuteronco",
     "password": "5050"
 }
 
@@ -39,22 +39,22 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3000/token
-Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hdGlidW5lc0BnbWFpbC5jb20iLCJpYXQiOjE2OTk5NjQ3ODMsImV4cCI6MTcwNzc0MDc4M30.NxRJPSrcgr2_A68DfqGFDn7-mJJhfkDp3MQygD-Zris
+GET http://localhost:3000/auth/token
+Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hdHV0ZXJvbmNvIiwiaWF0IjoxNzIyOTUwMjg3LCJleHAiOjE3MjMwMzY2ODd9.ak4ntJJo77MOwu_QF7sx07NhzIwUaBdzg5ykOp-YmhE
 
 ###
 
-DELETE http://localhost:3000/logout
-Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imx1cXVpdGF2b0BnbWFpbC5jb20iLCJpYXQiOjE2OTk5NjY5NTMsImV4cCI6MTcwNzc0Mjk1M30.0mP6YefdyENb5mGubB48q1JSTxiJNw-VulW8MW1PsdA
+DELETE http://localhost:3000/auth/logout
+Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hdHV0ZXJvbmNvIiwiaWF0IjoxNzIyOTUwNjIyLCJleHAiOjE3MjMwMzcwMjJ9.mwU2xsKF6S9_3-NUp5DTFCZ86dH7NnUmHPAVsoy-DoU
 
 ###
 
-DELETE http://localhost:3000/deleteAccount
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNpbW9uZXNjb2xhckBnbWFpbC5jb20iLCJpYXQiOjE2OTk4ODc1NzUsImV4cCI6MTY5OTg5MTE3NX0.hJzSnNj1NGQIA2JlkIuf9PE0jGoagysVWDzENA0NEls
+DELETE http://localhost:3000/auth/deleteAccount
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hdHV0ZXJvbmNvIiwiaWF0IjoxNzIyOTU0NjM0LCJleHAiOjE3MjI5NTY0MzR9.l7JtciDkvpsOYs_Tiw8ShEgfKw3U44cH_KTQrH8-0tE
 Content-Type: application/json
 
 {
-    "password": "4000"
+    "password": "5050"
 }
 
 ###
