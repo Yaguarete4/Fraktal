@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { Navbar } from '../components/Navbar';
 import { Cel } from '../components/Cel';
 import bitcoin from '../img/bitcoin.png';
-import '../css/pages/GlobalPage.css'
+import '../css/pages/MarketPage.css'
 
-export const GlobalPage = () => {
+export const MarketPage = () => {
     const tags = databaseExample.tags;
     const [isCelVisible, setIsCelVisible] = useState(false);
 
@@ -20,7 +20,7 @@ export const GlobalPage = () => {
                         <Cel className="cel-center" />
                     </div>
                 )}
-            <div className='global'>
+            <div className='market'>
                 {tags.map((value, index) => {
                     return <TagsDivision key={index} tag={value} />
                 })}
@@ -33,7 +33,7 @@ export const GlobalPage = () => {
 const TagsDivision = (props) => {
     const tag = props.tag;
     return (
-        <div className="global__tags">
+        <div className="market__tags">
             <h1>{`${tag.tagName}`}</h1>
             <div>
                 {tag.companies.map((value, index) => {
