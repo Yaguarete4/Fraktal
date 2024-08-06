@@ -228,6 +228,16 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
 }
+.modal2{
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  width: 85vw;
+  transform: translate(-50%, -50%);
+  border-radius: 8px;
+  z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+  
+}
 @media (width <700px) {
   .itemLeft,
   .itemRight {

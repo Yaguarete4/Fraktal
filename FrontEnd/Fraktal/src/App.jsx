@@ -12,17 +12,10 @@ import { PaginaPrincipal } from './components/PaginaPrincipal';
 import { SignupWeb } from './components/SignupWeb';
 
 function App() {
-  const [isCelVisible, setIsCelVisible] = useState(false);
-
-  const handleMenuToggle = () => {
-    setIsCelVisible(!isCelVisible);
-  };
 
   return (
     <>         
       <section>
-        <Navbar onMenuToggle={handleMenuToggle} />
-        {isCelVisible && <Cel className="cel-enter" />}
         <Routes>   
           <Route path="/" element={<PaginaPrincipal />} />
           <Route path="/wallet" element={<Link to="/login">Hola</Link>} />

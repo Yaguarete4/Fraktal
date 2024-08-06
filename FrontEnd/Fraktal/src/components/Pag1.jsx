@@ -18,7 +18,10 @@ export const Pag1 = () => {
                 <div className="titulo">Invertir&nbsp;</div>
                 <div className="animated-text"><span></span></div>
             </div>
-            <div className="wrapper">
+            <div className={`subconte ${showLogin ? "blur" : ""}`}>
+                    <div className="subtitu">Inverti en proyectos con potencial mediante tokens</div>
+                </div>
+            <div className={`wrapper ${showLogin ? "blur" : ""}`}>
                 <div className="itemLeft item1"></div>
                 <div className="itemLeft item2"></div>
                 <div className="itemLeft item3"></div>
@@ -31,7 +34,6 @@ export const Pag1 = () => {
             {showLogin && (
                 <div className="modal">
                     <Login />
-                    <button onClick={closeLogin}>Cerrar</button>
                 </div>
             )}
         </>
