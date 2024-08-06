@@ -229,14 +229,16 @@
   z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
 }
 .modal2{
-  position: absolute;
-  top: 130px;
-  left: 50%;
-  width: 90vw;
-  transform: translate(-50%, -50%);
+  position: fixed;
+  top: 60px;
+  /* left: 50%; */
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* transform: translate(-50%, -50%); */
   border-radius: 8px;
   z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
-  
 }
 @media (width <700px) {
   .itemLeft,
