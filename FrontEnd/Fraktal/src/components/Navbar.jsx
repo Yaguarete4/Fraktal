@@ -7,24 +7,20 @@ import logoConf from '../img/confi.png';
 import logoUser from '../img/User_03.svg';
 import { Link } from 'react-router-dom';
 
-export const Navbar = ({ onPageChange, setShowLogin, isBlurry }) => {
-  const handlePageClick = (page) => {
-    onPageChange(page);
-  };
-
+export const Navbar = ({ onMenuToggle, setShowLogin, isBlurry }) => {
   return (
     <header className={isBlurry ? 'blur' : ''}>  {/* Agregar aquí la clase blur */}
       <div className="navbar__logo-opciones">
         <div className="caja">
-          <img onClick={() => handlePageClick('home')} src={logo} alt="Logo" className="logito" />
+          <img src={logo} alt="Logo" className="logito" />
         </div>
         <div className="navbar__opciones">
-          <Link to="/market" className="button" onClick={() => handlePageClick('market')}>Market</Link>
-          <Link to="/token" className="button" onClick={() => handlePageClick('token')}>Token</Link>
-          <Link to="/trade" className="button" onClick={() => handlePageClick('trade')}>Trade</Link>
-          <Link to="/wallet" className="button" onClick={() => handlePageClick('wallet')}>Wallet</Link>
-          <Link to="/global" className="button" onClick={() => handlePageClick('global')}>Global</Link>
-          <Link to="/news" className="button" onClick={() => handlePageClick('news')}>News</Link>
+          <Link to="/market" className="button">Market</Link>
+          <Link to="/token" className="button">Token</Link>
+          <Link to="/trade" className="button">Trade</Link>
+          <Link to="/wallet" className="button">Wallet</Link>
+          <Link to="/global" className="button">Global</Link>
+          <Link to="/news" className="button">News</Link>
         </div>
       </div>
 
@@ -46,7 +42,7 @@ export const Navbar = ({ onPageChange, setShowLogin, isBlurry }) => {
           <img src={logo} alt="Logo" className="logitok" />
         </div>
         <label className="container">
-          <input type="checkbox" />
+          <input type="checkbox" onChange={onMenuToggle} />
           <div className="checkmark">
             <span></span>
             <span></span>
@@ -57,4 +53,3 @@ export const Navbar = ({ onPageChange, setShowLogin, isBlurry }) => {
     </header>
   );
 };
-

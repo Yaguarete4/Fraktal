@@ -11,7 +11,7 @@
     margin-top: 85px;
     color: beige;
     font-weight: bolder;
-    margin-bottom: 160px;
+    margin-bottom: 16px;
 }
 .animated-text{
     margin-top: 85px;
@@ -89,7 +89,7 @@
 }
 .conte{
     display: flex;
-    margin-left: 70px;
+    margin-left: 5.12vw;
 }
 *,
 *::before,
@@ -128,6 +128,14 @@
   to {
     right: -200px;
   }
+}
+
+.subtitu{
+  color: white;
+  display: flex;
+  font-size: 17px;
+  margin-left: 5.12vw;
+  margin-bottom: 90px;
 }
 
 .itemLeft,
@@ -219,4 +227,41 @@
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+}
+.modal2{
+  position: fixed;
+  top: 60px;
+  /* left: 50%; */
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* transform: translate(-50%, -50%); */
+  border-radius: 8px;
+  z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+}
+@media (width <700px) {
+  .itemLeft,
+  .itemRight {
+    width: 70px;
+    height: 70px;
+    background-color: #333434;
+    border-radius: 6px;
+    position: absolute;
+    animation-timing-function: linear;
+    animation-duration: 30s;
+    animation-iteration-count: infinite;
+  }
+  .itemLeft {
+    left: max(calc(80px * 8), 100%);
+    animation-name: scrollLeft;
+  }
+  @keyframes scrollLeft {
+    to {
+      left: -50px;
+    }
+  }
+  .subtitu{
+    font-size: 10px;
+  }
 }

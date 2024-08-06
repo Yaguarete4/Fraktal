@@ -1,4 +1,5 @@
 import './css/App.css';
+import './css/cel.css'; // Asegúrate de importar el archivo CSS
 import { Navbar } from './components/Navbar';
 import { LoginWeb } from './components/LoginWeb';
 import { Login } from './components/Login';
@@ -11,20 +12,18 @@ import { PaginaPrincipal } from './components/PaginaPrincipal';
 import { SignupWeb } from './components/SignupWeb';
 
 function App() {
+
   return (
     <>         
-    <section>    
-        <Navbar />
-
-          <Routes>   
-                <Route path="/" element={<PaginaPrincipal />} />
-                <Route path="/wallet" element={<Link to="/login">Hola</Link>} />
-                <Route path="/login" element={<LoginWeb />} />
-                <Route path="/signup" element={<SignupWeb />} />
-                <Route path="/cel" element={<Cel />} />
-                <Route path="/global" element={<GlobalPage />} />
+      <section>
+        <Routes>   
+          <Route path="/" element={<PaginaPrincipal />} />
+          <Route path="/wallet" element={<Wallet />} />
+          <Route path="/login" element={<LoginWeb />} />
+          <Route path="/signup" element={<SignupWeb />} />
+          <Route path="/global" element={<GlobalPage />} />
         </Routes>
-    </section>
+      </section>
     </>
   );
 }

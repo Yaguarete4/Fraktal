@@ -1,16 +1,31 @@
 import {TokenCell} from  '../components/TokenCell'
+import { useState } from 'react';
+import { Navbar } from '../components/Navbar';
+import { Cel } from '../components/Cel';
 import bitcoin from '../img/bitcoin.png';
 import '../css/pages/GlobalPage.css'
 
 export const GlobalPage = () => {
     const tags = databaseExample.tags;
+    const [isCelVisible, setIsCelVisible] = useState(false);
 
+    const handleMenuToggle = () => {
+      setIsCelVisible(!isCelVisible);
+    }
     return (
-        <div className='global'>
-            {tags.map((value) => {
-                return <TagsDivision tag={value} />
-            })}
-        </div>
+        <>
+            <Navbar onMenuToggle={handleMenuToggle} />
+            {isCelVisible && (
+                    <div className="modal2">
+                        <Cel className="cel-center" />
+                    </div>
+                )}
+            <div className='global'>
+                {tags.map((value, index) => {
+                    return <TagsDivision key={index} tag={value} />
+                })}
+            </div>
+        </>
     )
 }
 
@@ -21,8 +36,8 @@ const TagsDivision = (props) => {
         <div className="global__tags">
             <h1>{`${tag.tagName}`}</h1>
             <div>
-                {tag.companies.map((value) => {
-                    return <TokenCell img={value.tokenImg} name={value.name}>{value.description}</TokenCell>
+                {tag.companies.map((value, index) => {
+                    return <TokenCell key={index} img={value.tokenImg} name={value.name}>{value.description}</TokenCell>
                 })}
             </div>
         </div>
