@@ -24,6 +24,7 @@ export const Login = () => {
             const response = await fetch('https://fraktalapi.vercel.app/auth/register', {
                 headers: {
                     "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "fraktalapi.vercel.app"
                 },
                 method: "POST",
                 body: JSON.stringify(formValues)
