@@ -4,7 +4,7 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors({
-    origin: 'http://fraktal.vercel.app',
+    origin: ['https://fraktal.vercel.app', 'http://localhost:5173'],
     optionsSuccessStatus: 200
 }));
 
