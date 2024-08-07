@@ -83,7 +83,7 @@ router.post('/register', async (req, res) => {
         await makeQuery('INSERT INTO users (username, name, surname, email, password, refreshToken) VALUES ($1, $2, $3, $4, $5, $6)', [req.body.username, req.body.name, req.body.surname, req.body.email, hashedPassword, refreshToken]);
     }
 
-    res.json(credential);
+    res.status(200).json(credential);
 });
 
 router.delete('/deleteAccount', authenticateToken, async (req, res) => {
