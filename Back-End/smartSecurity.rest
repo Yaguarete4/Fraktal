@@ -39,6 +39,20 @@ Content-Type: application/json
 
 ###
 
+POST http://fraktalapi.vercel.app/auth/register
+Content-Type: application/json
+
+{
+    "username": "Matuteronco",
+    "email": "maturonconi@gmail.com",
+    "name": "Luca",
+    "surname": "Chami",
+    "password": "5050",
+    "confirmPassword": "5050"
+}
+
+###
+
 GET http://localhost:3000/auth/token
 Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hdHV0ZXJvbmNvIiwiaWF0IjoxNzIyOTUwMjg3LCJleHAiOjE3MjMwMzY2ODd9.ak4ntJJo77MOwu_QF7sx07NhzIwUaBdzg5ykOp-YmhE
 
