@@ -1,6 +1,8 @@
 import React from "react";
 import '../css/cel.css'; 
 import flech from '../img/chevron.svg';
+import { Link } from 'react-router-dom';
+
 
 export const Cel = ({ className }) => {
   return (
@@ -20,20 +22,31 @@ export const Cel = ({ className }) => {
 </button>
 
         <div className="dropdown-menu">
-          <div className="celup">Mercado</div>
-          <div className="celup">Portafolio</div>
+        <Link to="/market" className="celup">Mercado
+        </Link>
+        <div className="celup">Portafolio</div>
         </div>
       </div>
       <div className="dropdown">
-<button className="button-class" onClick={(e) => e.target.focus()}>
+      <button className="button-class" onClick={(e) => e.target.focus()}>
   Usuario
-  <img src={flech} className="img-class" alt="chevron" />
+  <img 
+    src={flech} 
+    className="img-class" 
+    alt="chevron" 
+    onClick={(e) => {
+      e.stopPropagation();  // Evita que se propague el evento al botón padre.
+      e.target.closest('button').focus();  // Aplica el enfoque al botón padre.
+    }} 
+  />
 </button>
 
         <div className="dropdown-menu">
-          <div className="celup">Iniciar sesion</div>
-          <div className="celup">Registrase</div>
-        </div>
+        <Link to="/signup" className="celup">Iniciar sesion
+        </Link>
+        <Link to="/login" className="celup">Registrarse
+        </Link>
+      </div>
       </div>
       <div className="dropdown">
         <button className="button-class">

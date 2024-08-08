@@ -11,9 +11,9 @@ export const Navbar = ({ onMenuToggle, setShowLogin, isBlurry }) => {
   return (
     <header className={isBlurry ? 'blur' : ''}>  {/* Agregar aquí la clase blur */}
       <div className="navbar__logo-opciones">
-        <div className="caja">
-          <img src={logo} alt="Logo" className="logito" />
-        </div>
+      <Link to="/" className="caja">
+      <img src={logo} alt="Logo" className="logito" />
+        </Link>
         <div className="navbar__opciones">
           <Link to="/market" className="button">Market</Link>
           <Link to="/token" className="button">Token</Link>
@@ -35,12 +35,12 @@ export const Navbar = ({ onMenuToggle, setShowLogin, isBlurry }) => {
         </div>
       </div>
       <div className="celu">
-        <div className="cajaK">
-          <img src={logoK} alt="Logo" className="logitoK" />
-        </div>
-        <div className="cajaK">
-          <img src={logo} alt="Logo" className="logitok" />
-        </div>
+      <Link to="/" className="cajak">
+      <img src={logoK} alt="Logo" className="logitoK" />
+        </Link>
+        <Link to="/" className="cajak">
+        <img src={logo} alt="Logo" className="logitok" />
+        </Link>
         <label className="container">
           <input type="checkbox" onChange={onMenuToggle} />
           <div className="checkmark">
