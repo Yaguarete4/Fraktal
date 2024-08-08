@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import '../css/style1.css';
 import { Navbar } from './Navbar';
 import { Cel } from './Cel';
+import a2 from '../img/eth.svg';
+import a1 from '../img/bitcoin.png';
 
 
 export const PaginaPrincipal = () => {
@@ -27,8 +29,10 @@ export const PaginaPrincipal = () => {
                 </div>
            
             <div className="wrapper">
-                <div className="itemLeft item1"></div>
-                <div className="itemLeft item2"></div>
+            <div className="itemLeft item1">
+                </div>
+                <div className="itemLeft item2">
+                </div>
                 <div className="itemLeft item3"></div>
                 <div className="itemLeft item4"></div>
                 <div className="itemLeft item5"></div>

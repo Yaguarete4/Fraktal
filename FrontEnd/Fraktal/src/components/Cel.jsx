@@ -11,8 +11,8 @@ export const Cel = ({ className }) => {
           <img src={flech} className="img-class" alt="chevron" />
         </button>
         <div className="dropdown-menu">
-          <div className="celup">Market</div>
-          <div className="celup">Wallet</div>
+          <div className="celup">Mercado</div>
+          <div className="celup">Portafolio</div>
         </div>
       </div>
       <div className="dropdown">
@@ -21,13 +21,13 @@ export const Cel = ({ className }) => {
           <img src={flech} className="img-class" alt="chevron" />
         </button>
         <div className="dropdown-menu">
-          <div className="celup">Login</div>
-          <div className="celup">Signup</div>
+          <div className="celup">Iniciar sesion</div>
+          <div className="celup">Registrase</div>
         </div>
       </div>
       <div className="dropdown">
         <button className="button-class">
-          Global
+          Pre-venta
         </button>
       </div>
     </div>

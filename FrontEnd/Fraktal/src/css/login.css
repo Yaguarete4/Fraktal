@@ -129,3 +129,32 @@
      transform: translateY(0);
   }
 } 
+@media (width < 700px){
+  
+}
+@media (width < 500px) {
+.loginContainer, .signupContainer{
+  margin-top: 50px;
+  width: 100vw;
+}
+.input{
+  width: 87vw;
+}
+button{
+  display: block;
+}
+.linki{
+}
+.regi{
+  width: 87vw;
+}
+.but{
+  width: 87vw;
+}
+.caja-inicio-sesion{
+  width: 87vw;
+}
+.inicio-sesion{
+
+}
+}

@@ -155,5 +155,5 @@ border-radius: 10px; */
 }
 
 .cel-center {
- animation: fadeInRight 1.5s ease;
+ animation: fadeInRight 0.5s ease-in-out;
 }

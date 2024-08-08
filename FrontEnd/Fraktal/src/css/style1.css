@@ -191,9 +191,9 @@
 .item8 {
   animation-delay: calc(30s / 8 * (8 - 8) * -1);
 }
-@media (min-width: 1px) and (max-width: 659px) {
+@media (min-width: 1px) and (max-width: 700px) {
 .titulo, .animated-text{
-  font-size: 27px;
+  font-size: 30px;
 }
 } 
 @media (min-width: 1370px){     
