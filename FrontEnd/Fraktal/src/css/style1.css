@@ -265,3 +265,54 @@
     font-size: 10px;
   }
 }
+.card {
+  position: relative;
+  perspective: 1000px;
+  width: 30vw;
+  height: 17vw;
+  margin: 0 auto;
+  margin-top:20px ;
+}
+
+.card .front,
+.card .back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backface-visibility: hidden;
+  background: #1e1e1e;
+  backdrop-filter: blur( 16px );
+  -webkit-backdrop-filter: blur( 16px );
+  border-radius: 10px;
+  padding: 36px 36px 44px 44px;
+  transition: 1.2s;
+  cursor: pointer;
+  color: aliceblue;
+  text-align: center;
+  font-size: small;
+}
+.card .back{
+  background-color: blue;
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+input {
+  position: absolute;
+  scale: 0;
+}
+
+input:checked ~ .card .back {
+  transform: rotateY(0);
+}
+
+input:checked ~ .card .front {
+  transform: rotateY(-180deg);
+}
+.summary{
+
+}
