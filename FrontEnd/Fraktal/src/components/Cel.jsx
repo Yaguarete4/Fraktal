@@ -6,9 +6,17 @@ export const Cel = ({ className }) => {
   return (
     <div className={`dropdowns ${className}`}>
       <div className="dropdown">
-<button className="button-class" onClick={(e) => e.target.focus()}>
+      <button className="button-class" onClick={(e) => e.target.focus()}>
   Tokens
-  <img src={flech} className="img-class" alt="chevron" />
+  <img 
+    src={flech} 
+    className="img-class" 
+    alt="chevron" 
+    onClick={(e) => {
+      e.stopPropagation();  // Evita que se propague el evento al botón padre.
+      e.target.closest('button').focus();  // Aplica el enfoque al botón padre.
+    }} 
+  />
 </button>
 
         <div className="dropdown-menu">
@@ -17,7 +25,6 @@ export const Cel = ({ className }) => {
         </div>
       </div>
       <div className="dropdown">
-      // Modifica el botón para Tokens
 <button className="button-class" onClick={(e) => e.target.focus()}>
   Usuario
   <img src={flech} className="img-class" alt="chevron" />
