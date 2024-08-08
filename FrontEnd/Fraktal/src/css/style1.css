@@ -301,9 +301,9 @@
   transform: rotateY(180deg);
 }
 
-input {
-  position: absolute;
+#cardCheckbox {
   scale: 0;
+  position: absolute;
 }
 
 input:checked ~ .card .back {
