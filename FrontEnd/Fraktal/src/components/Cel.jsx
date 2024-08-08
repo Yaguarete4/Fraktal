@@ -17,10 +17,12 @@ export const Cel = ({ className }) => {
         </div>
       </div>
       <div className="dropdown">
-        <button className="button-class">
-          User
-          <img src={flech} className="img-class" alt="chevron" />
-        </button>
+      // Modifica el botón para Tokens
+<button className="button-class" onClick={(e) => e.target.focus()}>
+  Usuario
+  <img src={flech} className="img-class" alt="chevron" />
+</button>
+
         <div className="dropdown-menu">
           <div className="celup">Iniciar sesion</div>
           <div className="celup">Registrase</div>
