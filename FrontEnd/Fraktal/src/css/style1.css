@@ -140,8 +140,8 @@
 
 .itemLeft,
 .itemRight {
-  width: 160px;
-  height: 160px;
+  width: 11.7vw;
+  height: 11.7vw;
   background-color: #333434;
   border-radius: 6px;
   position: absolute;
