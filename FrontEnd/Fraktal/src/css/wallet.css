@@ -12,3 +12,30 @@
   background: #d38f06;
   transition: background-color 0.5s ease-in-out;
 }
+.titu-portafolio{
+color: honeydew;
+margin-top: 20px;
+font-size: 21px;
+font-weight: bold;
+margin-bottom: 14px;
+}
+.caja-portafolio{
+  margin-left: 8.14vw;
+  margin-right: 8.14vw;
+}
+.plata{
+  color: aliceblue;
+  font-size: 8.15vw;
+}
+.profit{
+  color: #05DB74;
+  font-size: 4.07vw;
+  margin-top: 14px;
+}
+.caja-but{
+  display: flex;
+  flex-direction: row;
+}
+.but-portafolio{
+  
+}

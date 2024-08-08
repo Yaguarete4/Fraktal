@@ -24,7 +24,8 @@ export const Cel = ({ className }) => {
         <div className="dropdown-menu">
         <Link to="/market" className="celup">Mercado
         </Link>
-        <div className="celup">Portafolio</div>
+        <Link to="/wallet" className="celup">Portafolio
+        </Link>        
         </div>
       </div>
       <div className="dropdown">
