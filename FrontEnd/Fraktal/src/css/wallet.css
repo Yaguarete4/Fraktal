@@ -102,6 +102,7 @@ margin-bottom: 14px;
   text-align: center;
   line-height: 1;
 }
+/* ver esto */
 .caja-reparticion{
   justify-content: space-between;
   display: flex;
@@ -114,6 +115,8 @@ margin-bottom: 14px;
   height: auto;
   border-radius: 5px;
   border: #464646 1px solid;
+  display: flex;
+  flex-direction: row;
 }
 .cuadra{
   display: flex;
@@ -151,4 +154,53 @@ margin-bottom: 14px;
   border-radius: 2px;
   margin-left: 2vw;
   margin-top: 2.5px;
+}
+.nombre-tokens{
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  
+}
+.t1{
+  font-weight: 600px;
+  font-size: 1.78vw;
+  color: white;
+  margin-left: 0.76vw;
+  margin-right: 0.76vw;  
+  align-items: center;
+  text-align: center;
+  align-content: center;
+  margin-bottom: 13px;
+}
+/* hasta aca */
+.rendimiento-titu{
+font-weight: bolder;
+justify-content: flex-start;
+margin-top: 16px;
+color: white;
+margin-bottom: 19px;
+}
+.caja-rendimiento{
+  width: 86vw;
+  height: 56vw;
+  margin: 0 auto;
+}
+.caja-chiki{
+  width: 86vw;
+}
+.ren{
+  background-color: #202020;
+  height: 46px;
+  width: 100%;
+  border-radius: 4px;
+  margin-top: 5px;
+  align-content: center;
+  align-items: center;
+}
+.ren-nombre{
+  color: white;
+  margin-left: 2.54vw;
+  font-weight: 600;
+  font-size: 3.3vw;
 }
