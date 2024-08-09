@@ -313,6 +313,3 @@ input:checked ~ .card .back {
 input:checked ~ .card .front {
   transform: rotateY(-180deg);
 }
-.summary{
-
-}
