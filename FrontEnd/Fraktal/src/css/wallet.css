@@ -18,22 +18,31 @@
 .titu-portafolio{
 color: honeydew;
 margin-top: 20px;
-font-size: 21px;
+font-size: 5.34vw;
 font-weight: bold;
 margin-bottom: 14px;
+animation: fadeInDown 0.5s ease-in-out;
+
 }
 .caja-portafolio{
   margin-left: 8.14vw;
   margin-right: 8.14vw;
+  
 }
 .plata{
   color: aliceblue;
   font-size: 8.15vw;
+  animation: fadeInDown 0.5s ease-in-out;
+
 }
-.profit{
+.profit {
   color: #05DB74;
   font-size: 4.07vw;
   margin-top: 14px;
+}
+
+.profit.animate {
+  animation: lightSpeedIn 1.5s ease-in-out;
 }
 .caja-but{
   display: flex;
@@ -180,6 +189,7 @@ justify-content: flex-start;
 margin-top: 16px;
 color: white;
 margin-bottom: 19px;
+font-size: 4.1vw;
 }
 .caja-rendimiento{
   width: 86vw;
@@ -197,10 +207,70 @@ margin-bottom: 19px;
   margin-top: 5px;
   align-content: center;
   align-items: center;
-}
+  display: flex;
+  flex-direction: row;
+  }
 .ren-nombre{
   color: white;
   margin-left: 2.54vw;
   font-weight: 600;
   font-size: 3.3vw;
 }
+.ren-img{
+  width: 5.59vw;
+  height: auto;
+  margin-left: 2.54vw ;
+}
+.ren-green{
+  font-size: 2.5vw;
+  color: #05DB74;
+  margin-left: 7.12vw;
+}
+.ren-red{
+  font-size: 2.5vw;
+  color: #FF3D00;
+  margin-left: 7.12vw;
+}
+.ren-ren{
+  margin-left: auto;
+  margin-right: 2.54vw;
+  display: flex;
+
+flex-direction: row;
+}
+.ren1-green{
+  font-size: 2.5vw;
+  color: #05DB74;
+}
+.ren1-red{
+  font-size: 2.5vw;
+  color: #FF3D00;
+}
+@keyframes fadeInDown {
+  0% {
+     opacity: 0;
+     transform: translateY(-20px);
+  }
+  100% {
+     opacity: 1;
+     transform: translateY(0);
+  }
+}
+@keyframes lightSpeedIn {
+  0% { 
+     transform: translateX(100%) skewX(-30deg); 
+     opacity: 0; 
+  } 
+  60% { 
+     transform: translateX(-20%) skewX(30deg); 
+     opacity: 1; 
+  } 
+  80% { 
+     transform: translateX(0%) skewX(-15deg); 
+     opacity: 1; 
+  } 
+  100% { 
+     transform: translateX(0%) skewX(0deg); 
+     opacity: 1; 
+  } 
+} 
