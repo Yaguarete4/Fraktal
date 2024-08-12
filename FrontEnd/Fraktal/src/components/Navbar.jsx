@@ -15,11 +15,11 @@ export const Navbar = ({ onMenuToggle, setShowLogin, isBlurry }) => {
       <img src={logo} alt="Logo" className="logito" />
         </Link>
         <div className="navbar__opciones">
-          <Link to="/market" className="button">Market</Link>
+          <Link to="/market" className="button">Mercado</Link>
           <Link to="/token" className="button">Token</Link>
           <Link to="/trade" className="button">Trade</Link>
-          <Link to="/wallet" className="button">Wallet</Link>
-          <Link to="/global" className="button">Global</Link>
+          <Link to="/wallet" className="button">Portafolio</Link>
+          <Link to="/pre-venta" className="button">Pre-venta</Link>
           <Link to="/news" className="button">News</Link>
         </div>
       </div>
