@@ -116,6 +116,7 @@
     rgba(0, 0, 0, 1) 80%,
     rgba(0, 0, 0, 0)
   );
+  display: flex;
 }
 
 @keyframes scrollLeft {
@@ -143,7 +144,7 @@
   width: 11.7vw;
   height: 11.7vw;
   background-color: #333434;
-  border-radius: 6px;
+  border-radius: 10px;
   position: absolute;
   animation-timing-function: linear;
   animation-duration: 30s;
@@ -153,6 +154,9 @@
 .itemLeft {
   left: max(calc(100px * 8), 100%);
   animation-name: scrollLeft;
+  display: flex;
+  justify-content: center; /* Alinea horizontalmente al centro */
+  align-items: center; /* Alinea verticalmente al centro */
 }
 
 /* .itemRight {
@@ -264,6 +268,10 @@
   .subtitu{
     font-size: 10px;
   }
+  .wrap-img{
+    width:9.05vw;
+    height: 9.05vw;
+  }
 }
 .card {
   position: relative;
@@ -312,4 +320,9 @@ input:checked ~ .card .back {
 
 input:checked ~ .card .front {
   transform: rotateY(-180deg);
+}
+.wrap-img{
+  width: 7vw;
+  height: 7vw;
+  display: flex;
 }
