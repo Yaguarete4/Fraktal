@@ -130,7 +130,7 @@ animation: fadeInDown 0.5s ease-in-out;
 .cuadra{
   display: flex;
   flex-direction: column;
-  margin-top: 8px;
+  margin-top: 5.5px;
   margin-bottom: 8px;
 }
 .c1{
@@ -146,7 +146,6 @@ animation: fadeInDown 0.5s ease-in-out;
   background-color: #595959;
   border-radius: 2px;
   margin-left: 2vw;
-  margin-top: 2.5px;
 }
 .c3{
   width: 2vw;
@@ -154,7 +153,6 @@ animation: fadeInDown 0.5s ease-in-out;
   background-color: #297B95;
   border-radius: 2px;
   margin-left: 2vw;
-  margin-top: 2.5px;
 }
 .c4{
   width: 2vw;
@@ -162,14 +160,6 @@ animation: fadeInDown 0.5s ease-in-out;
   background-color: #AE660F;
   border-radius: 2px;
   margin-left: 2vw;
-  margin-top: 2.5px;
-}
-.nombre-tokens{
-  display: flex;
-  flex-direction: column;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  
 }
 .t1{
   font-weight: 600px;
@@ -181,6 +171,8 @@ animation: fadeInDown 0.5s ease-in-out;
   text-align: center;
   align-content: center;
   margin-bottom: 13px;
+  line-height: 16px; /* Igual a la altura del contenedor */
+  margin: 0 0.76vw; /* Margen lateral */
 }
 /* hasta aca */
 .rendimiento-titu{
@@ -274,3 +266,23 @@ flex-direction: row;
      opacity: 1; 
   } 
 } 
+.sector{
+  display: flex;
+  flex-direction: row;
+  margin-top: 2.5px;
+  align-items:center ;
+  height: 16px;
+  width: 100%;
+}
+.t-img{
+  height: 3.3vw;
+  width: 3.3vw;
+  margin: 0 1.66vw; /* Ajusta según el diseño */
+
+}
+.porc{
+  font-size: 2vw;
+  font-weight: normal;
+  color: white;
+  margin-left:auto ;
+}

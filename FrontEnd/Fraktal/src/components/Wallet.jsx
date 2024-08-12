@@ -4,6 +4,8 @@ import { Navbar } from './Navbar';
 import { Cel } from './Cel';
 import a2 from '../img/eth.svg';
 import a1 from '../img/bitcoin.png';
+import a3 from '../img/chami.svg';
+import a5 from '../img/usd.png';
 
 export const Wallet = () => {
     const [isCelVisible, setIsCelVisible] = useState(false);
@@ -59,7 +61,7 @@ export const Wallet = () => {
                   </div>
                 </div>
                 <div className="ren">
-                  <img className="ren-img" src={a2} alt="ChamiCoin" />
+                  <img className="ren-img" src={a3} alt="ChamiCoin" />
                   <div className="ren-nombre">ChamiCoin CHM</div>
                   <div className="ren-ren">
                     <div className="ren1-red">-464.38</div>
@@ -75,16 +77,30 @@ export const Wallet = () => {
               </div>
               <div className="caja-porcentaje">
                 <div className="cuadra">
-                  <div className="c1"></div>
-                  <div className="c2"></div>
-                  <div className="c3"></div>
-                  <div className="c4"></div>
-                </div>
-                <div className="nombres-tokens">
-                  <div className="t1">CHM</div>
-                  <div className="t1">CHM</div>
-                  <div className="t1">CHM</div>
-                  <div className="t1">CHM</div>
+                  <div className="sector">
+                   <div className="c1"></div>
+                   <div className="t1">CHM</div>
+                   <img className="t-img" src={a3}></img>
+                   <div className="porc">39.7%</div>
+                  </div>
+                  <div className="sector">
+                   <div className="c2"></div>
+                   <div className="t1">USD</div>
+                   <img className="t-img" src={a5}></img>
+                   <div className="porc">39.7%</div>
+                  </div>
+                  <div className="sector">
+                   <div className="c3"></div>
+                   <div className="t1">ETH</div>
+                   <img className="t-img" src={a2}></img>
+                   <div className="porc">39.7%</div>
+                  </div>
+                  <div className="sector">
+                   <div className="c4"></div>
+                   <div className="t1">BTC</div>
+                   <img className="t-img" src={a1}></img>
+                   <div className="porc">39.7%</div>
+                  </div>                  
                 </div>
               </div>
             </div>

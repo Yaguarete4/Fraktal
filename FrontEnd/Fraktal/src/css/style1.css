@@ -195,12 +195,46 @@
 .item8 {
   animation-delay: calc(30s / 8 * (8 - 8) * -1);
 }
-@media (min-width: 1px) and (max-width: 700px) {
+@media (max-width: 700px) {
 .titulo, .animated-text{
   font-size: 30px;
 }
+.wrap-img{
+    width: 9.1vw;
+    height: 9.1vw;
+    display: flex;
+  }
+.itemLeft,
+  .itemRight {
+    width: 70px;
+    height: 70px;
+    background-color: #333434;
+    border-radius: 6px;
+    position: absolute;
+    animation-timing-function: linear;
+    animation-duration: 30s;
+    animation-iteration-count: infinite;
+  }
+  .itemLeft {
+    left: max(calc(80px * 8), 100%);
+    animation-name: scrollLeft;
+  }
+  
+  @keyframes scrollLeft {
+    to {
+      left: -50px;
+    }
+  }
+  .subtitu{
+    font-size: 10px;
+  }
 } 
-@media (min-width: 1370px){     
+@media (min-width: 710px){  
+  .wrap-img{
+    width: 7vw;
+    height: 7vw;
+    display: flex;
+  }   
 } 
 ::-webkit-scrollbar{
   width: 9px;
@@ -243,35 +277,6 @@
   /* transform: translate(-50%, -50%); */
   border-radius: 8px;
   z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
-}
-@media (width <700px) {
-  .itemLeft,
-  .itemRight {
-    width: 70px;
-    height: 70px;
-    background-color: #333434;
-    border-radius: 6px;
-    position: absolute;
-    animation-timing-function: linear;
-    animation-duration: 30s;
-    animation-iteration-count: infinite;
-  }
-  .itemLeft {
-    left: max(calc(80px * 8), 100%);
-    animation-name: scrollLeft;
-  }
-  @keyframes scrollLeft {
-    to {
-      left: -50px;
-    }
-  }
-  .subtitu{
-    font-size: 10px;
-  }
-  .wrap-img{
-    width:9.05vw;
-    height: 9.05vw;
-  }
 }
 .card {
   position: relative;
@@ -320,9 +325,4 @@ input:checked ~ .card .back {
 
 input:checked ~ .card .front {
   transform: rotateY(-180deg);
-}
-.wrap-img{
-  width: 7vw;
-  height: 7vw;
-  display: flex;
 }
