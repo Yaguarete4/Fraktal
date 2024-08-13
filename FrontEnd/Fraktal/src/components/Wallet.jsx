@@ -82,27 +82,38 @@ export const Wallet = () => {
                    <div className="c1"></div>
                    <div className="t1">CHM</div>
                    <img className="t-img" src={a3}></img>
-                   <div className="porc">39.7%</div>
+                   <div className="porc">45%</div>
                   </div>
                   <div className="sector">
                    <div className="c2"></div>
                    <div className="t1">USD</div>
                    <img className="t-img" src={a5}></img>
-                   <div className="porc">39.7%</div>
+                   <div className="porc">37.7%</div>
                   </div>
                   <div className="sector">
                    <div className="c3"></div>
                    <div className="t1">ETH</div>
                    <img className="t-img" src={a2}></img>
-                   <div className="porc">39.7%</div>
+                   <div className="porc">10.8%</div>
                   </div>
                   <div className="sector">
                    <div className="c4"></div>
                    <div className="t1">BTC</div>
                    <img className="t-img" src={a1}></img>
-                   <div className="porc">39.7%</div>
+                   <div className="porc">6.5%</div>
                   </div>                  
                 </div>
+              </div>
+            </div>
+            <div className="caja-act">
+              <div className="act-pad">
+                <div className="rendimiento-titu">Ultimas Transacciones</div>
+                <div className="fecha">( 18 / 03 / 2024 )</div>       
+                <div className="infoo"></div>     
+                <div className="infoo"></div>         
+                <div className="fecha">( 18 / 03 / 2024 )</div>       
+                <div className="infoo"></div>     
+                <div className="infoo"></div>    
               </div>
             </div>
           </div>
