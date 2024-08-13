@@ -76,7 +76,8 @@ router.post('/register', async (req, res) => {
         refreshToken = getRefreshToken({username: req.body.username});
     
         res.cookie('refreshToken', refreshToken, {
-            httpOnly: true
+            httpOnly: true,
+            secure: true
         });
      
         const hashedPassword = await bcrypt.hash(password, 10);
