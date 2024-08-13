@@ -11,7 +11,7 @@ export const Wallet = () => {
     const [isCelVisible, setIsCelVisible] = useState(false);
     const [animateProfit, setAnimateProfit] = useState(false);
     const [animateCajaBut, setAnimateCajaBut] = useState(false);  // Asegúrate de definir el estado aquí
-
+    const [animateRen, setAnimateRen] = useState(false);  // Asegúrate de definir el estado aquí
 
     const handleMenuToggle = () => {
       setIsCelVisible(!isCelVisible);
@@ -20,6 +20,7 @@ export const Wallet = () => {
       const handleScroll = () => {
           const profitElement = document.querySelector('.profit');
           const cajaButElement = document.querySelector('.caja-but');
+          const renElement = document.querySelector('.caja-rendimiento');
 
           if (profitElement) {
               const rect = profitElement.getBoundingClientRect();
@@ -32,12 +33,20 @@ export const Wallet = () => {
 
           if (cajaButElement) {
               const rect = cajaButElement.getBoundingClientRect();
-              if (rect.top < 150) {  // Ajusta esta condición según cuándo quieras que la animación se dispare
+              if (rect.top < 120) {  // Ajusta esta condición según cuándo quieras que la animación se dispare
                   setAnimateCajaBut(true);
               } else {
                   setAnimateCajaBut(false);
               }
           }
+          if (renElement) {
+            const rect = renElement.getBoundingClientRect();
+            if (rect.top < 120) {  // Ajusta esta condición según cuándo quieras que la animación se dispare
+                setAnimateRen(true);
+            } else {
+                setAnimateRen(false);
+            }
+        }
       };
 
       window.addEventListener('scroll', handleScroll);
@@ -65,7 +74,7 @@ export const Wallet = () => {
                     <div className="but-portafolio">Ingresar</div>
                     <div className="but-portafolio2">Retirar</div>
             </div>                       
-            <div className="caja-rendimiento">
+            <div className={`caja-rendimiento ${animateRen ? 'fade-out' : 'fade-in'}`}>
               <div className="rendimiento-titu">Rendimientos</div>
               <div className="caja-chiki">
                 <div className="ren">
