@@ -198,10 +198,11 @@
 @media (max-width: 700px) {
 .titulo, .animated-text{
   font-size: 30px;
+  margin-top: 40px;
 }
 .wrap-img{
-    width: 9.1vw;
-    height: 9.1vw;
+    width: 12.1vw;
+    height: 12.1vw;
     display: flex;
   }
 .itemLeft,
@@ -227,6 +228,7 @@
   }
   .subtitu{
     font-size: 10px;
+    margin-bottom: 40px;
   }
 } 
 @media (min-width: 710px){  
