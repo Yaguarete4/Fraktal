@@ -23,12 +23,10 @@ export const Login = () => {
         try {
             const response = await fetch('https://fraktalapi.vercel.app/auth/register', {
                 headers: {
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Origin": "https://fraktalapi.vercel.app"
+                    "Content-Type": "application/json"
                 },
                 method: "POST",
                 body: JSON.stringify(formValues),
-                credentials: "include"
             })
     
             if(!response.ok){
@@ -47,8 +45,8 @@ export const Login = () => {
             <div className="titu">Registrarse</div>
             <input placeholder="Nombre de usuario" className="input" name="username" type="text" onChange={handleInputChange}></input>
             <input placeholder="Mail" className="input" name="email" type="text" onChange={handleInputChange}></input>
-            <input placeholder="Contraseña" className="input" name="password" type="text" onChange={handleInputChange}></input>
-            <input placeholder="Confirmar constraseña" className="input" name="confirmPassword" type="text" onChange={handleInputChange}></input>
+            <input placeholder="Contraseña" className="input" name="password" type="password" onChange={handleInputChange}></input>
+            <input placeholder="Confirmar constraseña" className="input" name="confirmPassword" type="password" onChange={handleInputChange}></input>
             <button className="regi" onClick={handleSubmit}>Registrarse</button>            
             <div className="caja-inicio-sesion">
                 <div className="inicio-sesion">¿Ya tienes una cuenta?</div>
