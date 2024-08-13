@@ -10,18 +10,42 @@ import a5 from '../img/usd.png';
 export const Wallet = () => {
     const [isCelVisible, setIsCelVisible] = useState(false);
     const [animateProfit, setAnimateProfit] = useState(false);
+    const [animateCajaBut, setAnimateCajaBut] = useState(false);  // Asegúrate de definir el estado aquí
+
 
     const handleMenuToggle = () => {
       setIsCelVisible(!isCelVisible);
     }
-
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setAnimateProfit(true);
-        }, 1000);
+      const handleScroll = () => {
+          const profitElement = document.querySelector('.profit');
+          const cajaButElement = document.querySelector('.caja-but');
 
-        return () => clearTimeout(timer);
-    }, []);
+          if (profitElement) {
+              const rect = profitElement.getBoundingClientRect();
+              if (rect.top < 120) {
+                  setAnimateProfit(true);
+              } else {
+                  setAnimateProfit(false);
+              }
+          }
+
+          if (cajaButElement) {
+              const rect = cajaButElement.getBoundingClientRect();
+              if (rect.top < 150) {  // Ajusta esta condición según cuándo quieras que la animación se dispare
+                  setAnimateCajaBut(true);
+              } else {
+                  setAnimateCajaBut(false);
+              }
+          }
+      };
+
+      window.addEventListener('scroll', handleScroll);
+      return () => {
+          window.removeEventListener('scroll', handleScroll);
+      };
+  }, []);
+
 
     return (
         <>
@@ -34,14 +58,13 @@ export const Wallet = () => {
           <div className="caja-portafolio">
             <div className="titu-portafolio">Portafolio</div>
             <div className="plata">$ 1.683,36</div>
-            {/* <div className={`profit ${animateProfit ? 'animate' : ''}`}> */}
-            <div className="profit">
+            <div className={`profit ${animateProfit ? 'fade-out' : 'fade-in'}`}>
               7,34% (+$43,22)
             </div>
-            <div className="caja-but">
-              <div className="but-portafolio">Ingresar</div>
-              <div className="but-portafolio2">Retirar</div>
-            </div>              
+            <div className={`caja-but ${animateCajaBut ? 'fade-out' : 'fade-in'}`}>
+                    <div className="but-portafolio">Ingresar</div>
+                    <div className="but-portafolio2">Retirar</div>
+            </div>                       
             <div className="caja-rendimiento">
               <div className="rendimiento-titu">Rendimientos</div>
               <div className="caja-chiki">

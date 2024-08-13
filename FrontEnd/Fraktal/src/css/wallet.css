@@ -371,3 +371,36 @@ margin-top: 37px;
 .caja-act::-webkit-scrollbar-track {
   background-color: #0B0D13;
 }
+@keyframes fadeOutUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px); /* Ajusta el valor según cuánto quieres que se desplace */
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px); /* Empieza en la posición final de fadeOutUp */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-out {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 1.5s ease, transform 1.5s ease;
+}
