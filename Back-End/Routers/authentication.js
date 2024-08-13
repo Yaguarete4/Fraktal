@@ -32,7 +32,6 @@ const makeQuery = async (query, params) => {
 }
 
 router.post('/register', async (req, res) => {
-    console.log(process.env.ACCESS_TOKEN_SECRET);
 
     let credential = {
         success: false,
