@@ -29,8 +29,8 @@ POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
-    "username": "Matuteronco",
-    "email": "maturonconi@gmail.com",
+    "username": "JoseIngeniero",
+    "email": "jose@gmail.com",
     "name": "Luca",
     "surname": "Chami",
     "password": "5050",
@@ -43,8 +43,8 @@ POST http://fraktalapi.vercel.app/auth/register
 Content-Type: application/json
 
 {
-    "username": "Matuteronco",
-    "email": "maturonconi@gmail.com",
+    "username": "JoseIngeniero",
+    "email": "jose@gmail.com",
     "name": "Luca",
     "surname": "Chami",
     "password": "5050",

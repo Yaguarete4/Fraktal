@@ -32,6 +32,7 @@ const makeQuery = async (query, params) => {
 }
 
 router.post('/register', async (req, res) => {
+
     let credential = {
         success: false,
         message: null,
