@@ -12,6 +12,7 @@ export const MarketPage = () => {
     const handleMenuToggle = () => {
       setIsCelVisible(!isCelVisible);
     }
+    
     return (
         <>
             <Navbar onMenuToggle={handleMenuToggle} />
@@ -20,6 +21,8 @@ export const MarketPage = () => {
                         <Cel className="cel-center" />
                     </div>
                 )}
+            <input className="barra-busqueda" placeholder="Buscar">
+            </input>
             <div className='market'>
                 {tags.map((value, index) => {
                     return <TagsDivision key={index} tag={value} />

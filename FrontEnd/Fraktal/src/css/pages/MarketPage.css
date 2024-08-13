@@ -2,6 +2,8 @@
     display: grid;
     width: 100%;
     grid-template-columns: 1fr 30fr 1fr;
+    overflow-x: hidden; /* Evita la aparición de la scrollbar horizontal */
+
 }
 
 .market__tags {
@@ -32,4 +34,22 @@
         gap: 5px;
         row-gap: 10px;
     }
+}
+.barra-busqueda{
+    width: 72.6vw;
+    margin: 0 auto;
+    justify-content: center;
+    display: flex;
+    height: 52px;
+    margin-top: 3.54vw;
+    border-radius:39px ;
+    border:2px solid #5C5D5D;
+    background-color: transparent;
+}
+input{
+    text-decoration: none;
+    
+}
+.barra-busqueda::placeholder{
+    padding-left: 3vw;
 }
