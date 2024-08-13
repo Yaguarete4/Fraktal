@@ -312,4 +312,62 @@ margin-top: 37px;
   border-radius: 10px;
   margin-top: 5px;
   margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+.info-img{
+  height: 11.7vw;
+  width: 11.7vw;
+  margin-left: 2.5vw;
+  margin-right: 2.5vw;
+}
+.caja-info{
+  display: flex;
+  flex-direction: column;
+}
+.compra{
+  font-size: 3vw;
+  font-weight: bold;
+  color: white;
+}
+.qcompra{
+  font-size: 2.54vw;
+  font-weight: bold;
+  color: #B6B6B6;
+}
+.info-porc{
+  color: #05DB74;
+  margin-left: auto;
+  margin-right: 2.54vw;
+  font-size: 3.5vw;
+}
+.info-porc1{
+  color: #FF3D00;
+  margin-left: auto;
+  margin-right: 2.54vw;
+  font-size: 3.5vw;
+}
+.caja-act {
+  width: 100%;
+  border-radius: 3px;  
+  border: #464646 solid 3px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 37px;
+  margin-bottom: 30px;
+  height: 300px; /* Define la altura fija según tus necesidades */
+  overflow-y: auto; /* Habilita el desplazamiento vertical */
+}
+
+.caja-act::-webkit-scrollbar {
+  width: 6px;
+}
+
+.caja-act::-webkit-scrollbar-thumb {
+  background-color: #FFAB07;
+  border-radius: 3px;
+}
+
+.caja-act::-webkit-scrollbar-track {
+  background-color: #0B0D13;
 }

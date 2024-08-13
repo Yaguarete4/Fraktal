@@ -109,11 +109,48 @@ export const Wallet = () => {
               <div className="act-pad">
                 <div className="rendimiento-titu">Ultimas Transacciones</div>
                 <div className="fecha">( 18 / 03 / 2024 )</div>       
-                <div className="infoo"></div>     
-                <div className="infoo"></div>         
-                <div className="fecha">( 18 / 03 / 2024 )</div>       
-                <div className="infoo"></div>     
-                <div className="infoo"></div>    
+                <div className="infoo">
+                  <img src={a1} className="info-img"></img>  
+                  <div className="caja-info">
+                    <div className="compra">Compra</div>
+                    <div className="qcompra">BTC</div>
+                  </div>
+                  <div className="info-porc1">-330 USD</div>
+                </div>     
+                <div className="fecha">( 11 / 03 / 2024 )</div>       
+                <div className="infoo">
+                  <img src={a1} className="info-img"></img>  
+                  <div className="caja-info">
+                    <div className="compra">Venta</div>
+                    <div className="qcompra">BTC</div>
+                  </div>
+                  <div className="info-porc">+110 USD</div>
+                </div>  
+                <div className="infoo">
+                  <img src={a2} className="info-img"></img>  
+                  <div className="caja-info">
+                    <div className="compra">Venta</div>
+                    <div className="qcompra">ETH</div>
+                  </div>
+                  <div className="info-porc">+200 USD</div>
+                </div>         
+                <div className="fecha">( 10 / 03 / 2024 )</div>       
+                <div className="infoo">
+                  <img src={a1} className="info-img"></img>  
+                  <div className="caja-info">
+                    <div className="compra">Compra</div>
+                    <div className="qcompra">BTC</div>
+                  </div>
+                  <div className="info-porc1">-100 USD</div>
+                </div>     
+                <div className="infoo">
+                  <img src={a2} className="info-img"></img>  
+                  <div className="caja-info">
+                    <div className="compra">Compra</div>
+                    <div className="qcompra">ETH</div>
+                  </div>
+                  <div className="info-porc1">-100 USD</div>
+                </div>    
               </div>
             </div>
           </div>
