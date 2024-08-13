@@ -193,8 +193,8 @@ function generateAccessToken(payload){
 
 async function updateRefreshToken(payload){
     const refreshToken = getRefreshToken(payload);
+    //falta implementacion de error si falla la query
     const query = await makeQuery('UPDATE users SET refreshtoken = $1 WHERE username = $2', [refreshToken, payload.username]);
-    console.log(payload.username)
     return refreshToken;
 }
 
