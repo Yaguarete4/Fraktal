@@ -76,7 +76,8 @@ router.post('/register', async (req, res) => {
         refreshToken = getRefreshToken({username: req.body.username});
     
         res.cookie('refreshToken', refreshToken, {
-            httpOnly: true
+            httpOnly: true,
+            secure: true
         });
      
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -193,8 +194,8 @@ function generateAccessToken(payload){
 
 async function updateRefreshToken(payload){
     const refreshToken = getRefreshToken(payload);
+    //falta implementacion de error si falla la query
     const query = await makeQuery('UPDATE users SET refreshtoken = $1 WHERE username = $2', [refreshToken, payload.username]);
-    console.log(payload.username)
     return refreshToken;
 }
 

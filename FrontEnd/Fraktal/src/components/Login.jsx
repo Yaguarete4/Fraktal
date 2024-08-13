@@ -27,7 +27,8 @@ export const Login = () => {
                     "Access-Control-Allow-Origin": "https://fraktalapi.vercel.app"
                 },
                 method: "POST",
-                body: JSON.stringify(formValues)
+                body: JSON.stringify(formValues),
+                credentials: "include"
             })
     
             if(!response.ok){
@@ -37,7 +38,7 @@ export const Login = () => {
             const data = await response.json();
             console.log(data);
         } catch (err) {
-            console.error('Error:', error);
+            console.error('Error:', err);
         }
     };
 
