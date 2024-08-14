@@ -1,15 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import '../css/login.css';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import logoGoogle from '../img/google.svg';
 
-    
 export const Signup = () => {
+    const navigate = useNavigate();
     const [formValues, setFormValues] = useState({
-        usernameEmail: '',
-        password: ''
-    })
+        username: '',
+        email: '',
+        name: 'Joaquin',
+        surname: 'Barsky',
+        password: '',
+        confirmPassword: ''
+    });
+
+    const [isRegistered, setIsRegistered] = useState(false);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -18,40 +23,56 @@ export const Signup = () => {
 
     const handleSubmit = async () => {
         try {
-            const response = await fetch('https://fraktalapi.vercel.app/auth/login', {
+            const response = await fetch('https://fraktalapi.vercel.app/auth/register', {
                 headers: {
                     "Content-Type": "application/json"
                 },
                 method: "POST",
                 body: JSON.stringify(formValues),
-            })
-    
-            if(!response.ok){
+            });
+
+            if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-    
+
             const data = await response.json();
             console.log(data);
+
+            // Mostrar mensaje de registro exitoso
+            setIsRegistered(true);
+
+            // Redirigir después de 1 segundo
+            setTimeout(() => {
+                navigate("/");
+            }, 1000);
+
         } catch (err) {
             console.error('Error:', err);
         }
     };
 
     return (
-        <div className="signupContainer">
-            <div className="titu">Inicia Sesion</div>
-            <input placeholder="Usuario" className="input" name="usernameEmail" type="text" onChange={handleInputChange}></input>
+        <div className="loginContainer">
+            <div className="titu">Registrarse</div>
+            <input placeholder="Nombre de usuario" className="input" name="username" type="text" onChange={handleInputChange}></input>
+            <input placeholder="Mail" className="input" name="email" type="text" onChange={handleInputChange}></input>
             <input placeholder="Contraseña" className="input" name="password" type="password" onChange={handleInputChange}></input>
-            <button className="regi" onClick={handleSubmit}>Iniciar sesion</button>            
+            <input placeholder="Confirmar constraseña" className="input" name="confirmPassword" type="password" onChange={handleInputChange}></input>
+            <button className="regi" onClick={handleSubmit}>Registrarse</button>            
             <div className="caja-inicio-sesion">
-                <div className="inicio-sesion">¿Es tu primera vez?</div>
-                <Link to="/login" className="linki">Registrate</Link>
+                <div className="inicio-sesion">¿Ya tienes una cuenta?</div>
+                <Link to="/login" className="linki">Iniciar sesión</Link>
             </div>      
             <button className="but">
                 <img src={logoGoogle} alt="Logo de Google" style={{ marginRight: '8px', verticalAlign: 'middle' }} />
-                Iniciar sesion con Google
+                Regístrate con Google
             </button>    
+            
+            {isRegistered && (
+                <div className="successMessage">
+                    Registro exitoso
+                </div>
+            )}
         </div>
     );
 };
-

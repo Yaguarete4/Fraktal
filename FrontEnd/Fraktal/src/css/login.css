@@ -155,7 +155,20 @@ button{
 .caja-inicio-sesion{
   width: 87vw;
 }
-.inicio-sesion{
-
 }
+.regi:active{
+  transform: scale(0.9);
+  transition: 0.4s ease;
+}
+.successMessage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #4caf50;
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+  z-index: 1000;
+  text-align: center;
 }

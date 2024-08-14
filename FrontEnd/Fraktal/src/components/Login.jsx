@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import '../css/login.css';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import logoGoogle from '../img/google.svg';
-    
+
 export const Login = () => {
+    const navigate = useNavigate();
     const [formValues, setFormValues] = useState({
         username: '',
         email: '',
@@ -12,7 +12,9 @@ export const Login = () => {
         surname: 'Barsky',
         password: '',
         confirmPassword: ''
-    })
+    });
+
+    const [isRegistered, setIsRegistered] = useState(false);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -27,14 +29,25 @@ export const Login = () => {
                 },
                 method: "POST",
                 body: JSON.stringify(formValues),
-            })
-    
-            if(!response.ok){
+            });
+
+            if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-    
+
             const data = await response.json();
             console.log(data);
+
+            if (data.success) {
+                // Mostrar mensaje de registro exitoso
+                setIsRegistered(true);
+
+                // Redirigir después de 1 segundo
+                setTimeout(() => {
+                    navigate("/");
+                }, 1000);
+            }
+
         } catch (err) {
             console.error('Error:', err);
         }
@@ -50,12 +63,18 @@ export const Login = () => {
             <button className="regi" onClick={handleSubmit}>Registrarse</button>            
             <div className="caja-inicio-sesion">
                 <div className="inicio-sesion">¿Ya tienes una cuenta?</div>
-                <Link to="/signup" className="linki">Iniciar sesión</Link>
+                <Link to="/login" className="linki">Iniciar sesión</Link>
             </div>      
             <button className="but">
                 <img src={logoGoogle} alt="Logo de Google" style={{ marginRight: '8px', verticalAlign: 'middle' }} />
                 Regístrate con Google
             </button>    
+            
+            {isRegistered && (
+                <div className="successMessage">
+                    Registro exitoso
+                </div>
+            )}
         </div>
     );
 };

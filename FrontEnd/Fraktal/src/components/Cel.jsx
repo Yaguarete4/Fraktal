@@ -20,7 +20,6 @@ export const Cel = ({ className }) => {
     }} 
   />
 </button>
-
         <div className="dropdown-menu">
         <Link to="/market" className="celup">Mercado
         </Link>
@@ -52,6 +51,11 @@ export const Cel = ({ className }) => {
       <div className="dropdown">
         <button className="button-class">
           Pre-venta
+        </button>
+      </div>
+      <div className="dropdown">
+        <button className="button-class">
+          Configuracion
         </button>
       </div>
     </div>
