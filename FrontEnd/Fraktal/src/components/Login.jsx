@@ -14,8 +14,6 @@ export const Login = () => {
         confirmPassword: ''
     });
 
-    const [isRegistered, setIsRegistered] = useState(false);
-
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormValues({ ...formValues, [name]: value });
@@ -37,44 +35,25 @@ export const Login = () => {
 
             const data = await response.json();
             console.log(data);
-
-            if (data.success) {
-                // Mostrar mensaje de registro exitoso
-                setIsRegistered(true);
-
-                // Redirigir después de 1 segundo
-                setTimeout(() => {
-                    navigate("/");
-                }, 1000);
-            }
-
         } catch (err) {
             console.error('Error:', err);
         }
     };
 
     return (
-        <div className="loginContainer">
-            <div className="titu">Registrarse</div>
+        <div className="signupContainer">
+            <div className="titu">Iniciar sesion</div>
             <input placeholder="Nombre de usuario" className="input" name="username" type="text" onChange={handleInputChange}></input>
-            <input placeholder="Mail" className="input" name="email" type="text" onChange={handleInputChange}></input>
             <input placeholder="Contraseña" className="input" name="password" type="password" onChange={handleInputChange}></input>
-            <input placeholder="Confirmar constraseña" className="input" name="confirmPassword" type="password" onChange={handleInputChange}></input>
-            <button className="regi" onClick={handleSubmit}>Registrarse</button>            
+            <button className="regi" onClick={handleSubmit}>Iniciar sesion</button>            
             <div className="caja-inicio-sesion">
-                <div className="inicio-sesion">¿Ya tienes una cuenta?</div>
-                <Link to="/login" className="linki">Iniciar sesión</Link>
+                <div className="inicio-sesion">¿No tienes una cuenta?</div>
+                <Link to="/signup" className="linki">Registrate</Link>
             </div>      
             <button className="but">
                 <img src={logoGoogle} alt="Logo de Google" style={{ marginRight: '8px', verticalAlign: 'middle' }} />
                 Regístrate con Google
             </button>    
-            
-            {isRegistered && (
-                <div className="successMessage">
-                    Registro exitoso
-                </div>
-            )}
         </div>
     );
 };
