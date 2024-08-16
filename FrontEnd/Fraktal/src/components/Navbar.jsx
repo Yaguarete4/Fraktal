@@ -19,7 +19,7 @@ export const Navbar = ({ onMenuToggle, setShowLogin, isBlurry }) => {
           <Link to="/token" className="button">Token</Link>
           <Link to="/trade" className="button">Trade</Link>
           <Link to="/wallet" className="button">Portafolio</Link>
-          <Link to="/pre-venta" className="button">Pre-venta</Link>
+          <Link to="/token-register" className="button">Pre-venta</Link>
           <Link to="/news" className="button">News</Link>
         </div>
       </div>

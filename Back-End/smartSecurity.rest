@@ -43,8 +43,8 @@ POST http://fraktalapi.vercel.app/auth/register
 Content-Type: application/json
 
 {
-    "username": "JoseIngeniero",
-    "email": "jose@gmail.com",
+    "username": "manuel",
+    "email": "paja@gmail.com",
     "name": "Luca",
     "surname": "Chami",
     "password": "5050",
