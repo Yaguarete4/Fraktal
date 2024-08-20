@@ -1,3 +1,6 @@
-.token-reg > img {
-    height: 50vh;
+.token-reg {
+    position: relative;
+    overflow-x: hidden;
+    flex: 1;
 }
+

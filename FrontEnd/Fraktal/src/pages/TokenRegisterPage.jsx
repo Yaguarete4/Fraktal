@@ -1,5 +1,6 @@
 import { Navbar } from "../components/Navbar";
-import Background from '../img/FondeRegistroToken.svg';
+import Waves from "../components/Waves";
+import Background from '../img/wave.svg';
 import '../css/pages/TokenRegisterPage.css';
 
 export const TokenRegisterPage = () => {
@@ -8,7 +9,7 @@ export const TokenRegisterPage = () => {
             <Navbar />
 
             <div className="token-reg">
-                <img src={Background} alt="fondo" />
+                <Waves />
             </div>
         </>
     )
