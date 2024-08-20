@@ -13,11 +13,11 @@ export const PaginaPrincipal = () => {
     const checkboxRef = useRef(null);
 
     const handleMenuToggle = () => {
-      setIsCelVisible(!isCelVisible);
+        setIsCelVisible(!isCelVisible);
     };
 
     const handleCardClick = () => {
-      checkboxRef.current.checked = !checkboxRef.current.checked;
+        checkboxRef.current.checked = !checkboxRef.current.checked;
     };
 
     return (
@@ -28,6 +28,39 @@ export const PaginaPrincipal = () => {
                     <Cel className="cel-center" />
                 </div>
             )}
+            <div className="background">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <div className="conte">
                 <div className="titulo">Invertir&nbsp;</div>        
                 <div className="animated-text"><span></span></div>
@@ -70,7 +103,7 @@ export const PaginaPrincipal = () => {
                     </div>
                 </div>
             </div>
-            
         </>
     );
 };
+

@@ -1,6 +1,4 @@
 section{
-    background-color: #0B0D13;
-    min-height: calc(100dvh);
     display: flex;
     flex-direction: column;
 }
