@@ -1,5 +1,6 @@
 import { Navbar } from "../components/Navbar";
 import Waves from "../components/Waves";
+import { FirstForm } from "../components/TokenForm";
 import Background from '../img/wave.svg';
 import '../css/pages/TokenRegisterPage.css';
 
@@ -9,6 +10,7 @@ export const TokenRegisterPage = () => {
             <Navbar />
 
             <div className="token-reg">
+                <FirstForm />
                 <Waves />
             </div>
         </>
