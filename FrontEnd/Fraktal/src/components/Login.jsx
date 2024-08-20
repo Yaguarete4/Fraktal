@@ -12,7 +12,7 @@ export const Login = () => {
         surname: 'Barsky',
         password: '',
         confirmPassword: ''
-    })
+    });
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -41,16 +41,14 @@ export const Login = () => {
     };
 
     return (
-        <div className="loginContainer">
-            <div className="titu">Registrarse</div>
+        <div className="signupContainer">
+            <div className="titu">Iniciar sesion</div>
             <input placeholder="Nombre de usuario" className="input" name="username" type="text" onChange={handleInputChange}></input>
-            <input placeholder="Mail" className="input" name="email" type="text" onChange={handleInputChange}></input>
             <input placeholder="Contraseña" className="input" name="password" type="password" onChange={handleInputChange}></input>
-            <input placeholder="Confirmar constraseña" className="input" name="confirmPassword" type="password" onChange={handleInputChange}></input>
-            <button className="regi" onClick={handleSubmit}>Registrarse</button>            
+            <button className="regi" onClick={handleSubmit}>Iniciar sesion</button>            
             <div className="caja-inicio-sesion">
-                <div className="inicio-sesion">¿Ya tienes una cuenta?</div>
-                <Link to="/signup" className="linki">Iniciar sesión</Link>
+                <div className="inicio-sesion">¿No tienes una cuenta?</div>
+                <Link to="/signup" className="linki">Registrate</Link>
             </div>      
             <button className="but">
                 <img src={logoGoogle} alt="Logo de Google" style={{ marginRight: '8px', verticalAlign: 'middle' }} />
