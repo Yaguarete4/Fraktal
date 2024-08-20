@@ -6,12 +6,8 @@ import logoGoogle from '../img/google.svg';
     
 export const Login = () => {
     const [formValues, setFormValues] = useState({
-        username: '',
-        email: '',
-        name: 'Joaquin',
-        surname: 'Barsky',
-        password: '',
-        confirmPassword: ''
+        usernameEmail: '',
+        password: ''
     });
 
     const handleInputChange = (event) => {
@@ -21,7 +17,7 @@ export const Login = () => {
 
     const handleSubmit = async () => {
         try {
-            const response = await fetch('https://fraktalapi.vercel.app/auth/register', {
+            const response = await fetch('https://fraktalapi.vercel.app/auth/login', {
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -35,6 +31,8 @@ export const Login = () => {
     
             const data = await response.json();
             console.log(data);
+
+            if(data.success) navigate('/');
         } catch (err) {
             console.error('Error:', err);
         }
@@ -43,7 +41,7 @@ export const Login = () => {
     return (
         <div className="signupContainer">
             <div className="titu">Iniciar sesion</div>
-            <input placeholder="Nombre de usuario" className="input" name="username" type="text" onChange={handleInputChange}></input>
+            <input placeholder="Nombre de usuario" className="input" name="usernameEmail" type="text" onChange={handleInputChange}></input>
             <input placeholder="Contraseña" className="input" name="password" type="password" onChange={handleInputChange}></input>
             <button className="regi" onClick={handleSubmit}>Iniciar sesion</button>            
             <div className="caja-inicio-sesion">
