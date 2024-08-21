@@ -36,7 +36,7 @@ header{
   transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
   transition-duration: 400ms;
   transition-property: color;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
 }
 .button{
