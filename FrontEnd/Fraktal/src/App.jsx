@@ -1,5 +1,5 @@
 import './css/App.css';
-import './css/cel.css'; // Asegúrate de importar el archivo CSS
+import './css/cel.css'; 
 import { Navbar } from './components/Navbar';
 import { LoginWeb } from './components/LoginWeb';
 import { Login } from './components/Login';
@@ -7,15 +7,15 @@ import { Cel } from './components/Cel';
 import { Wallet } from './components/Wallet';
 import { Tokeninfo } from './components/Tokeninfo';
 import { MarketPage } from './pages/MarketPage';
-import { Routes, Route, Link } from 'react-router-dom';
-import { useState } from 'react';
+import { TokenRegisterPage } from './pages/TokenRegisterPage';
+import { Routes, Route } from 'react-router-dom';
 import { PaginaPrincipal } from './components/PaginaPrincipal';
 import { SignupWeb } from './components/SignupWeb';
+import { AuthProvider } from './components/AuthContext';  // Importa el AuthProvider
 
 function App() {
-
   return (
-    <>         
+    <AuthProvider>  {/* Envuelve la aplicación con AuthProvider */}
       <section>
         <Routes>   
           <Route path="/" element={<PaginaPrincipal />} />
@@ -26,7 +26,7 @@ function App() {
           <Route path="/market/:tokenId" element={<Tokeninfo />} />
         </Routes>
       </section>
-    </>
+    </AuthProvider>
   );
 }
 
