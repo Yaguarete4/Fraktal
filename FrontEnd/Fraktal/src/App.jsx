@@ -5,6 +5,7 @@ import { LoginWeb } from './components/LoginWeb';
 import { Login } from './components/Login';
 import { Cel } from './components/Cel';
 import { Wallet } from './components/Wallet';
+import { Tokeninfo } from './components/Tokeninfo';
 import { MarketPage } from './pages/MarketPage';
 import { Routes, Route, Link } from 'react-router-dom';
 import { useState } from 'react';
@@ -21,9 +22,8 @@ function App() {
           <Route path="/wallet" element={<Wallet />} />
           <Route path="/login" element={<LoginWeb />} />
           <Route path="/signup" element={<SignupWeb />} />
-          <Route path="/market" element={<MarketPage />}>
-            <Route path=":tokenId" element={<div />} />
-          </Route>
+          <Route path="/market" element={<MarketPage />} />
+          <Route path="/market/:tokenId" element={<Tokeninfo />} />
         </Routes>
       </section>
     </>

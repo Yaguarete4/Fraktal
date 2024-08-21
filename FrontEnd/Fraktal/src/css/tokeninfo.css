@@ -1,0 +1,32 @@
+.caja-g{
+    margin: 0 auto;
+    margin-left:3.47vw ;
+    margin-right:3.47vw ;
+    margin-top: 3.8vw;
+}
+.caja-nombre{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.logo-token{
+    height: 8.68vw;
+    width: 8.68vw;
+    margin-right: 2vw;
+}
+.titu-token{
+    color: white;
+    font-weight: 700;
+    font-size: 3.4vw;
+}
+.info-comprar{
+    color: white;
+    padding: 20px 54px;
+    background-color: #E49A09;
+    border-radius: 7px;
+    margin-left: auto;
+    border: none;
+    font-weight: 700;
+    font-size: 1.9vw;
+    cursor: pointer;
+}
