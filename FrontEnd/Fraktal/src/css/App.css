@@ -1,6 +1,8 @@
 section{
     display: flex;
     flex-direction: column;
+    background-color: #0B0D13;
+    min-height: calc(100dvh);
 }
 ::-webkit-scrollbar{
   width: 9px;

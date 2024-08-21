@@ -28,7 +28,7 @@ export const PaginaPrincipal = () => {
                     <Cel className="cel-center" />
                 </div>
             )}
-            <div className="background">
+            {/* <div className="background">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -60,7 +60,7 @@ export const PaginaPrincipal = () => {
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </div> */}
             <div className="conte">
                 <div className="titulo">Invertir&nbsp;</div>        
                 <div className="animated-text"><span></span></div>

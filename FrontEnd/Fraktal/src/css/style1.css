@@ -35,7 +35,7 @@
     position: absolute;
     width: calc(100% + 8px);
     height: 100%;
-    background-color: rgb(0, 0, 0);
+    background-color: #0B0D13;
     border-left: 2px solid #FFAB07;
     right: -8px;
     animation: cursor .8s infinite, typing 20s steps(14) infinite;
@@ -328,7 +328,7 @@ input:checked ~ .card .back {
 input:checked ~ .card .front {
   transform: rotateY(-180deg);
 }
-@keyframes move {
+/* @keyframes move {
   0% {
     transform: translate3d(0, 0, 0) rotate(0deg);
 }
@@ -729,4 +729,4 @@ input:checked ~ .card .front {
   animation-delay: -15s;
   transform-origin: -11vw 13vh;
   box-shadow: -4vmin 0 1.0043239622551678vmin currentColor;
-}
+} */
