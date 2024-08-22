@@ -21,6 +21,7 @@ function App() {
           <Route path="/" element={<PaginaPrincipal />} />
           <Route path="/wallet" element={<Wallet />} />
           <Route path="/login" element={<LoginWeb />} />
+          <Route path="/a" element={<TokenRegisterPage />} />
           <Route path="/signup" element={<SignupWeb />} />
           <Route path="/market" element={<MarketPage />} />
           <Route path="/market/:tokenId" element={<Tokeninfo />} />
