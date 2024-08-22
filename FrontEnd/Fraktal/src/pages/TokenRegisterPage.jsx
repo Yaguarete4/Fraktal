@@ -8,6 +8,7 @@ import '../css/login.css';
 
 export const TokenRegisterPage = () => {
     const [imageSrc, setImageSrc] = useState(null);
+    const [abbreviation, setAbbreviation] = useState('');
     const fileInputRef = useRef(null);
 
     const handleDrop = (event) => {
@@ -39,6 +40,19 @@ export const TokenRegisterPage = () => {
         }
     };
 
+    const handleChange = (event) => {
+        setAbbreviation(event.target.value.toUpperCase());
+    };
+
+    const handleKeyPress = (event) => {
+        const charCode = event.keyCode || event.which;
+        const char = String.fromCharCode(charCode);
+
+        if (!/^[a-zA-Z]$/.test(char)) {
+            event.preventDefault();
+        }
+    };
+
     return (
         <>
             <Navbar />
@@ -46,7 +60,15 @@ export const TokenRegisterPage = () => {
                 <div className="tokContainer">
                     <div className="titu-tok">Registra tu token</div>
                     <input placeholder="Nombre del Token" className="input2" type="text" />
-                    <input placeholder="Abreviación (3 letras)" className="input2" type="text" />
+                    <input 
+                        placeholder="Abreviación (3 letras)" 
+                        className="input2" 
+                        type="text" 
+                        maxLength="3" 
+                        value={abbreviation} 
+                        onChange={handleChange}
+                        onKeyPress={handleKeyPress}
+                    />
                     <div className="caja-tok">
                         <div className="caja-tok2">
                             <div className="sub-titu-tok">Logo del token</div>
@@ -77,7 +99,7 @@ export const TokenRegisterPage = () => {
                     </div>
                     <div className="caja-buts">
                         <button className="but-volver">Volver</button>
-                        <button className="but-volver"></button>
+                        <button className="but-sig">Siguiente</button>
                     </div>
                 </div>
                 <Waves />

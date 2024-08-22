@@ -83,13 +83,28 @@
     z-index: 11; /* Asegura que los botones estén por encima de las olas */
 }
   .but-volver{
+      background-color: transparent;
       padding: 15px 36px;
       border: 1px solid #B6B6B6;
       cursor: pointer;
       align-items: center;
       justify-content: center;
-      background-color: black;
       margin-bottom: 25px;
       z-index: 2;
       position: relative;
+      color: white;
+      border-radius: 10px;
   }
+  .but-sig{
+    background-color: #FFAB07;
+    padding: 15px 36px;
+    border: none;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    z-index: 2;
+    position: relative;
+    color: black;
+    border-radius: 10px;
+}
