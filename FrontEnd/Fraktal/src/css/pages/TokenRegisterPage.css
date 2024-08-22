@@ -1,16 +1,19 @@
 .token-reg {
     position: relative;
     overflow-x: hidden;
-    flex: 1;;
+    flex: 1;
+    z-index: 10; 
 }
 .tokContainer{
+    position: relative;
+    z-index: 2;
+    margin: 0 auto;
     width: 42.1vw;
-    background: rgba(34, 34, 34, 0.17);
+    background: rgba(34, 34, 34, 0.6);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(11.6px);
-    -webkit-backdrop-filter: blur(11.6px);
-    margin: 0 auto;
+    backdrop-filter: blur(9.2px);
+    -webkit-backdrop-filter: blur(9.2px);    
     display: flex;
     flex-direction: column;
     margin-top: 40px;
@@ -47,6 +50,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      margin-bottom: 20px;
   }
   .sub-titu-tok{
       color: white;
@@ -63,7 +67,29 @@
     margin: 0 auto;
     display: flex;
     color: white;
-    border: 1px solid #BCB3A3;
+    cursor: pointer;
+    border: 2px solid #BCB3A3;
     align-items: center;
     justify-content: center;
+  }
+  .caja-buts {
+    position: relative; /* Asegura que el z-index se aplique correctamente */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 31.5vw;
+    margin: 0 auto;
+    align-items: center;
+    z-index: 11; /* Asegura que los botones estén por encima de las olas */
+}
+  .but-volver{
+      padding: 15px 36px;
+      border: 1px solid #B6B6B6;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      background-color: black;
+      margin-bottom: 25px;
+      z-index: 2;
+      position: relative;
   }

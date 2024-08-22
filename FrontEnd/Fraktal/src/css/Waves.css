@@ -3,6 +3,7 @@
     bottom: 0;
     width: 100vw;
     height: 120px;
+    z-index: 1; /* Este z-index asegura que las olas estén por debajo del contenido */
 }
 
 .wave {
