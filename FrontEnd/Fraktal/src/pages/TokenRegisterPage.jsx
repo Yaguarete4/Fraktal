@@ -29,7 +29,15 @@ export const TokenRegisterPage = () => {
         const file = event.target.files[0];
         loadImage(file);
     };
+    const [step, setStep] = useState(0);
 
+    const handleNext = () => {
+        setStep((prevStep) => Math.min(prevStep + 1, 2)); // Incrementa el paso, pero no más de 2
+    };
+
+    const handleBack = () => {
+        setStep((prevStep) => Math.max(prevStep - 1, 0)); // Decrementa el paso, pero no menos de 0
+    };
     const loadImage = (file) => {
         if (file && file.type.startsWith('image/')) {
             const reader = new FileReader();
@@ -57,10 +65,15 @@ export const TokenRegisterPage = () => {
         <>
             <Navbar />
             <div className="token-reg">
-                <div className="tokContainer">
-                    <div className="titu-tok">Registra tu token</div>
-                    <input placeholder="Nombre del Token" className="input2" type="text" />
-                    <input 
+                <div className="tokContainer">                    
+                <div className="titu-tok">Registra tu token</div>
+                    {step === 0 ? ( 
+                        <input placeholder="Nombre del Token" className="input2" type="text" />   
+                    ):step === 1 ? (
+                        <input placeholder={`Descripción de la empresa`} className="input3" type="text" />   
+                    ):(<div></div>)}
+                    {step === 0 ? ( 
+                        <input 
                         placeholder="Abreviación (3 letras)" 
                         className="input2" 
                         type="text" 
@@ -68,7 +81,9 @@ export const TokenRegisterPage = () => {
                         value={abbreviation} 
                         onChange={handleChange}
                         onKeyPress={handleKeyPress}
-                    />
+                        />                    
+                    ):(<div></div>)}
+                    {step === 0 ? ( 
                     <div className="caja-tok">
                         <div className="caja-tok2">
                             <div className="sub-titu-tok">Logo del token</div>
@@ -97,9 +112,23 @@ export const TokenRegisterPage = () => {
                             />
                         </div>
                     </div>
+                    ):step === 1 ?(
+                        <input placeholder="Beneficio para inversores" className="input3" type="text" />   
+                    ):
+                    (<div></div>)}
+                    
                     <div className="caja-buts">
-                        <button className="but-volver">Volver</button>
-                        <button className="but-sig">Siguiente</button>
+                        <button className="but-volver" onClick={handleBack}>Volver</button>
+                        {step === 2 ? (
+                            <button className="but-sig2">Enviar</button>
+                        ) : (
+                            <button className="but-sig" onClick={handleNext}>Siguiente</button>
+                        )}
+                    </div>
+                    <div className="caj-prox">
+                        <div className={step === 0 ? 'p2' : 'p1'}></div>
+                        <div className={step === 1 ? 'p2' : 'p1'}></div>
+                        <div className={step === 2 ? 'p2' : 'p1'}></div>
                     </div>
                 </div>
                 <Waves />

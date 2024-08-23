@@ -12,7 +12,7 @@ export const Cel = ({ className }) => {
             {isLoggedIn ? (
                 <div className="dropdown">
                     <button className="button-class">
-                        Usuario
+                        Perfil
                     </button>
                 </div>
             ) : (

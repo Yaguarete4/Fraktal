@@ -7,7 +7,6 @@ import a1 from '../img/l1.svg';
 import a3 from '../img/l2.svg';
 import a4 from '../img/Skibidi Sigma.png';
 
-
 export const PaginaPrincipal = () => {
     const [isCelVisible, setIsCelVisible] = useState(false);
     const checkboxRef = useRef(null);

@@ -18,6 +18,7 @@
     flex-direction: column;
     margin-top: 40px;
     animation: fadeInDown 1.5s ease;
+    padding-bottom:10px;
 }
 .titu-tok{
     color: white;
@@ -31,6 +32,18 @@
 .input2 {
     background-color: rgba( 57, 57, 57, 0.05 );
     height: 47px;
+    padding: 20px;
+    color: #BCB3A3;
+    /* text-align: center; */
+    border: 1px solid #BCB3A3;
+    border-radius: 10px;
+    margin: 0 auto;
+    width: 35.1vw;
+    margin-bottom: 12px;
+  }
+  .input3{
+    background-color: rgba( 57, 57, 57, 0.05 );
+    height: 152px;
     padding: 20px;
     color: #BCB3A3;
     /* text-align: center; */
@@ -107,4 +120,41 @@
     position: relative;
     color: black;
     border-radius: 10px;
+}
+.but-sig2{
+    background-color: transparent;
+    padding: 15px 36px;
+    border: 1px solid #FFAB07;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    z-index: 2;
+    position: relative;
+    color: #FFAB07;
+    border-radius: 10px;
+}
+.caj-prox {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    width: 6.8vw;
+    margin: 0 auto;
+}
+
+.p1, .p2 {
+    transition: all 0.3s ease-in-out; /* Transición suave */
+    border-radius: 100px;
+}
+
+.p1 {
+    height: 1vw;
+    width: 1vw;
+    background-color: #636363;
+}
+
+.p2 {
+    width: 2.48vw;
+    background-color: white;
+    height: 1vw;
 }
