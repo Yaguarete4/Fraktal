@@ -2,6 +2,7 @@ require('dotenv').config();
 const pg = require('pg');
 const { Pool } = pg;
 const { ethers } = require('ethers');
+const multer = require('multer');
 
 const tokenAbi = require('../ContractABI/MyToken.json')['abi'];
 
@@ -11,10 +12,22 @@ const pool = new Pool({
     connectionString: process.env.DATABASE_URL
 });
 
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './upload')
+    },
+    filename: function (req, file, cb) {
+      const uniqueName = Date.now() + '-' + Math.round(Math.random() * 1E9)
+      cb(null, `${uniqueName}.${file.mimetype.split('/')[1]}`)
+    }
+  })
+  
+const upload = multer({ storage: storage });
+
 const express = require('express');
 const router = express.Router();
 
-router.post("/add", async (req, res) => {
+router.post("/add", upload.single('imageURL'), async (req, res) => {
     if(!req.body.name) {
         res.status(400).send("Name field must not be empty");
         return;
@@ -46,14 +59,15 @@ router.post("/add", async (req, res) => {
     const validTokenID = await makeQuery('SELECT "tokenID" FROM company WHERE "tokenID" = $1', [req.body.tokenID]);
     if(validTokenID.rows.length !== 0) return res.status(400).send("tokenID already exist");
 
-    const makeToken = await createToken(req.body.publicKey, req.body.tokenID, req.body.tokenAmount, '0x');
-    if(!makeToken) return res.status(500).send("Something whent wrong when creating token");
+    // const makeToken = await createToken(req.body.publicKey, req.body.tokenID, req.body.tokenAmount, '0x');
+    // if(!makeToken) return res.status(500).send("Something whent wrong when creating token");
 
-    const result = await makeQuery('INSERT INTO company (name, description, members, sector, "imageURL", "tokenBenefits", "tokenImageURL", "tokenID") VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', [req.body.name, req.body.description, req.body.members, req.body.sector, req.body.imageURL, req.body.tokenBenefits, req.body.tokenImageURL, req.body.tokenID]);
+    // const result = await makeQuery('INSERT INTO company (name, description, members, sector, "imageURL", "tokenBenefits", "tokenImageURL", "tokenID") VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', [req.body.name, req.body.description, req.body.members, req.body.sector, req.body.imageURL, req.body.tokenBenefits, req.body.tokenImageURL, req.body.tokenID]);
 
-    if(!result) return res.status(400).send("Error while registering data in the database");
+    // if(!result) return res.status(400).send("Error while registering data in the database");
 
-    res.sendStatus(200);
+    // res.sendStatus(200);
+    res.send(req.file).status(200);
 })
 
 router.get('/all', async (req, res) => {
