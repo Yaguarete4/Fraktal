@@ -1,13 +1,40 @@
 import {TokenCell} from  '../components/TokenCell'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Navbar } from '../components/Navbar';
 import { Cel } from '../components/Cel';
 import bitcoin from '../img/bitcoin.png';
 import '../css/pages/MarketPage.css'
 
 export const MarketPage = () => {
-    const tags = databaseExample.tags;
+    const [tags, setTags] = useState([]);
     const [isCelVisible, setIsCelVisible] = useState(false);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('https://fraktalapi.vercel.app/company/all', {
+                    method: "GET"
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                setTags([
+                    {
+                        tagName: "Todo",
+                        companies: data
+                    }
+                ]);
+            } catch (err) {
+                console.error('Error:', err);
+            }
+        }
+
+        fetchData();
+    }, []);
 
     const handleMenuToggle = () => {
       setIsCelVisible(!isCelVisible);
@@ -20,9 +47,9 @@ export const MarketPage = () => {
                     <div className="modal2">
                         <Cel className="cel-center" />
                     </div>
-                )}
-            <input className="barra-busqueda" placeholder="Buscar">
-            </input>
+            )}
+
+            <input className="barra-busqueda" placeholder="Buscar" />
             <div className='market'>
                 {tags.map((value, index) => {
                     return <TagsDivision key={index} tag={value} />
@@ -40,7 +67,7 @@ const TagsDivision = (props) => {
             <h1>{`${tag.tagName}`}</h1>
             <div>
                 {tag.companies.map((value, index) => {
-                    return <TokenCell key={index} img={value.tokenImg} name={value.name}>{value.description}</TokenCell>
+                    return <TokenCell key={index} img={value.tokenImageURL} name={value.name}>{value.description}</TokenCell>
                 })}
             </div>
         </div>
@@ -55,27 +82,27 @@ const databaseExample = {
                 {
                     name: "Bitcoin",
                     description: "Compañía dedicada a la manufactura de productos de limpieza",
-                    tokenImg: bitcoin
+                    tokenImageURL: bitcoin
                 },
                 {
                     name: "bitcoin",
                     description: "Compania...",
-                    tokenImg: bitcoin
+                    tokenImageURL: bitcoin
                 },
                 {
                     name: "bitcoin",
                     description: "Compania...",
-                    tokenImg: bitcoin
+                    tokenImageURL: bitcoin
                 },
                 {
                     name: "bitcoin",
                     description: "Compania...",
-                    tokenImg: bitcoin
+                    tokenImageURL: bitcoin
                 },
                 {
                     name: "Fraktal",
                     description: "Compania...",
-                    tokenImg: bitcoin
+                    tokenImageURL: bitcoin
                 }
             ]
         },
@@ -85,7 +112,7 @@ const databaseExample = {
                 {
                     name: "bitcoin",
                     description: "Compania...",
-                    tokenImg: "./"
+                    tokenImageURL: "./"
                 }
             ]
         },
@@ -95,7 +122,7 @@ const databaseExample = {
                 {
                     name: "bitcoin",
                     description: "Compania...",
-                    tokenImg: "./"
+                    tokenImageURL: "./"
                 }
             ]
         }
