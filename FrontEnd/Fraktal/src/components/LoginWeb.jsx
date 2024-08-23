@@ -3,9 +3,9 @@ import '../css/style1.css';
 import { Barra } from './BarraPrincipal';
 import { Login } from './Login';
 import { Navbar } from './Navbar'; // Asegúrate de importar el Navbar
-import a2 from '../img/eth.svg';
-import a1 from '../img/bitcoin.png';
-import a3 from '../img/chami.svg';
+import a2 from '../img/l3.svg';
+import a1 from '../img/l1.svg';
+import a3 from '../img/l2.svg';
 import a4 from '../img/Skibidi Sigma.png';
 
 export const LoginWeb = () => {

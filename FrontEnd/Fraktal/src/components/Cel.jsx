@@ -30,8 +30,8 @@ export const Cel = ({ className }) => {
                         />
                     </button>
                     <div className="dropdown-menu">
-                        <Link to="/signup" className="celup">Iniciar sesion</Link>
-                        <Link to="/login" className="celup">Registrarse</Link>
+                        <Link to="/login" className="celup">Iniciar sesion</Link>
+                        <Link to="/signup" className="celup">Registrarse</Link>
                     </div>
                 </div>
             )}

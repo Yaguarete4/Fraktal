@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import '../css/wallet.css';
 import { Navbar } from './Navbar';
 import { Cel } from './Cel';
-import a2 from '../img/eth.svg';
-import a1 from '../img/bitcoin.png';
-import a3 from '../img/chami.svg';
+import a2 from '../img/l3.svg';
+import a1 from '../img/l1.svg';
+import a3 from '../img/l2.svg';
 import a5 from '../img/usd.png';
 
 export const Wallet = () => {
@@ -79,7 +79,7 @@ export const Wallet = () => {
               <div className="caja-chiki">
                 <div className="ren">
                   <img className="ren-img" src={a1} alt="Bitcoin" />
-                  <div className="ren-nombre">Bitcoin BTC</div>
+                  <div className="ren-nombre">Aid Optics ADO</div>
                   <div className="ren-ren">
                     <div className="ren1-green">+254.71</div>
                     <div className="ren-green">+0.36%</div>
@@ -87,7 +87,7 @@ export const Wallet = () => {
                 </div>
                 <div className="ren">
                   <img className="ren-img" src={a2} alt="Etherium" />
-                  <div className="ren-nombre">Etherium ETH</div>
+                  <div className="ren-nombre">Smart Security SEC</div>
                   <div className="ren-ren">
                     <div className="ren1-green">+74.95</div>
                     <div className="ren-green">+0.27%</div>
@@ -124,13 +124,13 @@ export const Wallet = () => {
                   </div>
                   <div className="sector">
                    <div className="c3"></div>
-                   <div className="t1">ETH</div>
+                   <div className="t1">SEC</div>
                    <img className="t-img" src={a2}></img>
                    <div className="porc">10.8%</div>
                   </div>
                   <div className="sector">
                    <div className="c4"></div>
-                   <div className="t1">BTC</div>
+                   <div className="t1">ADO</div>
                    <img className="t-img" src={a1}></img>
                    <div className="porc">6.5%</div>
                   </div>                  
@@ -145,7 +145,7 @@ export const Wallet = () => {
                   <img src={a1} className="info-img"></img>  
                   <div className="caja-info">
                     <div className="compra">Compra</div>
-                    <div className="qcompra">BTC</div>
+                    <div className="qcompra">ADO</div>
                   </div>
                   <div className="info-porc1">-330 USD</div>
                 </div>     
@@ -154,7 +154,7 @@ export const Wallet = () => {
                   <img src={a1} className="info-img"></img>  
                   <div className="caja-info">
                     <div className="compra">Venta</div>
-                    <div className="qcompra">BTC</div>
+                    <div className="qcompra">ADO</div>
                   </div>
                   <div className="info-porc">+110 USD</div>
                 </div>  
@@ -162,7 +162,7 @@ export const Wallet = () => {
                   <img src={a2} className="info-img"></img>  
                   <div className="caja-info">
                     <div className="compra">Venta</div>
-                    <div className="qcompra">ETH</div>
+                    <div className="qcompra">SEC</div>
                   </div>
                   <div className="info-porc">+200 USD</div>
                 </div>         
@@ -171,7 +171,7 @@ export const Wallet = () => {
                   <img src={a1} className="info-img"></img>  
                   <div className="caja-info">
                     <div className="compra">Compra</div>
-                    <div className="qcompra">BTC</div>
+                    <div className="qcompra">ADO</div>
                   </div>
                   <div className="info-porc1">-100 USD</div>
                 </div>     
@@ -179,7 +179,7 @@ export const Wallet = () => {
                   <img src={a2} className="info-img"></img>  
                   <div className="caja-info">
                     <div className="compra">Compra</div>
-                    <div className="qcompra">ETH</div>
+                    <div className="qcompra">SEC</div>
                   </div>
                   <div className="info-porc1">-100 USD</div>
                 </div>    

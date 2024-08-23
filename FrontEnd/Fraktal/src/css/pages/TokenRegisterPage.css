@@ -2,5 +2,109 @@
     position: relative;
     overflow-x: hidden;
     flex: 1;
+    z-index: 10; 
+}
+.tokContainer{
+    position: relative;
+    z-index: 2;
+    margin: 0 auto;
+    width: 42.1vw;
+    background: rgba(34, 34, 34, 0.6);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(9.2px);
+    -webkit-backdrop-filter: blur(9.2px);    
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    animation: fadeInDown 1.5s ease;
+}
+.titu-tok{
+    color: white;
+    font-size: 1.6vw;
+    margin: 0 auto;
+    font-weight: 700px;
+    margin-top: 20px;
+    margin-bottom: 32px;
 }
 
+.input2 {
+    background-color: rgba( 57, 57, 57, 0.05 );
+    height: 47px;
+    padding: 20px;
+    color: #BCB3A3;
+    /* text-align: center; */
+    border: 1px solid #BCB3A3;
+    border-radius: 10px;
+    margin: 0 auto;
+    width: 35.1vw;
+    margin-bottom: 12px;
+  }
+  .caj-tok{
+      width: 35.vw;
+      display: flex;
+      flex-direction: row;
+      margin: 0 auto;
+  }
+  .caja-tok2{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-bottom: 20px;
+  }
+  .sub-titu-tok{
+      color: white;
+      font-weight: 600px;
+      font-size: 1.4vw;
+      margin: 0 auto;
+      margin-bottom: 13px;
+  }
+  .circ{
+    width: 13vw;
+    height: 13vw;
+    background-color: rgba( 57, 57, 57, 0.05 );
+    border-radius: 100px;
+    margin: 0 auto;
+    display: flex;
+    color: white;
+    cursor: pointer;
+    border: 2px solid #BCB3A3;
+    align-items: center;
+    justify-content: center;
+  }
+  .caja-buts {
+    position: relative; /* Asegura que el z-index se aplique correctamente */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 31.5vw;
+    margin: 0 auto;
+    align-items: center;
+    z-index: 11; /* Asegura que los botones estén por encima de las olas */
+}
+  .but-volver{
+      background-color: transparent;
+      padding: 15px 36px;
+      border: 1px solid #B6B6B6;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 25px;
+      z-index: 2;
+      position: relative;
+      color: white;
+      border-radius: 10px;
+  }
+  .but-sig{
+    background-color: #FFAB07;
+    padding: 15px 36px;
+    border: none;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    z-index: 2;
+    position: relative;
+    color: black;
+    border-radius: 10px;
+}
