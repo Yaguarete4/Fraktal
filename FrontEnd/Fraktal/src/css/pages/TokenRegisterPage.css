@@ -18,6 +18,7 @@
     flex-direction: column;
     margin-top: 40px;
     animation: fadeInDown 1.5s ease;
+    height: 520px;
     padding-bottom:10px;
 }
 .titu-tok{
@@ -86,8 +87,10 @@
     justify-content: center;
   }
   .caja-buts {
-    position: relative; /* Asegura que el z-index se aplique correctamente */
-    display: flex;
+    position: absolute;
+    top: 88%;
+    left: 50%;
+    transform: translate(-50%, -50%);    display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 31.5vw;
@@ -107,6 +110,21 @@
       position: relative;
       color: white;
       border-radius: 10px;
+      transition: all 0.3s ease; /* Añade una transición suave */
+  }
+  .but-volver:hover {
+    background-color: #B6B6B6; /* Cambia el fondo al color del borde */
+    color: black; /* Cambia el color del texto */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Añade una sombra */
+  }
+  
+  /* Efecto Active */
+  .but-volver:active {
+    background-color: #999; /* Oscurece el fondo en el estado activo */
+    border-color: #999; /* Oscurece el borde en el estado activo */
+    transform: translateY(0px); /* El botón vuelve a su posición original */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Disminuye la sombra */
+    transform: scale(0.9);
   }
   .but-sig{
     background-color: #FFAB07;
@@ -120,7 +138,22 @@
     position: relative;
     color: black;
     border-radius: 10px;
+    transition: all 0.3s ease;
+
 }
+/* Efecto Hover */
+.but-sig:hover {
+    color: white; /* Cambia el color del texto */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Añade una sombra */
+    background-color: rgb(110, 74, 0);
+  }
+  
+  /* Efecto Active */
+  .but-sig:active {
+    background-color: #E69500; /* Más oscuro para indicar el estado activo */
+    transform: translateY(0px) scale(0.9); /* Mantiene la posición y escala el botón */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Disminuye la sombra */
+  }
 .but-sig2{
     background-color: transparent;
     padding: 15px 36px;
@@ -133,13 +166,32 @@
     position: relative;
     color: #FFAB07;
     border-radius: 10px;
+    transition: all 0.3s ease;
 }
+.but-sig2:hover {
+    background-color: #FFAB07; /* Llena el fondo con el color original del borde */
+    color: white; /* Cambia el color del texto a blanco */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Añade una sombra */
+    border-color: #FFAB07; /* Mantiene el borde del mismo color */
+  }
+  
+  /* Efecto Active */
+  .but-sig2:active {
+    background-color: #E69500; /* Más oscuro para indicar el estado activo */
+    color: white; /* Mantiene el color del texto en blanco */
+    transform: translateY(0px) scale(0.9); /* Mantiene la posición y escala el botón */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Disminuye la sombra */
+  }
 .caj-prox {
     justify-content: space-between;
     display: flex;
     flex-direction: row;
     width: 6.8vw;
     margin: 0 auto;
+    position: absolute;
+    top: 95%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .p1, .p2 {
@@ -158,3 +210,55 @@
     background-color: white;
     height: 1vw;
 }
+.sub-miembros{
+    font-size: 1vw;
+    color: #B6B6B6;
+    font-weight: 600;
+    margin-left: 3.5vw;
+    margin-bottom: 6px;
+}
+.but-mas {
+    background-color: #515050;
+    color: #BCB3A3;
+    text-align: center;
+    font-size: 2vw;
+    color: #B6B6B6;
+    border: 1px solid #BCB3A3;
+    border-radius: 10px;
+    margin: 0 auto;
+    width: 35.1vw;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .but-mas:hover{
+    background-color: #3f3f3f;
+    transition: all 0.3 ease;
+  }
+  .but-mas:active{
+    color: white; /* Mantiene el color del texto en blanco */
+    transform: scale(0.9); /* Mantiene la posición y escala el botón */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Disminuye la sombra */
+    transition: 6.3 ease;
+
+  }
+  .input4 {
+    background-color: rgba( 57, 57, 57, 0.05 );
+    height: 47px;
+    color: #BCB3A3;
+    text-align: center;
+    border: 1px solid #BCB3A3;
+    border-radius: 10px;
+    width: 16.5vw;
+    margin-bottom: 12px;
+  }
+  .input4::placeholder{
+    padding: 7px;
+  }
+  .caja-tokk{
+    display: flex;
+    flex-direction: row ;
+    justify-content: space-between;
+    width: 35.1vw;
+    margin: 0 auto;
+  }
