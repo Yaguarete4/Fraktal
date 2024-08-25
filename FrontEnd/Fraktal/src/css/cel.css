@@ -1,6 +1,4 @@
-body {
-  background: #141417;
-}
+
 *{
   font-family: 'Montserrat', sans-serif;
 }
@@ -8,7 +6,7 @@ body {
   border: 0;
   background: transparent;
   cursor: pointer;
-  color: rgb(204, 204, 204);
+  color: rgb(255, 255, 255);
   font-size: 15px;
   width: 100%;
   display: flex;
@@ -23,6 +21,7 @@ body {
   color: white;
   font-size: 20px;
   width: 100%;
+  border-radius: 10px;
 }
 
 .is-dropdowns {
@@ -43,7 +42,8 @@ body {
   transition-property: opacity, visibility;
   transition-duration: 0.3s;
   height: fit-content;
-  width: 90vw
+  width: 90vw;
+  border-radius: 10px;
 }
 
 body.open .dropdowns {

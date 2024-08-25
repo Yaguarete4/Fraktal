@@ -263,3 +263,91 @@
     width: 35.1vw;
     margin: 0 auto;
   }
+@media (width < 500px) {
+  .titu-tok{
+    color: white;
+    font-size: 5.5vw;
+    margin: 0 auto;
+    font-weight: 700px;
+    margin-top: 20px;
+    margin-bottom: 32px;
+}
+.tokContainer{
+  width: 90vw;
+}
+.input2{
+  width: 75vw;
+}
+.sub-titu-tok{
+  font-size: 3.6vw;
+}
+.circ{
+  height: 45vw;
+  width: 45vw;
+}
+.but-volver{
+  padding: 15px 36px;
+}
+.caja-buts{
+    width: 74vw;
+}
+.caj-prox {
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  width: 22vw;
+  margin: 0 auto;
+  position: absolute;
+  top: 95%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.p1 {
+  height: 3vw;
+  width: 3vw;
+  background-color: #636363;
+}
+
+.p2 {
+  width: 7vw;
+  background-color: white;
+  height: 3vw;
+}
+.input3{
+  width: 75vw;
+}
+.sub-miembros{
+  font-size: 3.6vw;
+  color: #B6B6B6;
+  font-weight: 600;
+  margin: 0 auto;
+  margin-bottom: 6px;
+}
+.input4 {
+  background-color: rgba( 57, 57, 57, 0.05 );
+  height: 47px;
+  color: #BCB3A3;
+  text-align: center;
+  border: 1px solid #BCB3A3;
+  border-radius: 10px;
+  width: 36.5vw;
+  margin-bottom: 12px;
+}
+.caja-tokk{
+  width: 75vw;
+}
+.but-mas {
+  background-color: #515050;
+  color: #BCB3A3;
+  text-align: center;
+  font-size: 7vw;
+  color: #B6B6B6;
+  border: 1px solid #BCB3A3;
+  border-radius: 10px;
+  margin: 0 auto;
+  width: 75vw;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+}

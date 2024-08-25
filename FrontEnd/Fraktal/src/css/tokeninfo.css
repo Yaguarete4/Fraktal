@@ -60,3 +60,25 @@
 .titu-inf{
     
 }
+@media (width < 500px) {
+    .logo-token{
+        width: 10vw;
+        height: 10vw;
+    }
+    .titu-token{
+        font-size: 5.1vw;
+    }
+    .info-comprar{
+        font-size: 3vw;
+        padding: 10px 20px;
+    }
+    .titu-ben{
+        font-size: 4vw;
+    }
+    .cont-ben{
+        font-size: 3.5vw;
+    }
+    .caja-ben, .caja-inf{
+        padding: 10px;
+    }
+}
