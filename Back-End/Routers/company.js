@@ -109,8 +109,18 @@ router.get('/all', async (req, res) => {
         return;
     }
     res.json(result.rows).status(200);
+});
 
-    createToken();
+router.get('/get/:id', async (req, res) => {
+    const id = req.params.id;
+    if (!id) return res.status(400).send('ID must be included');
+
+    const result = await makeQuery('SELECT * FROM company WHERE id = $1', [id]);
+    if(!result) {
+        res.sendStatus(502);
+        return;
+    }
+    res.json(result.rows).status(200);
 });
 
 router.post('/balance', async (req, res) => {

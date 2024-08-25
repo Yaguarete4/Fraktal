@@ -20,6 +20,10 @@ GET http://localhost:3000/company/all
 
 ###
 
+GET http://localhost:3000/company/get/0
+
+###
+
 POST http://localhost:3000/company/balance
 Content-Type: application/json
 
