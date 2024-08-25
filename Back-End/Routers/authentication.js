@@ -170,7 +170,7 @@ router.get('/token', async (req, res) => {
         });
 
         res.json(generateAccessToken({
-            email: payload.email
+            username: payload.username
         }));
     });
 });
