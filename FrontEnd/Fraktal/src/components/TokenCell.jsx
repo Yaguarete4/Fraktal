@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import '../css/TokenCell.css';
 import '../css/token.css';
 
@@ -21,11 +22,13 @@ export const TokenCell = (props) => {
 
     return (
         <div className="token-cell">
-            <img src={props.img} alt="Token image"/>
-            <div>
-                <h1>{props.name}</h1>
-                <p>{props.children}</p>
-            </div>
+            <Link to={props.to}>
+                <img src={props.img} alt="Token image"/>
+                <div>
+                    <h1>{props.name}</h1>
+                    <p>{props.children}</p>
+                </div>
+            </Link>
         </div>
     );
 }

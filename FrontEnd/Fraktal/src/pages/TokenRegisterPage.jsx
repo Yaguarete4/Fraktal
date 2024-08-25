@@ -4,6 +4,7 @@ import Waves from "../components/Waves";
 import Background from '../img/wave.svg';
 import '../css/pages/TokenRegisterPage.css';
 import '../css/login.css';
+import { useNavigate } from 'react-router-dom';
 
 export const TokenRegisterPage = () => {
     const [imageSrc, setImageSrc] = useState(null);
@@ -16,6 +17,7 @@ export const TokenRegisterPage = () => {
     const [members, setMembers] = useState(['']);
     const [file, setFile] = useState();
     const fileInputRef = useRef(null);
+    const navigate = useNavigate();
 
     const handleDrop = (event) => {
         event.preventDefault();
@@ -132,8 +134,7 @@ export const TokenRegisterPage = () => {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            const data = await response.json();
-            console.log(data);
+            navigate('/');
         } catch (err) {
             console.error('Error:', err);
         }
