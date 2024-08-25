@@ -39,7 +39,7 @@ export const MarketPage = () => {
     const handleMenuToggle = () => {
       setIsCelVisible(!isCelVisible);
     }
-    
+
     return (
         <>
             <Navbar onMenuToggle={handleMenuToggle} />
@@ -67,8 +67,7 @@ const TagsDivision = (props) => {
             <h1>{`${tag.tagName}`}</h1>
             <div>
                 {tag.companies.map((value, index) => {
-                    console.log(value)
-                    return <TokenCell key={index} img={value.imageURL} name={value.name}>{value.description}</TokenCell>
+                    return <TokenCell key={index} to={value.id} img={value.imageURL} name={value.name}>{value.description}</TokenCell>
                 })}
             </div>
         </div>
