@@ -143,8 +143,8 @@
 .itemRight {
   width: 11.7vw;
   height: 11.7vw;
-  background-color: #000000;
-  border: 1.5px solid #FFAB07;
+  background-color: #ffffff;
+  /* border: 1.5px solid #FFAB07; */
 /* background: radial-gradient(circle, rgba(255,171,7,1) 10%, rgba(14,14,14,1) 71%); */
   border-radius: 10px;
   position: absolute;
