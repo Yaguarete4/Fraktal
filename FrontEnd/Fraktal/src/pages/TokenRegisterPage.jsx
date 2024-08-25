@@ -14,6 +14,7 @@ export const TokenRegisterPage = () => {
     const [pricePerToken, setPricePerToken] = useState('');
     const [tokenQuantity, setTokenQuantity] = useState('');
     const [members, setMembers] = useState(['']);
+    const [file, setFile] = useState();
     const fileInputRef = useRef(null);
 
     const handleDrop = (event) => {
@@ -32,6 +33,7 @@ export const TokenRegisterPage = () => {
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
+        setFile(file);
         loadImage(file);
     };
 
@@ -90,6 +92,52 @@ export const TokenRegisterPage = () => {
     const handleBack = () => {
         setStep((prevStep) => Math.max(prevStep - 1, 0)); // Decrementa el paso, pero no menos de 0
     };
+
+    const handleSubmit = async () => {
+        const formData = new FormData();
+        const fixMembers = () => {
+            let m = '';
+            for (const i in members) {
+                if(i == 0) m = members[i]; 
+                else m = m.concat('/', members[i]);
+            }
+            return m;
+        }
+
+        const data = {
+            name: tokenName,
+            description: companyDescription,
+            members: fixMembers(),
+            sector: "Tecnologico",
+            imageURL: file,
+            tokenBenefits: investorBenefits,
+            tokenImageURL: "",
+            tokenID: 15,
+            publicKey: "0x6Fdc66cf1c2D108e3eAe95DfBa6FeffCcF90F932",
+            tokenAmount: tokenQuantity
+        }
+
+        for(const name in data) {
+            formData.append(name, data[name]);
+        }
+
+        try {
+            const response = await fetch('https://fraktalapi.vercel.app/company/add', {
+                method: 'POST',
+                body: formData
+            })
+
+            if(!response.ok) {
+                console.log(await response.text())
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            console.log(data);
+        } catch (err) {
+            console.error('Error:', err);
+        }
+    }
 
     return (
         <>
@@ -195,7 +243,7 @@ export const TokenRegisterPage = () => {
                     <div className="caja-buts">
                         <button className="but-volver" onClick={handleBack}>Volver</button>
                         {step === 2 ? (
-                            <button className="but-sig2">Enviar</button>
+                            <button className="but-sig2" onClick={handleSubmit}>Enviar</button>
                         ) : (
                             <button className="but-sig" onClick={handleNext}>Siguiente</button>
                         )}
