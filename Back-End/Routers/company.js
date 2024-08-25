@@ -24,12 +24,13 @@ const storage = new CloudinaryStorage({
     cloudinary,
     params: (req, file) => {
         const uniqueName = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        const format = file.mimetype === 'image/svg+xml' ? 'svg' : file.mimetype.split('/')[1];
         return {
             folder: 'uploads',
-            format: file.mimetype.split('/')[1],
+            format: format,
             public_id: uniqueName,
             resource_type: 'image',
-            allowedFormats: ['jpg', 'png', 'jpeg']
+            allowedFormats: ['jpg', 'png', 'jpeg', 'svg']
         }
     },
 });
@@ -75,6 +76,11 @@ router.post("/add", upload.single('imageURL'), async (req, res) => {
         res.status(400).send("Token ID field must not be empty");
         return;
     }
+    if(!req.file) {
+        res.status(400).send("Token must have an image");
+        return;
+    }
+
     if(!req.body.publicKey) return res.status(400).send("publicKey field must not be empty");
     if(!req.body.tokenAmount) return res.status(400).send("tokenAmount field must not be empty or equal to 0");
 
@@ -90,7 +96,11 @@ router.post("/add", upload.single('imageURL'), async (req, res) => {
     if(!result) return res.status(400).send("Error while registering data in the database");
 
     res.sendStatus(200);
-})
+}, (err, req, res, next) => {
+    // Manejo de errores
+    console.error(err); // Muestra el error completo en la consola para facilitar la depuración
+    res.status(500).json({ error: err.message || 'Ocurrió un error al subir el archivo.' });
+});
 
 router.get('/all', async (req, res) => {
     const result = await makeQuery('SELECT * FROM company');
