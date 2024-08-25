@@ -12,6 +12,7 @@ import { Routes, Route } from 'react-router-dom';
 import { PaginaPrincipal } from './components/PaginaPrincipal';
 import { SignupWeb } from './components/SignupWeb';
 import { AuthProvider } from './components/AuthContext';  // Importa el AuthProvider
+import { ProtectedPages } from './components/ProtectedPages';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
           <Route path="/" element={<PaginaPrincipal />} />
           <Route path="/wallet" element={<Wallet />} />
           <Route path="/login" element={<LoginWeb />} />
-          <Route path="/token-register" element={<TokenRegisterPage />} />
+          <Route path="/token-register" element={<ProtectedPages><TokenRegisterPage /></ProtectedPages>} />
           <Route path="/signup" element={<SignupWeb />} />
           <Route path="/market" element={<MarketPage />} />
           <Route path="/market/:tokenId" element={<Tokeninfo />} />

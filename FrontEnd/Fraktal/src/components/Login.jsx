@@ -6,7 +6,7 @@ import logoGoogle from '../img/google.svg';
 import i from '../img/i.svg';
 
 export const Login = () => {
-    const { login } = useContext(AuthContext);
+    const { login, handleAccessToken } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const [formValues, setFormValues] = useState({
@@ -45,6 +45,7 @@ export const Login = () => {
 
             if (data.success) {
                 login();
+                handleAccessToken(data.accessToken);
                 navigate('/')
             } else if (data.error === 'Invalid credentials') {
                 setShowError(true);
