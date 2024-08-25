@@ -72,10 +72,10 @@ router.post("/add", upload.single('imageURL'), async (req, res) => {
         res.status(400).send("Token Benefits field must not be empty");
         return;
     }
-    if(!req.body.tokenID) {
-        res.status(400).send("Token ID field must not be empty");
-        return;
-    }
+    // if(!req.body.tokenID) {
+    //     res.status(400).send("Token ID field must not be empty");
+    //     return;
+    // }
     if(!req.file) {
         res.status(400).send("Token must have an image");
         return;
@@ -84,14 +84,17 @@ router.post("/add", upload.single('imageURL'), async (req, res) => {
     if(!req.body.publicKey) return res.status(400).send("publicKey field must not be empty");
     if(!req.body.tokenAmount) return res.status(400).send("tokenAmount field must not be empty or equal to 0");
 
+    let tokenID = await makeQuery('SELECT id FROM company ORDER BY id DESC LIMIT 1');
+    tokenID = parseInt(tokenID.rows[0].id) + 1;
+
     //chaeck if tokenID already exist
-    const validTokenID = await makeQuery('SELECT "tokenID" FROM company WHERE "tokenID" = $1', [req.body.tokenID]);
+    const validTokenID = await makeQuery('SELECT "tokenID" FROM company WHERE "tokenID" = $1', [tokenID]);
     if(validTokenID.rows.length !== 0) return res.status(400).send("tokenID already exist");
 
-    const makeToken = await createToken(req.body.publicKey, req.body.tokenID, req.body.tokenAmount, '0x');
+    const makeToken = await createToken(req.body.publicKey, tokenID, req.body.tokenAmount, '0x');
     if(!makeToken) return res.status(500).send("Something whent wrong when creating token");
 
-    const result = await makeQuery('INSERT INTO company (name, description, members, sector, "imageURL", "tokenBenefits", "tokenImageURL", "tokenID") VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', [req.body.name, req.body.description, req.body.members, req.body.sector, req.file.path, req.body.tokenBenefits, req.body.tokenImageURL, req.body.tokenID]);
+    const result = await makeQuery('INSERT INTO company (name, description, members, sector, "imageURL", "tokenBenefits", "tokenImageURL", "tokenID") VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', [req.body.name, req.body.description, req.body.members, req.body.sector, req.file.path, req.body.tokenBenefits, req.body.tokenImageURL, tokenID]);
 
     if(!result) return res.status(400).send("Error while registering data in the database");
 
