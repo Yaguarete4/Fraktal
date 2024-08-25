@@ -130,10 +130,96 @@
      transform: translateY(0);
   }
 } 
-@media (width < 700px){
-  
-}
 @media (width < 500px) {
+
+  .contra{
+    width: 300px;
+    height: 350px;
+    position: absolute;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);  
+    background-color: #333434;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.5s ease forwards;
+  }
+  .i-img{
+    margin: 0 auto;
+    height: 20vw;
+    margin-top: 30px;
+    width: auto;
+    margin-bottom: 20px;
+  }
+  .t{
+    color: white;
+    text-align: center; 
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+  .volver-form{
+    width: 80%;
+    color: black;
+    background-color: #FFAB07;
+    border-radius: 10px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: 0 auto;
+    border:none;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 13px;
+    font-weight: 700;
+    
+  }
+  .volver-form:hover{
+    color: white; /* Cambia el color del texto */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Añade una sombra */
+    background-color: rgb(110, 74, 0);
+  }
+  .volver-form:active{
+    background-color: #E69500; /* Más oscuro para indicar el estado activo */
+    transform: translateY(0px) scale(0.9); /* Mantiene la posición y escala el botón */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Disminuye la sombra */
+  }
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+  }
+  /* Estilos para el mensaje de registro exitoso */
+  .successMessage {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50; /* Verde exitoso */
+    color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+  }
+  
+  .successMessage.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  
 .loginContainer, .signupContainer{
   margin-top: 50px;
   width: 100vw;
@@ -160,15 +246,102 @@ button{
   transform: scale(0.9);
   transition: 0.4s ease;
 }
-.successMessage {
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@media (width > 501px){
+  
+.contra{
+  width: 300px;
+  height: 350px;
+  position: absolute;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #4caf50;
+  transform: translate(-50%, -50%);  
+  background-color: #333434;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.5s ease forwards;
+}
+.i-img{
+  margin: 0 auto;
+  height: 7vw;
+  margin-top: 30px;
+  width: auto;
+  margin-bottom: 20px;
+}
+.t{
   color: white;
-  padding: 20px;
-  border-radius: 5px;
-  z-index: 1000;
+  text-align: center; 
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+.volver-form{
+  width: 80%;
+  color: black;
+  background-color: #FFAB07;
+  border-radius: 10px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin: 0 auto;
+  border:none;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 13px;
+  font-weight: 700;
+  
+}
+.volver-form:hover{
+  color: white; /* Cambia el color del texto */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Añade una sombra */
+  background-color: rgb(110, 74, 0);
+}
+.volver-form:active{
+  background-color: #E69500; /* Más oscuro para indicar el estado activo */
+  transform: translateY(0px) scale(0.9); /* Mantiene la posición y escala el botón */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Disminuye la sombra */
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+/* Estilos para el mensaje de registro exitoso */
+.successMessage {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4CAF50; /* Verde exitoso */
+  color: white;
+  padding: 15px 30px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  font-weight: bold;
   text-align: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.successMessage.show {
+  opacity: 1;
+  visibility: visible;
+}
+
 }
