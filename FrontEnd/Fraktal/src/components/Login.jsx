@@ -15,6 +15,7 @@ export const Login = () => {
     });
 
     const [showError, setShowError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -22,7 +23,8 @@ export const Login = () => {
     };
 
     const handleSubmit = async () => {
-        if (formValues.password  === '') {
+        if (formValues.password  === '' || formValues.usernameEmail === '') {
+            setErrorMessage('Los parametros no pueden estar vacios')
             setShowError(true);
             return;
         }
@@ -42,15 +44,16 @@ export const Login = () => {
             }
 
             const data = await response.json();
-            console.log(data);
 
-            if (data.success) {
-                login();
-                handleAccessToken(data.accessToken);
-                navigate('/')
-            } else if (data.error === 'Invalid credentials') {
+            if(!data.success){
+                setErrorMessage(data.message);
                 setShowError(true);
+                return
             }
+
+            login();
+            handleAccessToken(data.accessToken);
+            navigate('/')
         } catch (err) {
             console.error('Error:', err);
         }
@@ -81,7 +84,7 @@ export const Login = () => {
         {showError && (
             <div className="contra">
                 <img src={i} alt="i" className="i-img" />
-                <div className="t">La contraseña no es válida.</div>
+                <div className="t">{errorMessage}</div>
                 <div className="t">Haz clic en el botón volver.</div>
                 <button className="volver-form" onClick={handleBack}>Volver</button>
             </div>
