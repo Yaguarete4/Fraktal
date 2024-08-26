@@ -27,7 +27,7 @@ export const Navbar = ({ onMenuToggle, setShowLogin, isBlurry }) => {
       <div className="navbar__inicio-config">
         <div className="caja3">
           <Link to="/login">
-            <img src={logoUser} alt="Logo" className="logoUser" onClick={() => setShowLogin(true)} />
+            <img src={logoUser} alt="Logo" className="logoUser" onClick={() => setShowLogin && setShowLogin(true)} />
           </Link>
         </div>
         <div className="caja2">
