@@ -15,6 +15,12 @@ const pool = new Pool({
 
 router.use(cookieParser());
 
+const refreshCookieConfig = {
+    httpOnly: true, 
+    secure: true,
+    sameSite: 'none'
+}
+
 const makeQuery = async (query, params) => {
     const _params = params ? params : []
 
@@ -76,10 +82,7 @@ router.post('/register', async (req, res) => {
     
         refreshToken = getRefreshToken({username: req.body.username});
     
-        res.cookie('refreshToken', refreshToken, {
-            httpOnly: true,
-            secure: true
-        });
+        res.cookie('refreshToken', refreshToken, refreshCookieConfig);
      
         const hashedPassword = await bcrypt.hash(password, 10);
         await makeQuery('INSERT INTO users (username, name, surname, email, password, refreshToken) VALUES ($1, $2, $3, $4, $5, $6)', [req.body.username, req.body.name, req.body.surname, req.body.email, hashedPassword, refreshToken]);
@@ -139,9 +142,7 @@ router.post('/login', async (req, res) => {
         credential.message = "Inicio de sesion exitoso"
         credential.accessToken = generateAccessToken(payload);
 
-        res.cookie('refreshToken', await updateRefreshToken(payload), {
-            httpOnly: true
-        });
+        res.cookie('refreshToken', await updateRefreshToken(payload), refreshCookieConfig);
     }
 
     res.json(credential);
@@ -159,15 +160,14 @@ router.get('/token', async (req, res) => {
     const refreshToken = req.cookies.refreshToken;
     let sqlRefreshToken = await makeQuery('SELECT refreshtoken FROM users WHERE refreshtoken = $1', [refreshToken]);
     sqlRefreshToken = sqlRefreshToken.rows;
+
     if(!refreshToken) return res.sendStatus(401);
     if(sqlRefreshToken.length == 0) return res.sendStatus(403);
 
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, async (err, payload) => {
         if(err) return res.sendStatus(403);
 
-        res.cookie('refreshToken', await updateRefreshToken(payload), {
-            httpOnly: true
-        });
+        res.cookie('refreshToken', await updateRefreshToken(payload), refreshCookieConfig);
 
         res.json(generateAccessToken({
             username: payload.username

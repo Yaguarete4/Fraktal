@@ -11,8 +11,8 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "usernameEmail": "Matuteronco",
-    "password": "5050"
+    "usernameEmail": "JaquelinWasky",
+    "password": "hola"
 }
 
 ###
@@ -54,7 +54,7 @@ Content-Type: application/json
 ###
 
 GET http://localhost:3000/auth/token
-Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hdHV0ZXJvbmNvIiwiaWF0IjoxNzIyOTUwMjg3LCJleHAiOjE3MjMwMzY2ODd9.ak4ntJJo77MOwu_QF7sx07NhzIwUaBdzg5ykOp-YmhE
+Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkphcXVlbGluV2Fza3kiLCJpYXQiOjE3MjQ2Nzc3MDQsImV4cCI6MTcyNDY3OTUwNH0.voXHYNHa0y8dliTfWH8G_nFZBzyiSROfO0CICn0XlKc
 
 ###
 
