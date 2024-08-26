@@ -404,3 +404,33 @@ margin-top: 37px;
   transform: translateY(0);
   transition: opacity 1.5s ease, transform 1.5s ease;
 }
+@media (width > 500px) {
+  .titu-portafolio{
+    font-size: 2vw;
+  }
+  .plata{
+    font-size: 3.3vw;
+  }
+  .profit{
+    font-size: 1.6vw;
+  }
+  .but-portafolio, .but-portafolio2{
+    width: 18vw;
+    height: 6vw;
+    font-size: 1.6vw;
+  }
+  .caj-port{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .caja-but{
+    margin-left: 20vw;
+  }
+  .but-portafolio{
+    margin-right: 6.9vw;
+  }
+  .rendimiento-titu{
+    font-size: 1.7vw;
+  }
+}

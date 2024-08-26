@@ -24,7 +24,7 @@ export const Wallet = () => {
 
           if (profitElement) {
               const rect = profitElement.getBoundingClientRect();
-              if (rect.top < 120) {
+              if (rect.top < 140) {
                   setAnimateProfit(true);
               } else {
                   setAnimateProfit(false);
@@ -33,7 +33,7 @@ export const Wallet = () => {
 
           if (cajaButElement) {
               const rect = cajaButElement.getBoundingClientRect();
-              if (rect.top < 120) {  // Ajusta esta condición según cuándo quieras que la animación se dispare
+              if (rect.top < 80) {  // Ajusta esta condición según cuándo quieras que la animación se dispare
                   setAnimateCajaBut(true);
               } else {
                   setAnimateCajaBut(false);
@@ -41,7 +41,7 @@ export const Wallet = () => {
           }
           if (renElement) {
             const rect = renElement.getBoundingClientRect();
-            if (rect.top < 120) {  // Ajusta esta condición según cuándo quieras que la animación se dispare
+            if (rect.top < 140) {  // Ajusta esta condición según cuándo quieras que la animación se dispare
                 setAnimateRen(true);
             } else {
                 setAnimateRen(false);
@@ -65,15 +65,19 @@ export const Wallet = () => {
               </div>
           )}
           <div className="caja-portafolio">
-            <div className="titu-portafolio">Portafolio</div>
-            <div className="plata">$ 1.683,36</div>
-            <div className={`profit ${animateProfit ? 'fade-out' : 'fade-in'}`}>
-              7,34% (+$43,22)
-            </div>
-            <div className={`caja-but ${animateCajaBut ? 'fade-out' : 'fade-in'}`}>
-                    <div className="but-portafolio">Ingresar</div>
-                    <div className="but-portafolio2">Retirar</div>
-            </div>                       
+            <div className="caj-port">
+              <div className="caj-port2">
+                <div className="titu-portafolio">Portafolio</div>
+                <div className="plata">$ 1.683,36</div>
+                <div className={`profit ${animateProfit ? 'fade-out' : 'fade-in'}`}>
+                  7,34% (+$43,22)
+                </div>              
+              </div>
+              <div className={`caja-but ${animateCajaBut ? 'fade-out' : 'fade-in'}`}>
+                      <div className="but-portafolio">Ingresar</div>
+                      <div className="but-portafolio2">Retirar</div>
+              </div>   
+            </div>                    
             <div className={`caja-rendimiento ${animateRen ? 'fade-out' : 'fade-in'}`}>
               <div className="rendimiento-titu">Rendimientos</div>
               <div className="caja-chiki">

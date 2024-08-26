@@ -4,21 +4,21 @@ import '../css/TokenCell.css';
 import '../css/token.css';
 
 export const TokenCell = (props) => {
-    useEffect(() => {
-        const tokens = document.querySelectorAll(".token-cell");
+    // useEffect(() => {
+    //     const tokens = document.querySelectorAll(".token-cell");
 
-        const checkTokens = () => {
-            const triggerBottom = (window.innerHeight / 5) * 4;
-            tokens.forEach((token) => {
-                const tokenTop = token.getBoundingClientRect().top;
-                if (tokenTop < triggerBottom) token.classList.add("show");
-                else token.classList.remove("show");
-            });
-        };
+    //     const checkTokens = () => {
+    //         const triggerBottom = (window.innerHeight / 5) * 4;
+    //         tokens.forEach((token) => {
+    //             const tokenTop = token.getBoundingClientRect().top;
+    //             if (tokenTop < triggerBottom) token.classList.add("show");
+    //             else token.classList.remove("show");
+    //         });
+    //     };
     
-        window.addEventListener("scroll", checkTokens);
-        checkTokens();
-    }, []);
+    //     window.addEventListener("scroll", checkTokens);
+    //     checkTokens();
+    // }, []);
 
     return (
         <div className="token-cell">
