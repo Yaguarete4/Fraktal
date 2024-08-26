@@ -29,7 +29,7 @@ export const ProtectedPages = ({children}) => {
 
         const getAccessToken = async () => {
             try {
-                const response = await fetch('http://localhost:3000/auth/token', {
+                const response = await fetch('https://fraktalapi.vercel.app/auth/token', {
                     method: 'GET',
                     credentials: 'include'
                 })
@@ -48,10 +48,6 @@ export const ProtectedPages = ({children}) => {
         fetchData();
         hasFetched.current = true;
     }, [])
-
-    // useEffect(() => {
-    //     if(!isLoggedIn) getAccessToken();
-    // }, [isLoggedIn]);
 
     return isLoggedIn && children
 }
