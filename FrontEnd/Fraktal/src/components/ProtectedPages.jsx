@@ -1,12 +1,16 @@
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { AuthContext } from "./AuthContext"
 import { useNavigate } from "react-router-dom";
 
 export const ProtectedPages = ({children}) => {
-    const { accessToken, isLoggedIn, login, logout } = useContext(AuthContext);
+    const { handleAccessToken, accessToken, isLoggedIn, login, logout } = useContext(AuthContext);
     const navigate = useNavigate();
+    //Evita que el useEffect onMount se ejecute 2 veces dado al StricMode
+    const hasFetched = useRef(false);
 
     useEffect(() => {
+        if(hasFetched.current) return;
+
         const fetchData = async () => {
             try {
                 const response = await fetch('https://fraktalapi.vercel.app/auth/authenticate', {
@@ -16,8 +20,8 @@ export const ProtectedPages = ({children}) => {
                     method: 'GET'
                 });
 
-                if(response.ok) login()
-                else logout()
+                if(response.ok) login();
+                else getAccessToken();
             } catch (err) {
                 console.error('Error:', err);
             }
@@ -25,22 +29,29 @@ export const ProtectedPages = ({children}) => {
 
         const getAccessToken = async () => {
             try {
-                const response = await fetch('https://fraktalapi.vercel.app/auth/token', {
+                const response = await fetch('http://localhost:3000/auth/token', {
                     method: 'GET',
-                    credentials: true
+                    credentials: 'include'
                 })
                 
+                if(!response.ok) return navigate('/login');
+    
+                const data = await response.json();
+                handleAccessToken(data);
+                login();
+    
             } catch (err) {
                 console.error('Error:', err);
             }
         }
 
         fetchData();
+        hasFetched.current = true;
     }, [])
 
-    useEffect(() => {
-        if(!isLoggedIn) navigate('/login');
-    }, [isLoggedIn])
+    // useEffect(() => {
+    //     if(!isLoggedIn) getAccessToken();
+    // }, [isLoggedIn]);
 
-    return children
+    return isLoggedIn && children
 }

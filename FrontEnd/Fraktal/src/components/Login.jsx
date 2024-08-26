@@ -28,12 +28,13 @@ export const Login = () => {
         }
 
         try {
-            const response = await fetch('https://fraktalapi.vercel.app/auth/login', {
+            const response = await fetch('http://localhost:3000/auth/login', {
                 headers: {
                     "Content-Type": "application/json"
                 },
                 method: "POST",
                 body: JSON.stringify(formValues),
+                credentials: 'include'
             });
 
             if (!response.ok) {
