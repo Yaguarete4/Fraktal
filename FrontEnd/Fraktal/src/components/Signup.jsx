@@ -98,7 +98,7 @@ export const Signup = () => {
             <input 
                 placeholder="Nombre" 
                 className="input5" 
-                name="username"
+                name="name"
                 type="text"
                 onChange={handleInputChange}
                 value={formValues.username}
@@ -106,7 +106,7 @@ export const Signup = () => {
             <input 
                 placeholder="Apellido" 
                 className="input5" 
-                name="username"
+                name="surname"
                 type="text"
                 onChange={handleInputChange}
                 value={formValues.username}
