@@ -128,7 +128,7 @@ router.post('/login', async (req, res) => {
     };    
 
     if(rows.length == 0) {
-        credential.message = "El correo no existe";
+        credential.message = "El correo o usuario no existe";
     }
     else if(!passwordChecked){
         credential.message = "La constraseña es incorrecta";
