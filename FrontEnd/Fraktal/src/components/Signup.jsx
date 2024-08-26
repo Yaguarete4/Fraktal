@@ -94,14 +94,24 @@ export const Signup = () => {
     return (
         <div className="loginContainer">
             <div className="titu">Registrarse</div>
+            <div className="yokk">
             <input 
-                placeholder="Nombre de usuario" 
-                className="input" 
+                placeholder="Nombre" 
+                className="input5" 
                 name="username"
                 type="text"
                 onChange={handleInputChange}
                 value={formValues.username}
             />
+            <input 
+                placeholder="Apellido" 
+                className="input5" 
+                name="username"
+                type="text"
+                onChange={handleInputChange}
+                value={formValues.username}
+            />
+            </div>
             <input 
                 placeholder="Mail" 
                 className="input" 
