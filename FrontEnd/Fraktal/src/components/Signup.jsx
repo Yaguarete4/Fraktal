@@ -9,6 +9,8 @@ export const Signup = () => {
     const [formValues, setFormValues] = useState({
         username: '',
         email: '',
+        name: '',
+        surname: '',
         password: '',
         confirmPassword: ''
     });
@@ -69,13 +71,18 @@ export const Signup = () => {
             const data = await response.json();
             console.log(data);
 
+            if(!data.success) {
+                setErrorMessage(data.message);
+                setShowError(true);
+                return;
+            }
             // Mostrar mensaje de registro exitoso
-            setIsRegistered(true);
+            // setIsRegistered(true);
 
             // Redirigir después de 1 segundo
-            setTimeout(() => {
-                navigate("/");
-            }, 1000);
+            // setTimeout(() => {
+            //     navigate("/");
+            // }, 1000);
 
         } catch (err) {
             console.error('Error:', err);
@@ -90,8 +97,8 @@ export const Signup = () => {
             <input 
                 placeholder="Nombre de usuario" 
                 className="input" 
-                name="username" 
-                type="text" 
+                name="username"
+                type="text"
                 onChange={handleInputChange}
                 value={formValues.username}
             />
