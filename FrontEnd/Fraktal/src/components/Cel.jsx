@@ -56,9 +56,9 @@ export const Cel = ({ className }) => {
         </div>
       </div>
             <div className="dropdown">
-                <button className="button-class">
+                <Link to="/token-register" className="button-class" style={{"text-decoration": "none"}}>
                     Pre-venta
-                </button>
+                </Link>
             </div>
             <div className="dropdown">
                 <button className="button-class">
