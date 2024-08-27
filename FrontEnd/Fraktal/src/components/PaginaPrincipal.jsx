@@ -7,6 +7,12 @@ import a1 from '../img/l1.svg';
 import a3 from '../img/l2.svg';
 import a4 from '../img/Skibidi Sigma.png';
 import { Spline } from './Spline';
+import b1 from '../img/aq1.svg';
+import b2 from '../img/aq2.svg';
+import b3 from '../img/aq3.svg';
+import b4 from '../img/aq4.svg';
+import b5 from '../img/aq5.svg';
+
 
 export const PaginaPrincipal = () => {
     const [isCelVisible, setIsCelVisible] = useState(false);
@@ -100,6 +106,63 @@ export const PaginaPrincipal = () => {
             </div>
             <div className="cartas">
                 <div className="etapa">Etapas</div>
+                <div className="card-board">
+            <div className={`card small-card ${flipped[0] ? 'flipped' : ''}`} onClick={() => handleFlip(0)}>
+                <div className="card-inner">
+                    <div className="card-front">
+                        <img className="img-ca" src={b1}></img>
+                        <h2>Publicacion</h2>
+                    </div>
+                    <div className="card-back">
+                        <h3>En un primer lugar, el publicador decide promover su negocio/pyme/startup en nuestra página en busca de inversiones qué lo ayuden a crecer.</h3>
+                    </div>
+                </div>
+            </div>
+            <div className={`card small-card ${flipped[1] ? 'flipped' : ''}`} onClick={() => handleFlip(1)}>
+                <div className="card-inner">
+                    <div className="card-front">
+                        <img className="img-ca" src={b2}></img>
+                        <h2>Evaluacion</h2>
+                    </div>
+                    <div className="card-back">
+                        <h3>Cada token de cada proyecto qué se publica en Fraktal pasa por un proceso de revisión y análisis para evitar estafas y tokens qué no tengan sentido.</h3>
+                    </div>
+                </div>
+            </div>
+            <div className={`card small-card ${flipped[2] ? 'flipped' : ''}`} onClick={() => handleFlip(2)}>
+                <div className="card-inner">
+                    <div className="card-front">
+                        <img className="img-ca" src={b3}></img>
+                        <h2>Mercado</h2>
+                    </div>
+                    <div className="card-back">
+                        <h3>Una vez el token es aprobado, pasa al mercado en el qué ya aparece en la página y los inversores pueden verlo.</h3>
+                    </div>
+                </div>
+            </div>
+            <div className={`card small-card ${flipped[3] ? 'flipped' : ''}`} onClick={() => handleFlip(3)}>
+                <div className="card-inner">
+                    <div className="card-front">
+                        <img className="img-ca" src={b4}></img>
+                        <h2>Compra</h2>
+                    </div>
+                    <div className="card-back">
+                        <h3>Cuando un inversor decide comprar tokens de un proyecto, mediante la tecnología de Blockchain, el token pasa a estar en la wallet individual del inversor.</h3>
+                    </div>
+                </div>
+            </div>
+            <div className={`card large-card ${flipped[4] ? 'flipped' : ''}`} onClick={() => handleFlip(4)}>
+                <div className="card-inner">
+                    <div className="card-front">
+                        <img className="img-ca" src={b5}></img>
+                        <h2>Venta</h2>
+                    </div>
+                    <div className="card-back">
+                        <h3>En el momento en el qué todos los tokens de una empresa se vendan, ya se va a poder vender el token qué se compró. También está el caso de querer retenerlo en la cuenta hasta qué el proyecto empieza a generar ganancias y es ahí donde el inversor saca un beneficio por confiar e invertir en el proyecto.</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
             </div>
         </>
     );
