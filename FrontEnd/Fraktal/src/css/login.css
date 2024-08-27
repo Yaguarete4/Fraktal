@@ -1,6 +1,6 @@
 .loginContainer{
   width: 34.8vw;
-  height: 556px;
+  height: fit-content;
   background: rgba(34, 34, 34, 0.17);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -9,8 +9,8 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  margin-top: 80px;
   animation: fadeInDown 1.5s ease;
+  padding-bottom: 34px;
 }
 .signupContainer{
   width: 34.8vw;

@@ -62,6 +62,7 @@ export const Signup = () => {
                 },
                 method: "POST",
                 body: JSON.stringify(formValues),
+                credentials: 'include'
             });
 
             if (!response.ok) {
@@ -76,6 +77,7 @@ export const Signup = () => {
                 setShowError(true);
                 return;
             }
+            navigate('/');
             // Mostrar mensaje de registro exitoso
             // setIsRegistered(true);
 
@@ -95,30 +97,34 @@ export const Signup = () => {
         <div className="loginContainer">
             <div className="titu">Registrarse</div>
             <div className="yokk">
-            <input 
-                placeholder="Nombre" 
-                className="input5" 
-                name="name"
-                type="text"
-                onChange={handleInputChange}
-                value={formValues.username}
-            />
-            <input 
-                placeholder="Apellido" 
-                className="input5" 
-                name="surname"
-                type="text"
-                onChange={handleInputChange}
-                value={formValues.username}
-            />
+                <input 
+                    placeholder="Nombre" 
+                    className="input5" 
+                    name="name"
+                    type="text"
+                    onChange={handleInputChange}
+                />
+                <input 
+                    placeholder="Apellido" 
+                    className="input5" 
+                    name="surname"
+                    type="text"
+                    onChange={handleInputChange}
+                />
             </div>
+            <input 
+                placeholder="Nombre de usuario" 
+                className="input" 
+                name="username" 
+                type="text" 
+                onChange={handleInputChange}
+            />
             <input 
                 placeholder="Mail" 
                 className="input" 
                 name="email" 
                 type="email" 
                 onChange={handleInputChange}
-                value={formValues.email}
             />
             <input 
                 placeholder="Contraseña" 
@@ -126,7 +132,6 @@ export const Signup = () => {
                 name="password" 
                 type="password" 
                 onChange={handleInputChange}
-                value={formValues.password}
             />
             <input 
                 placeholder="Confirmar contraseña" 
@@ -134,7 +139,6 @@ export const Signup = () => {
                 name="confirmPassword" 
                 type="password" 
                 onChange={handleInputChange}
-                value={formValues.confirmPassword}
             />
             <button className="regi" onClick={handleSubmit}>Registrarse</button>            
             <div className="caja-inicio-sesion">
