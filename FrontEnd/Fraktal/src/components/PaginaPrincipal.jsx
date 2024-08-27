@@ -6,19 +6,21 @@ import a2 from '../img/l3.svg';
 import a1 from '../img/l1.svg';
 import a3 from '../img/l2.svg';
 import a4 from '../img/Skibidi Sigma.png';
+import { Spline } from './Spline';
 
 export const PaginaPrincipal = () => {
     const [isCelVisible, setIsCelVisible] = useState(false);
-    const checkboxRef = useRef(null);
 
     const handleMenuToggle = () => {
         setIsCelVisible(!isCelVisible);
     };
+    const [flipped, setFlipped] = useState([false, false, false, false, false]);
 
-    const handleCardClick = () => {
-        checkboxRef.current.checked = !checkboxRef.current.checked;
+    const handleFlip = (index) => {
+        const newFlipped = [...flipped];
+        newFlipped[index] = !newFlipped[index];
+        setFlipped(newFlipped);
     };
-
     return (
         <>
             <Navbar onMenuToggle={handleMenuToggle} />
@@ -93,14 +95,11 @@ export const PaginaPrincipal = () => {
                 <img className="wrap-img" src={a4}></img>
                 </div>
             </div>
-            <div id="summary" onClick={handleCardClick}>
-                <input type="checkbox" id="cardCheckbox" ref={checkboxRef} />
-                <div className="card">
-                    <div className="front">
-                    </div>
-                    <div className="back">
-                    </div>
-                </div>
+            <div className="spi">
+            <Spline/>
+            </div>
+            <div className="cartas">
+                <div className="etapa">Etapas</div>
             </div>
         </>
     );

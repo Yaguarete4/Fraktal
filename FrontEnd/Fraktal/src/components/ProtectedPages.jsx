@@ -8,7 +8,7 @@ export const ProtectedPages = ({children}) => {
     //Evita que el useEffect onMount se ejecute 2 veces dado al StricMode
     const hasFetched = useRef(false);
 
-    useEffect(() => {
+    useEffect(() => { 
         if(hasFetched.current) return;
 
         const fetchData = async () => {
