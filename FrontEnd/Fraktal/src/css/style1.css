@@ -275,6 +275,7 @@ h3{
   height: 200px;
   transition: transform 0.6s;
   transform-style: preserve-3d;
+  cursor: pointer;
 }
   .card-front,
 .card-back {
@@ -287,6 +288,7 @@ h3{
   align-items: center;
   font-size: 1.5em;
   color: white;
+  cursor: pointer;
 }
   .img-ca{
     width: 100px;

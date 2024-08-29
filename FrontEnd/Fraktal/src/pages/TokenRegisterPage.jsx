@@ -16,6 +16,7 @@ export const TokenRegisterPage = () => {
     const [tokenQuantity, setTokenQuantity] = useState('');
     const [members, setMembers] = useState(['']);
     const [file, setFile] = useState();
+    const [loading, setLoading] = useState(false); // Estado para el loader
     const fileInputRef = useRef(null);
     const navigate = useNavigate();
 
@@ -80,7 +81,7 @@ export const TokenRegisterPage = () => {
     };
 
     const handleAddMember = () => {
-        if (members.length < 4  ) {
+        if (members.length < 4) {
             setMembers([...members, '']);
         }
     };
@@ -96,15 +97,16 @@ export const TokenRegisterPage = () => {
     };
 
     const handleSubmit = async () => {
+        setLoading(true); // Mostrar el loader
         const formData = new FormData();
         const fixMembers = () => {
             let m = '';
             for (const i in members) {
-                if(i == 0) m = members[i]; 
+                if (i == 0) m = members[i];
                 else m = m.concat('/', members[i]);
             }
             return m;
-        }
+        };
 
         const data = {
             name: tokenName,
@@ -116,147 +118,159 @@ export const TokenRegisterPage = () => {
             tokenImageURL: "",
             tokenID: 15,
             publicKey: "0x6Fdc66cf1c2D108e3eAe95DfBa6FeffCcF90F932",
-            tokenAmount: tokenQuantity
-        }
+            tokenAmount: tokenQuantity,
+        };
 
-        for(const name in data) {
+        for (const name in data) {
             formData.append(name, data[name]);
         }
 
         try {
             const response = await fetch('https://fraktalapi.vercel.app/company/add', {
                 method: 'POST',
-                body: formData
-            })
+                body: formData,
+            });
 
-            if(!response.ok) {
-                console.log(await response.text())
+            if (!response.ok) {
+                console.log(await response.text());
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            navigate('/');
+            navigate('/market');
         } catch (err) {
             console.error('Error:', err);
         }
-    }
+    };
 
     return (
         <>
             <Navbar />
             <div className="token-reg">
-                <div className="tokContainer">
-                    <div className="titu-tok">Registra tu token</div>
-                    {step === 0 ? (
-                        <>
-                            <input
-                                placeholder="Nombre del Token"
-                                className="input2"
-                                type="text"
-                                value={tokenName}
-                                onChange={handleTokenNameChange}
-                            />
-                            <input
-                                placeholder="Abreviación (3 letras)"
-                                className="input2"
-                                type="text"
-                                maxLength="3"
-                                value={abbreviation}
-                                onChange={handleAbbreviationChange}
-                            />
-                            <div className="caja-tok">
-                                <div className="caja-tok2">
-                                    <div className="sub-titu-tok">Logo del token</div>
-                                    <div
-                                        className="circ"
-                                        onDrop={handleDrop}
-                                        onDragOver={handleDragOver}
-                                        onClick={handleClick}
-                                    >
-                                        {imageSrc ? (
-                                            <img src={imageSrc} alt="Token Logo" style={{
-                                                width: '100%',
-                                                height: '100%',
-                                                objectFit: 'cover'
-                                            }} />
-                                        ) : (
-                                            "Inserte aquí"
-                                        )}
-                                    </div>
-                                    <input
-                                        type="file"
-                                        ref={fileInputRef}
-                                        style={{ display: 'none' }}
-                                        onChange={handleFileChange}
-                                        accept="image/*"
-                                    />
-                                </div>
-                            </div>
-                        </>
-                    ) : step === 1 ? (
-                        <>
-                            <textarea
-                                placeholder="Descripción de la empresa"
-                                className="input3"
-                                type="text"
-                                value={companyDescription}
-                                onChange={handleCompanyDescriptionChange}
-                            />
-                            <textarea
-                                placeholder="Beneficio para inversores"
-                                className="input3"
-                                rows="4"
-                                value={investorBenefits}
-                                onChange={handleInvestorBenefitsChange}
-                            />
-                        </>
-                    ) : step === 2 ? (
-                        <>
-                            <div className='sub-miembros'>Miembros de la empresa</div>
-                            {members.map((member, index) => (
+                {loading ? (
+                    <div className="loader">
+                        <div className="loader__bar"></div>
+                        <div className="loader__bar"></div>
+                        <div className="loader__bar"></div>
+                        <div className="loader__bar"></div>
+                        <div className="loader__bar"></div>
+                        <div className="loader__ball"></div>
+                    </div>
+                ) : (
+                    <div className="tokContainer">
+                        <div className="titu-tok">Registra tu token</div>
+                        {step === 0 ? (
+                            <>
                                 <input
-                                    key={index}
-                                    placeholder="Ej: Marcelo Pérez"
+                                    placeholder="Nombre del Token"
                                     className="input2"
                                     type="text"
-                                    value={member}
-                                    onChange={(e) => handleMemberChange(index, e)}
-                                />
-                            ))}
-                            {members.length < 4 && (
-                                <button className='but-mas' onClick={handleAddMember}>+</button>
-                            )}                            <div className="caja-tokk">
-                                <input
-                                    className='input4'
-                                    placeholder='Precio por Token (USD)'
-                                    value={pricePerToken}
-                                    onChange={handlePricePerTokenChange}
+                                    value={tokenName}
+                                    onChange={handleTokenNameChange}
                                 />
                                 <input
-                                    className='input4'
-                                    placeholder='Cantidad de tokens a generar'
-                                    value={tokenQuantity}
-                                    onChange={handleTokenQuantityChange}
+                                    placeholder="Abreviación (3 letras)"
+                                    className="input2"
+                                    type="text"
+                                    maxLength="3"
+                                    value={abbreviation}
+                                    onChange={handleAbbreviationChange}
                                 />
-                            </div>
-                        </>
-                    ) : (<div></div>)}
+                                <div className="caja-tok">
+                                    <div className="caja-tok2">
+                                        <div className="sub-titu-tok">Logo del token</div>
+                                        <div
+                                            className="circ"
+                                            onDrop={handleDrop}
+                                            onDragOver={handleDragOver}
+                                            onClick={handleClick}
+                                        >
+                                            {imageSrc ? (
+                                                <img src={imageSrc} alt="Token Logo" style={{
+                                                    width: '100%',
+                                                    height: '100%',
+                                                    objectFit: 'cover'
+                                                }} />
+                                            ) : (
+                                                "Inserte aquí"
+                                            )}
+                                        </div>
+                                        <input
+                                            type="file"
+                                            ref={fileInputRef}
+                                            style={{ display: 'none' }}
+                                            onChange={handleFileChange}
+                                            accept="image/*"
+                                        />
+                                    </div>
+                                </div>
+                            </>
+                        ) : step === 1 ? (
+                            <>
+                                <textarea
+                                    placeholder="Descripción de la empresa"
+                                    className="input3"
+                                    type="text"
+                                    value={companyDescription}
+                                    onChange={handleCompanyDescriptionChange}
+                                />
+                                <textarea
+                                    placeholder="Beneficio para inversores"
+                                    className="input3"
+                                    rows="4"
+                                    value={investorBenefits}
+                                    onChange={handleInvestorBenefitsChange}
+                                />
+                            </>
+                        ) : step === 2 ? (
+                            <>
+                                <div className='sub-miembros'>Miembros de la empresa</div>
+                                {members.map((member, index) => (
+                                    <input
+                                        key={index}
+                                        placeholder="Ej: Marcelo Pérez"
+                                        className="input2"
+                                        type="text"
+                                        value={member}
+                                        onChange={(e) => handleMemberChange(index, e)}
+                                    />
+                                ))}
+                                {members.length < 4 && (
+                                    <button className='but-mas' onClick={handleAddMember}>+</button>
+                                )}
+                                <div className="caja-tokk">
+                                    <input
+                                        className='input4'
+                                        placeholder='Precio por Token (USD)'
+                                        value={pricePerToken}
+                                        onChange={handlePricePerTokenChange}
+                                    />
+                                    <input
+                                        className='input4'
+                                        placeholder='Cantidad de tokens a generar'
+                                        value={tokenQuantity}
+                                        onChange={handleTokenQuantityChange}
+                                    />
+                                </div>
+                            </>
+                        ) : (<div></div>)}
 
-                    <div className="caja-buts">
-                        <button className="but-volver" onClick={handleBack}>Volver</button>
-                        {step === 2 ? (
-                            <button className="but-sig2" onClick={handleSubmit}>Enviar</button>
-                        ) : (
-                            <button className="but-sig" onClick={handleNext}>Siguiente</button>
-                        )}
+                        <div className="caja-buts">
+                            <button className="but-volver" onClick={handleBack}>Volver</button>
+                            {step === 2 ? (
+                                <button className="but-sig2" onClick={handleSubmit}>Enviar</button>
+                            ) : (
+                                <button className="but-sig" onClick={handleNext}>Siguiente</button>
+                            )}
+                        </div>
+                        <div className="caj-prox">
+                            <div className={step === 0 ? 'prox-act' : 'prox'}></div>
+                            <div className={step === 1 ? 'prox-act' : 'prox'}></div>
+                            <div className={step === 2 ? 'prox-act' : 'prox'}></div>
+                        </div>
                     </div>
-                    <div className="caj-prox">
-                        <div className={step === 0 ? 'p2' : 'p1'}></div>
-                        <div className={step === 1 ? 'p2' : 'p1'}></div>
-                        <div className={step === 2 ? 'p2' : 'p1'}></div>
-                    </div>
-                </div>
-                <Waves />
+                )}
             </div>
+            <Waves />
         </>
     );
 };
