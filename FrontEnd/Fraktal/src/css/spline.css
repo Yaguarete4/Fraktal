@@ -14,4 +14,8 @@
   .spline-container a#logo {
     display: none !important;
   }
+  #logo {
+    display: none !important;
+  }
+
   

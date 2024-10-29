@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'; // Elimina la importación redundante de useState
 import '../css/style1.css';
 import { Navbar } from './Navbar';
+import { Footer } from './Footer';
 import { Cel } from './Cel';
 import a2 from '../img/l3.svg';
 import a1 from '../img/l1.svg';
@@ -101,9 +102,9 @@ export const PaginaPrincipal = () => {
                 <img className="wrap-img" src={a4}></img>
                 </div>
             </div>
-            <div className="spi">
+            {/* <div className="spi">
             <Spline/>
-            </div>
+            </div> */}
             <div className="cartas">
                 <div className="etapa">Etapas</div>
                 <div className="card-board">
@@ -164,6 +165,7 @@ export const PaginaPrincipal = () => {
             </div>
         </div>
             </div>
+            <Footer></Footer>
         </>
     );
 };
