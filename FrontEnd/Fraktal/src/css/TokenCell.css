@@ -10,27 +10,39 @@
     gap: 10px;
 }
 
-.token-cell > img {
+.token-cell > a {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    align-items: center;
+    gap: 10px;
+}
+
+.token-cell > a > img {
     max-width: 138px;
+    max-height: 138px;
     margin: 0 auto;
 }
 
-.token-cell > div {
+.token-cell > a > div {
     display: flex;
     flex-direction: column;
-    gap: 5px
+    width: 100%;
+    gap: 5px;
 }
 
-.token-cell > div > h1 {
+.token-cell > a > div > h1 {
     color: white;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    text-wrap: nowrap;
+    overflow-x: hidden;
 }
 
-.token-cell > div > p {
+.token-cell > a > div > p {
     color: #CFCCC7;
     font-size: 0.9rem;
-    max-height: 54px;
     overflow: hidden;
+    max-height: 36px;
 }
 
 @media (max-width: 965px) {

@@ -1,0 +1,16 @@
+.token-cell {
+    display: flex;
+    /* transform: translate(400%);
+    transform: translateX(100vw); 
+    transition: transform 0.85s ease; */
+    /* Agrega otros estilos específicos para .token-cell según necesites */
+}
+
+/* .token-cell:nth-of-type(even) {
+    transform: translate(-400%);
+}
+
+.token-cell.show {
+    transform: translate(0);
+} */
+

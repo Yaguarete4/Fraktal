@@ -15,6 +15,12 @@ const pool = new Pool({
 
 router.use(cookieParser());
 
+const refreshCookieConfig = {
+    httpOnly: true, 
+    secure: true,
+    sameSite: 'none'
+}
+
 const makeQuery = async (query, params) => {
     const _params = params ? params : []
 
@@ -32,6 +38,7 @@ const makeQuery = async (query, params) => {
 }
 
 router.post('/register', async (req, res) => {
+
     let credential = {
         success: false,
         message: null,
@@ -75,33 +82,33 @@ router.post('/register', async (req, res) => {
     
         refreshToken = getRefreshToken({username: req.body.username});
     
-        res.cookie('refreshToken', refreshToken, {
-            httpOnly: true
-        });
+        res.cookie('refreshToken', refreshToken, refreshCookieConfig);
      
         const hashedPassword = await bcrypt.hash(password, 10);
         await makeQuery('INSERT INTO users (username, name, surname, email, password, refreshToken) VALUES ($1, $2, $3, $4, $5, $6)', [req.body.username, req.body.name, req.body.surname, req.body.email, hashedPassword, refreshToken]);
     }
 
-    res.json(credential);
+    res.status(200).json(credential);
 });
 
 router.delete('/deleteAccount', authenticateToken, async (req, res) => {
-    const [password] = await connection.query('SELECT password FROM Users WHERE email = ?', [req.user.email]);
-    if(password.length === 0){
+    const password = req.body.password ? req.body.password : "";
+    const query = await makeQuery('SELECT password FROM users WHERE username = $1', [req.user.username]);
+    if(query.rows.length === 0){
         res.sendStatus(403);
         return;
     }
     
-    const passwordChecked = await comparePassword(req.user.email, req.body.password);
-
+    const passwordChecked = await bcrypt.compare(password, query.rows[0].password);
+    console.log(passwordChecked);
     if(!passwordChecked){
         res.sendStatus(403);
         return;
     }
 
-    await connection.query('DELETE FROM Users WHERE email = ?', [req.user.email]);
-    await connection.query('DELETE FROM Historial WHERE userEmail = ?', [req.user.email]);
+    const success = await makeQuery('DELETE FROM users WHERE username = $1', [req.user.username]);
+    if(!success) return res.sendStatus(500);
+
     res.sendStatus(200);
 });
 
@@ -121,7 +128,7 @@ router.post('/login', async (req, res) => {
     };    
 
     if(rows.length == 0) {
-        credential.message = "El correo no existe";
+        credential.message = "El correo o usuario no existe";
     }
     else if(!passwordChecked){
         credential.message = "La constraseña es incorrecta";
@@ -135,9 +142,7 @@ router.post('/login', async (req, res) => {
         credential.message = "Inicio de sesion exitoso"
         credential.accessToken = generateAccessToken(payload);
 
-        res.cookie('refreshToken', await updateRefreshToken(payload), {
-            httpOnly: true
-        });
+        res.cookie('refreshToken', await updateRefreshToken(payload), refreshCookieConfig);
     }
 
     res.json(credential);
@@ -145,25 +150,27 @@ router.post('/login', async (req, res) => {
 
 router.delete('/logout', async (req, res) => {
     res.clearCookie('refreshToken');
-    deleteRefreshToken(req.cookies.refreshToken);
-    res.sendStatus(204);
+    const success = await deleteRefreshToken(req.cookies.refreshToken);
+    if(!success) return res.sendStatus(500);
+
+    res.sendStatus(200);
 });
 
 router.get('/token', async (req, res) => { 
     const refreshToken = req.cookies.refreshToken;
-    const [sqlRefreshToken] = await connection.query('SELECT refreshToken FROM Users WHERE refreshToken = ?', [refreshToken]);
+    let sqlRefreshToken = await makeQuery('SELECT refreshtoken FROM users WHERE refreshtoken = $1', [refreshToken]);
+    sqlRefreshToken = sqlRefreshToken.rows;
+
     if(!refreshToken) return res.sendStatus(401);
     if(sqlRefreshToken.length == 0) return res.sendStatus(403);
 
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, async (err, payload) => {
         if(err) return res.sendStatus(403);
 
-        res.cookie('refreshToken', await updateRefreshToken(payload), {
-            httpOnly: true
-        });
+        res.cookie('refreshToken', await updateRefreshToken(payload), refreshCookieConfig);
 
         res.json(generateAccessToken({
-            email: payload.email
+            username: payload.username
         }));
     });
 });
@@ -174,7 +181,7 @@ router.get('/tablas', async (req, res) => {
 });
 
 async function comparePassword(email, password){
-    const [query] = await connection.query('SELECT password FROM Users WHERE email = ?', [email]);
+    const [query] = await connection.query('SELECT password FROM Users WHERE email = ?', [user]);
     if(query.length === 0){
         return false;
     } else {
@@ -188,8 +195,8 @@ function generateAccessToken(payload){
 
 async function updateRefreshToken(payload){
     const refreshToken = getRefreshToken(payload);
+    //falta implementacion de error si falla la query
     const query = await makeQuery('UPDATE users SET refreshtoken = $1 WHERE username = $2', [refreshToken, payload.username]);
-    console.log(payload.username)
     return refreshToken;
 }
 
@@ -203,7 +210,9 @@ function getRefreshToken(payload){
 }
 
 async function deleteRefreshToken(token){
-    await connection.query('UPDATE users SET refreshtoken = NULL WHERE refreshtoken = ?', [token]);
+    const query = await makeQuery('UPDATE users SET refreshtoken = NULL WHERE refreshtoken = $1', [token]);
+    if(!query) return false;
+    return true;
 }
 
 function authenticateToken(req, res, next) {

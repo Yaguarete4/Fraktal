@@ -1,6 +1,14 @@
 require('dotenv').config;
 const express = require('express');
+const cors = require('cors');
 const app = express();
+
+app.use(cors({
+    origin: ['https://fraktal.vercel.app', 'http://localhost:5173'],
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    optionsSuccessStatus: 200
+}));
 
 app.use(express.json());
 

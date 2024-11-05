@@ -1,6 +1,8 @@
 section{
-    background-color: #0B0D13;
-    min-height: calc(100vh);
+    display: flex;
+    flex-direction: column;
+    background-color: #020202;
+    min-height: calc(100dvh);
 }
 ::-webkit-scrollbar{
   width: 9px;

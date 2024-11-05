@@ -2,6 +2,9 @@ require('dotenv').config();
 const pg = require('pg');
 const { Pool } = pg;
 const { ethers } = require('ethers');
+const multer = require('multer');
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
 const tokenAbi = require('../ContractABI/MyToken.json')['abi'];
 
@@ -11,10 +14,44 @@ const pool = new Pool({
     connectionString: process.env.DATABASE_URL
 });
 
+cloudinary.config({
+    cloud_name: 'dxf02usq1',
+    api_key: '923797376654348',
+    api_secret: process.env.CLOUDINARY_SECRET
+});
+
+const storage = new CloudinaryStorage({
+    cloudinary,
+    params: (req, file) => {
+        const uniqueName = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        const format = file.mimetype === 'image/svg+xml' ? 'svg' : file.mimetype.split('/')[1];
+        return {
+            folder: 'uploads',
+            format: format,
+            public_id: uniqueName,
+            resource_type: 'image',
+            allowedFormats: ['jpg', 'png', 'jpeg', 'svg']
+        }
+    },
+});
+
+
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//       cb(null, './upload')
+//     },
+//     filename: function (req, file, cb) {
+//       const uniqueName = Date.now() + '-' + Math.round(Math.random() * 1E9)
+//       cb(null, `${uniqueName}.${file.mimetype.split('/')[1]}`)
+//     }
+//   })
+  
+const upload = multer({ storage: storage });
+
 const express = require('express');
 const router = express.Router();
 
-router.post("/add", async (req, res) => {
+router.post("/add", upload.single('imageURL'), async (req, res) => {
     if(!req.body.name) {
         res.status(400).send("Name field must not be empty");
         return;
@@ -35,26 +72,38 @@ router.post("/add", async (req, res) => {
         res.status(400).send("Token Benefits field must not be empty");
         return;
     }
-    if(!req.body.tokenID) {
-        res.status(400).send("Token ID field must not be empty");
+    // if(!req.body.tokenID) {
+    //     res.status(400).send("Token ID field must not be empty");
+    //     return;
+    // }
+    if(!req.file) {
+        res.status(400).send("Token must have an image");
         return;
     }
+
     if(!req.body.publicKey) return res.status(400).send("publicKey field must not be empty");
     if(!req.body.tokenAmount) return res.status(400).send("tokenAmount field must not be empty or equal to 0");
 
+    let tokenID = await makeQuery('SELECT id FROM company ORDER BY id DESC LIMIT 1');
+    tokenID = parseInt(tokenID.rows[0].id) + 1;
+
     //chaeck if tokenID already exist
-    const validTokenID = await makeQuery('SELECT "tokenID" FROM company WHERE "tokenID" = $1', [req.body.tokenID]);
+    const validTokenID = await makeQuery('SELECT "tokenID" FROM company WHERE "tokenID" = $1', [tokenID]);
     if(validTokenID.rows.length !== 0) return res.status(400).send("tokenID already exist");
 
-    const makeToken = await createToken(req.body.publicKey, req.body.tokenID, req.body.tokenAmount, '0x');
+    const makeToken = await createToken(req.body.publicKey, tokenID, req.body.tokenAmount, '0x');
     if(!makeToken) return res.status(500).send("Something whent wrong when creating token");
 
-    const result = await makeQuery('INSERT INTO company (name, description, members, sector, "imageURL", "tokenBenefits", "tokenImageURL", "tokenID") VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', [req.body.name, req.body.description, req.body.members, req.body.sector, req.body.imageURL, req.body.tokenBenefits, req.body.tokenImageURL, req.body.tokenID]);
+    const result = await makeQuery('INSERT INTO company (name, description, members, sector, "imageURL", "tokenBenefits", "tokenImageURL", "tokenID") VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', [req.body.name, req.body.description, req.body.members, req.body.sector, req.file.path, req.body.tokenBenefits, req.body.tokenImageURL, tokenID]);
 
     if(!result) return res.status(400).send("Error while registering data in the database");
 
     res.sendStatus(200);
-})
+}, (err, req, res, next) => {
+    // Manejo de errores
+    console.error(err); // Muestra el error completo en la consola para facilitar la depuración
+    res.status(500).json({ error: err.message || 'Ocurrió un error al subir el archivo.' });
+});
 
 router.get('/all', async (req, res) => {
     const result = await makeQuery('SELECT * FROM company');
@@ -63,8 +112,18 @@ router.get('/all', async (req, res) => {
         return;
     }
     res.json(result.rows).status(200);
+});
 
-    createToken();
+router.get('/get/:id', async (req, res) => {
+    const id = req.params.id;
+    if (!id) return res.status(400).send('ID must be included');
+
+    const result = await makeQuery('SELECT * FROM company WHERE id = $1', [id]);
+    if(!result) {
+        res.sendStatus(502);
+        return;
+    }
+    res.json(result.rows).status(200);
 });
 
 router.post('/balance', async (req, res) => {

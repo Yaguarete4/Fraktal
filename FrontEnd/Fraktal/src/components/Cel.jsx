@@ -1,35 +1,70 @@
-import React from "react";
+import React, { useContext } from "react";
 import '../css/cel.css'; 
 import flech from '../img/chevron.svg';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../components/AuthContext';
 
 export const Cel = ({ className }) => {
-  return (
-    <div className={`dropdowns ${className}`}>
-      <div className="dropdown">
-        <button className="button-class">
-          Tokens
-          <img src={flech} className="img-class" alt="chevron" />
-        </button>
+    const { isLoggedIn } = useContext(AuthContext);
+
+    return (
+        <div className={`dropdowns ${className}`}>
+            {isLoggedIn ? (
+                <div className="dropdown">
+                    <button className="button-class">
+                        Perfil
+                    </button>
+                </div>
+            ) : (
+                <div className="dropdown">
+                    <button className="button-class" onClick={(e) => e.target.focus()}>
+                        Usuario
+                        <img 
+                            src={flech} 
+                            className="img-class" 
+                            alt="chevron" 
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                e.target.closest('button').focus();
+                            }} 
+                        />
+                    </button>
+                    <div className="dropdown-menu">
+                        <Link to="/login" className="celup">Iniciar sesion</Link>
+                        <Link to="/signup" className="celup">Registrarse</Link>
+                    </div>
+                </div>
+            )}
+             <div className="dropdown">
+      <button className="button-class" onClick={(e) => e.target.focus()}>
+  Tokens
+  <img 
+    src={flech} 
+    className="img-class" 
+    alt="chevron" 
+    onClick={(e) => {
+      e.stopPropagation();  // Evita que se propague el evento al botón padre.
+      e.target.closest('button').focus();  // Aplica el enfoque al botón padre.
+    }} 
+  />
+</button>
         <div className="dropdown-menu">
-          <div className="celup">Market</div>
-          <div className="celup">Wallet</div>
+        <Link to="/market" className="celup">Mercado
+        </Link>
+        <Link to="/wallet" className="celup">Portafolio
+        </Link>        
         </div>
       </div>
-      <div className="dropdown">
-        <button className="button-class">
-          User
-          <img src={flech} className="img-class" alt="chevron" />
-        </button>
-        <div className="dropdown-menu">
-          <div className="celup">Login</div>
-          <div className="celup">Signup</div>
+            <div className="dropdown">
+                <Link to="/token-register" className="button-class" style={{"text-decoration": "none"}}>
+                    Pre-venta
+                </Link>
+            </div>
+            <div className="dropdown">
+                <button className="button-class">
+                    Configuracion
+                </button>
+            </div>
         </div>
-      </div>
-      <div className="dropdown">
-        <button className="button-class">
-          Global
-        </button>
-      </div>
-    </div>
-  );
+    );
 };

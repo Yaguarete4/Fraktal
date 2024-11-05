@@ -20,6 +20,10 @@ GET http://localhost:3000/company/all
 
 ###
 
+GET http://localhost:3000/company/get/0
+
+###
+
 POST http://localhost:3000/company/balance
 Content-Type: application/json
 
@@ -27,6 +31,10 @@ Content-Type: application/json
     "publicKey": "0x6Fdc66cf1c2D108e3eAe95DfBa6FeffCcF90F932",
     "tokenID": 4
 }
+
+###
+
+GET https://fraktalapi.vercel.app/company/get/30
 
 ###
 

@@ -11,15 +11,15 @@ export const Navbar = ({ onMenuToggle, setShowLogin, isBlurry }) => {
   return (
     <header className={isBlurry ? 'blur' : ''}>  {/* Agregar aquí la clase blur */}
       <div className="navbar__logo-opciones">
-        <div className="caja">
-          <img src={logo} alt="Logo" className="logito" />
-        </div>
+      <Link to="/" className="caja">
+      <img src={logo} alt="Logo" className="logito" />
+        </Link>
         <div className="navbar__opciones">
-          <Link to="/market" className="button">Market</Link>
+          <Link to="/market" className="button">Mercado</Link>
           <Link to="/token" className="button">Token</Link>
           <Link to="/trade" className="button">Trade</Link>
-          <Link to="/wallet" className="button">Wallet</Link>
-          <Link to="/global" className="button">Global</Link>
+          <Link to="/wallet" className="button">Portafolio</Link>
+          <Link to="/token-register" className="button">Pre-venta</Link>
           <Link to="/news" className="button">News</Link>
         </div>
       </div>
@@ -27,7 +27,7 @@ export const Navbar = ({ onMenuToggle, setShowLogin, isBlurry }) => {
       <div className="navbar__inicio-config">
         <div className="caja3">
           <Link to="/login">
-            <img src={logoUser} alt="Logo" className="logoUser" onClick={() => setShowLogin(true)} />
+            <img src={logoUser} alt="Logo" className="logoUser" onClick={() => setShowLogin && setShowLogin(true)} />
           </Link>
         </div>
         <div className="caja2">
@@ -35,12 +35,12 @@ export const Navbar = ({ onMenuToggle, setShowLogin, isBlurry }) => {
         </div>
       </div>
       <div className="celu">
-        <div className="cajaK">
-          <img src={logoK} alt="Logo" className="logitoK" />
-        </div>
-        <div className="cajaK">
-          <img src={logo} alt="Logo" className="logitok" />
-        </div>
+      <Link to="/" className="cajak">
+      <img src={logoK} alt="Logo" className="logitoK" />
+        </Link>
+        <Link to="/" className="cajak">
+        <img src={logo} alt="Logo" className="logitok" />
+        </Link>
         <label className="container">
           <input type="checkbox" onChange={onMenuToggle} />
           <div className="checkmark">

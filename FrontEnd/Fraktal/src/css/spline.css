@@ -1,0 +1,21 @@
+.spline-container {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background-color: #000; /* Color de fondo para ver si está cargando algo */
+  }
+  
+  spline-viewer {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .spline-container a#logo {
+    display: none !important;
+  }
+  #logo {
+    display: none !important;
+  }
+
+  

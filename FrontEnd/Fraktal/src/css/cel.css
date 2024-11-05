@@ -1,6 +1,4 @@
-body {
-  background: #141417;
-}
+
 *{
   font-family: 'Montserrat', sans-serif;
 }
@@ -8,13 +6,13 @@ body {
   border: 0;
   background: transparent;
   cursor: pointer;
-  color: rgb(204, 204, 204);
+  color: rgb(255, 255, 255);
   font-size: 15px;
   width: 100%;
   display: flex;
   align-items: center;
   margin-left: 5vw;
-
+  text-decoration: none;
 }
 .button-class {
   border: 0;
@@ -23,6 +21,7 @@ body {
   color: white;
   font-size: 20px;
   width: 100%;
+  border-radius: 10px;
 }
 
 .is-dropdowns {
@@ -33,9 +32,6 @@ body {
 
 .dropdowns {
   z-index: 2;
-  top: 84px;
-  left: -9999px;
-  right: 10px;
   padding: 14px 0;
   display: flex;
   flex-direction: column;
@@ -45,11 +41,12 @@ body {
   visibility: hidden;
   transition-property: opacity, visibility;
   transition-duration: 0.3s;
-  
+  height: fit-content;
+  width: 90vw;
+  border-radius: 10px;
 }
 
 body.open .dropdowns {
-  left: 10px;
   opacity: 1;
   visibility: visible;
   translate: 0;
@@ -78,8 +75,8 @@ border-radius: 10px; */
   align-items: center;
   gap: 4px;
   padding: 0 12px;
-  opacity: 0.4;
-  height: 40px;
+  opacity: 0.8;
+  height: 50px;
   text-align: left;
   font-size: 16px;
 }
@@ -113,7 +110,6 @@ border-radius: 10px; */
 
 @media (width < 700px) {
   .dropdowns {
-    left: 10px;
     opacity: 1;
     visibility: visible;
     translate: 0;
@@ -132,7 +128,7 @@ border-radius: 10px; */
   }
 
   .dropdown > .button-class:is(:focus, :hover) {
-    opacity: 0.7;
+    opacity: 1;
   }
 
   .dropdown > .button-class:focus > .img-class {
@@ -158,6 +154,6 @@ border-radius: 10px; */
   }
 }
 
-.cel-enter {
- animation: fadeInRight 1.5s ease;
+.cel-center {
+ animation: fadeInRight 0.5s ease-in-out;
 }
