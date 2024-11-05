@@ -10,10 +10,12 @@ import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
 contract MyToken is ERC1155, Ownable, ERC1155Burnable, ERC1155Supply {
     
     address public ownerOfContract;
-    address public FraktalAccount = 0x6Fdc66cf1c2D108e3eAe95DfBa6FeffCcF90F932;
-
+    address public FraktalAccount = 0x8CBC19A354E42b7b4765ab3342DAf9d834E56947;
+    receive() external payable{}
     constructor(address initialOwner) ERC1155("") Ownable(initialOwner) {
         ownerOfContract = msg.sender;
+        ownerOfContract = payable(msg.sender);
+        
     }
 
     modifier onlyOwners()  {
@@ -47,10 +49,14 @@ contract MyToken is ERC1155, Ownable, ERC1155Burnable, ERC1155Supply {
     {
         super._update(from, to, ids, values);
     }
-    // string public name = "Token Fraktal";
-    // string public symbol = "FRK";
 
-    // uint256 public totalSupply = 1000000;,
-
-    // function crearTokens()
+    // function uri (uint _tokenId) override public view returns (string memory){
+    //     return string(
+    //         abi.encodePacked(
+    //             "rose-biological-clownfish-94.mypinata.cloud",
+    //             Strings.toString(_tokenId),
+    //             ".json"
+    //         )
+    //     );
+    // }
 }

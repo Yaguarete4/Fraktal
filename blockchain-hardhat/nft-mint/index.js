@@ -148,7 +148,7 @@ const mintNFT = async (CID, wallet) => {
             recipient: `polygon:${wallet}`,
             metadata: `https://gateway.pinata.cloud/ipfs/${CID}`,
         })
-        const res = await fetch("https://www.crossmint.com/api/2022-06-09/collections/default-polygon/nfts", {
+        const res = await fetch("https://staging.crossmint.com/api/2022-06-09/colections/default-solana", {
             method: 'POST',
             headers: {
                 accept: "application/json",
@@ -159,7 +159,7 @@ const mintNFT = async (CID, wallet) => {
             body: data
         })
         resData = await res.json();
-        // console.log(resData)
+        console.log(resData)
         const contractAddress = resData.onChain.contractAddress
         console.log("NFT minted, contract adress:", contractAddress)
         console.log(`View NFT at https://testnets.opensea.io/assets/mumbai/${contractAddress}`) 
