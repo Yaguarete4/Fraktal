@@ -7,10 +7,12 @@ import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Burnable.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
-// To use modifier nonReentrant, this privents the function from executing more from 2 times
-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+// To use modifier nonReentrant, this prevents the function from executing more from 2 times
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+//converts variable type to string
+import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract MyToken is ERC1155, Ownable, ERC1155Burnable, ERC1155Supply {
+contract Definitivo is ERC1155, Ownable, ERC1155Burnable, ERC1155Supply, ReentrancyGuard {
     
     address public ownerOfContract;
     mapping(uint256 id => uint256) private _prices;
@@ -19,10 +21,10 @@ contract MyToken is ERC1155, Ownable, ERC1155Burnable, ERC1155Supply {
 
     receive() external payable{}
 
-    constructor(address initialOwner) ERC1155("") Ownable(initialOwner) {
+    constructor(address initialOwner) ERC1155("https://ipfs.io/ipfs/Qmc61UdkuBMDsNDRJ3CKJTMVKRWzihGQBDfkrmXCEGghEc/{id}.json") Ownable(initialOwner) {
         ownerOfContract = msg.sender;
     }
-
+ 
     modifier onlyOwners()  {
         require(msg.sender == ownerOfContract, "Not Owner");
         _;
@@ -81,27 +83,28 @@ contract MyToken is ERC1155, Ownable, ERC1155Burnable, ERC1155Supply {
     //Falta analizar
     function buyTokenWithEther(address seller, uint256 tokenId, uint256 amount) external payable nonReentrant {
         uint256 price = msg.value;  // Precio pagado en Ether
-        require(price >= _prices[tokenId], "Fondos insuficientes");
+        uint256 tokenPrice = _prices[tokenId] * amount;
+        require(price >= tokenPrice, "Fondos insuficientes");
         require(balanceOf(seller, tokenId) >= amount, "El vendedor no tiene suficientes tokens");
 
         // Transferir los tokens del vendedor al comprador (msg.sender)
         _safeTransferFrom(seller, msg.sender, tokenId, amount, "");
 
         // Enviar los Ether al vendedor
-        (bool success, ) = payable(seller).call{value: price}("");
+        (bool success, ) = payable(seller).call{value: tokenPrice}("");
         require(success, "Transferencia de Ether fallida");
 
         emit TokenSold(seller, msg.sender, tokenId, amount, price);
     }
 
 
-    // function uri (uint _tokenId) override public view returns (string memory){
-    //     return string(
-    //         abi.encodePacked(
-    //             "rose-biological-clownfish-94.mypinata.cloud",
-    //             Strings.toString(_tokenId),
-    //             ".json"
-    //         )
-    //     );
-    // }
+    function uri (uint _tokenId) override public pure returns (string memory){
+        return string(
+            abi.encodePacked(
+                "https://ipfs.io/ipfs/Qmc61UdkuBMDsNDRJ3CKJTMVKRWzihGQBDfkrmXCEGghEc/",
+                Strings.toString(_tokenId),
+                ".json"
+            )
+        );
+    }
 }

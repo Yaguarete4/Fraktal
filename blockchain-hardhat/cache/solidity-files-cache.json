@@ -40,8 +40,8 @@
       ]
     },
     "C:\\Users\\47572115\\Documents\\Fraktal\\blockchain-hardhat\\node_modules\\@openzeppelin\\contracts\\token\\ERC1155\\ERC1155.sol": {
-      "lastModificationDate": 1716995231656,
-      "contentHash": "917e6b867a0e67cd81ca4eb34336ca35",
+      "lastModificationDate": 1730208042404,
+      "contentHash": "7c7e5fac496b72e79ede7720a44a887c",
       "sourceName": "@openzeppelin/contracts/token/ERC1155/ERC1155.sol",
       "solcConfig": {
         "version": "0.8.20",
@@ -69,8 +69,8 @@
       },
       "imports": [
         "./IERC1155.sol",
-        "./IERC1155Receiver.sol",
         "./extensions/IERC1155MetadataURI.sol",
+        "./utils/ERC1155Utils.sol",
         "../../utils/Context.sol",
         "../../utils/introspection/ERC165.sol",
         "../../utils/Arrays.sol",
@@ -84,7 +84,7 @@
       ]
     },
     "C:\\Users\\47572115\\Documents\\Fraktal\\blockchain-hardhat\\node_modules\\@openzeppelin\\contracts\\token\\ERC1155\\extensions\\ERC1155Burnable.sol": {
-      "lastModificationDate": 1716995231669,
+      "lastModificationDate": 1730208042417,
       "contentHash": "b0e85a62dd2562811ca4c7aa2d36f95c",
       "sourceName": "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Burnable.sol",
       "solcConfig": {
@@ -122,8 +122,8 @@
       ]
     },
     "C:\\Users\\47572115\\Documents\\Fraktal\\blockchain-hardhat\\node_modules\\@openzeppelin\\contracts\\token\\ERC1155\\extensions\\ERC1155Supply.sol": {
-      "lastModificationDate": 1716995231686,
-      "contentHash": "cd3939898b5ce8fba2c0e737c9408ea0",
+      "lastModificationDate": 1730208042437,
+      "contentHash": "2fac567617e506e78598062f43b2820e",
       "sourceName": "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol",
       "solcConfig": {
         "version": "0.8.20",
@@ -150,7 +150,8 @@
         }
       },
       "imports": [
-        "../ERC1155.sol"
+        "../ERC1155.sol",
+        "../../../utils/Arrays.sol"
       ],
       "versionPragmas": [
         "^0.8.20"
@@ -196,8 +197,8 @@
       ]
     },
     "C:\\Users\\47572115\\Documents\\Fraktal\\blockchain-hardhat\\node_modules\\@openzeppelin\\contracts\\interfaces\\draft-IERC6093.sol": {
-      "lastModificationDate": 1716995231621,
-      "contentHash": "4aefc698f77ecbace7f401257dfe182d",
+      "lastModificationDate": 1730208042355,
+      "contentHash": "267d92fe4de67b1bdb3302c08f387dbf",
       "sourceName": "@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
       "solcConfig": {
         "version": "0.8.20",
@@ -234,8 +235,8 @@
       ]
     },
     "C:\\Users\\47572115\\Documents\\Fraktal\\blockchain-hardhat\\node_modules\\@openzeppelin\\contracts\\utils\\Arrays.sol": {
-      "lastModificationDate": 1716995231556,
-      "contentHash": "fabe6fe8d403b4f72dec1dc585ab1c7a",
+      "lastModificationDate": 1730208042219,
+      "contentHash": "d7ecd50ca59f27485f37e919aeb0392a",
       "sourceName": "@openzeppelin/contracts/utils/Arrays.sol",
       "solcConfig": {
         "version": "0.8.20",
@@ -262,6 +263,8 @@
         }
       },
       "imports": [
+        "./Comparators.sol",
+        "./SlotDerivation.sol",
         "./StorageSlot.sol",
         "./math/Math.sol"
       ],
@@ -273,8 +276,8 @@
       ]
     },
     "C:\\Users\\47572115\\Documents\\Fraktal\\blockchain-hardhat\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\ERC165.sol": {
-      "lastModificationDate": 1716995231689,
-      "contentHash": "6a55c353946e471d9792965d06208295",
+      "lastModificationDate": 1730208042468,
+      "contentHash": "7c03c1e37c3dc24eafb76dc2b8a5c3a6",
       "sourceName": "@openzeppelin/contracts/utils/introspection/ERC165.sol",
       "solcConfig": {
         "version": "0.8.20",
@@ -311,8 +314,8 @@
       ]
     },
     "C:\\Users\\47572115\\Documents\\Fraktal\\blockchain-hardhat\\node_modules\\@openzeppelin\\contracts\\token\\ERC1155\\extensions\\IERC1155MetadataURI.sol": {
-      "lastModificationDate": 1716995231989,
-      "contentHash": "96903941ac1966aa14e08bd4ab3c264e",
+      "lastModificationDate": 1730208042850,
+      "contentHash": "f8867afd172ace7ffa75d3752d785770",
       "sourceName": "@openzeppelin/contracts/token/ERC1155/extensions/IERC1155MetadataURI.sol",
       "solcConfig": {
         "version": "0.8.20",
@@ -349,8 +352,8 @@
       ]
     },
     "C:\\Users\\47572115\\Documents\\Fraktal\\blockchain-hardhat\\node_modules\\@openzeppelin\\contracts\\token\\ERC1155\\IERC1155Receiver.sol": {
-      "lastModificationDate": 1716995231989,
-      "contentHash": "d14616defa6d417fafa47e416e3cec73",
+      "lastModificationDate": 1730208042852,
+      "contentHash": "a1c249dfb5f349be0b4fc85e635dfd59",
       "sourceName": "@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol",
       "solcConfig": {
         "version": "0.8.20",
@@ -387,8 +390,8 @@
       ]
     },
     "C:\\Users\\47572115\\Documents\\Fraktal\\blockchain-hardhat\\node_modules\\@openzeppelin\\contracts\\token\\ERC1155\\IERC1155.sol": {
-      "lastModificationDate": 1716995231976,
-      "contentHash": "d70aa5aeb17749b65a9bde4cce2bd72c",
+      "lastModificationDate": 1730208042836,
+      "contentHash": "1c608119423d96df908c14227957bd75",
       "sourceName": "@openzeppelin/contracts/token/ERC1155/IERC1155.sol",
       "solcConfig": {
         "version": "0.8.20",
@@ -425,8 +428,8 @@
       ]
     },
     "C:\\Users\\47572115\\Documents\\Fraktal\\blockchain-hardhat\\node_modules\\@openzeppelin\\contracts\\utils\\StorageSlot.sol": {
-      "lastModificationDate": 1716995232275,
-      "contentHash": "08cbccfefa284405c12b4bfa8c8c9c2b",
+      "lastModificationDate": 1730208043218,
+      "contentHash": "e656d64c4ce918f3d13030b91c935134",
       "sourceName": "@openzeppelin/contracts/utils/StorageSlot.sol",
       "solcConfig": {
         "version": "0.8.20",
@@ -461,8 +464,8 @@
       ]
     },
     "C:\\Users\\47572115\\Documents\\Fraktal\\blockchain-hardhat\\node_modules\\@openzeppelin\\contracts\\utils\\math\\Math.sol": {
-      "lastModificationDate": 1716995232188,
-      "contentHash": "718fa8ba0ff269c92e364c1429d9de57",
+      "lastModificationDate": 1730208043069,
+      "contentHash": "2b2665ae9bdb1af440658741a77fe213",
       "sourceName": "@openzeppelin/contracts/utils/math/Math.sol",
       "solcConfig": {
         "version": "0.8.20",
@@ -488,7 +491,10 @@
           }
         }
       },
-      "imports": [],
+      "imports": [
+        "../Panic.sol",
+        "./SafeCast.sol"
+      ],
       "versionPragmas": [
         "^0.8.20"
       ],
@@ -497,8 +503,8 @@
       ]
     },
     "C:\\Users\\47572115\\Documents\\Fraktal\\blockchain-hardhat\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\IERC165.sol": {
-      "lastModificationDate": 1716995232019,
-      "contentHash": "de0163561b417b800d01749cbbe2147e",
+      "lastModificationDate": 1730208042890,
+      "contentHash": "bf0119eb2a570f219729ff38b6cd1df8",
       "sourceName": "@openzeppelin/contracts/utils/introspection/IERC165.sol",
       "solcConfig": {
         "version": "0.8.20",
@@ -571,6 +577,345 @@
       ],
       "artifacts": [
         "MyToken"
+      ]
+    },
+    "C:\\Users\\47572115\\Documents\\Fraktal\\blockchain-hardhat\\contracts\\Definitivo.sol": {
+      "lastModificationDate": 1731437635204,
+      "contentHash": "66f4d1e4db85f73543394c5ef2be1fe2",
+      "sourceName": "contracts/Definitivo.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC1155/ERC1155.sol",
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Burnable.sol",
+        "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol",
+        "@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+        "@openzeppelin/contracts/utils/Strings.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.0 <0.9.0"
+      ],
+      "artifacts": [
+        "Definitivo"
+      ]
+    },
+    "C:\\Users\\47572115\\Documents\\Fraktal\\blockchain-hardhat\\node_modules\\@openzeppelin\\contracts\\utils\\Strings.sol": {
+      "lastModificationDate": 1730208043218,
+      "contentHash": "f4cc092958a3ddec1f4ed4103bfc54dd",
+      "sourceName": "@openzeppelin/contracts/utils/Strings.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./math/Math.sol",
+        "./math/SignedMath.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Strings"
+      ]
+    },
+    "C:\\Users\\47572115\\Documents\\Fraktal\\blockchain-hardhat\\node_modules\\@openzeppelin\\contracts\\utils\\ReentrancyGuard.sol": {
+      "lastModificationDate": 1730208043170,
+      "contentHash": "190613e556d509d9e9a0ea43dc5d891d",
+      "sourceName": "@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "ReentrancyGuard"
+      ]
+    },
+    "C:\\Users\\47572115\\Documents\\Fraktal\\blockchain-hardhat\\node_modules\\@openzeppelin\\contracts\\utils\\math\\SignedMath.sol": {
+      "lastModificationDate": 1730208043218,
+      "contentHash": "ae3528afb8bdb0a7dcfba5b115ee8074",
+      "sourceName": "@openzeppelin/contracts/utils/math/SignedMath.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./SafeCast.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "SignedMath"
+      ]
+    },
+    "C:\\Users\\47572115\\Documents\\Fraktal\\blockchain-hardhat\\node_modules\\@openzeppelin\\contracts\\utils\\math\\SafeCast.sol": {
+      "lastModificationDate": 1730208043191,
+      "contentHash": "2adca1150f58fc6f3d1f0a0f22ee7cca",
+      "sourceName": "@openzeppelin/contracts/utils/math/SafeCast.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "SafeCast"
+      ]
+    },
+    "C:\\Users\\47572115\\Documents\\Fraktal\\blockchain-hardhat\\node_modules\\@openzeppelin\\contracts\\utils\\Panic.sol": {
+      "lastModificationDate": 1730208043143,
+      "contentHash": "2133dc13536b4a6a98131e431fac59e1",
+      "sourceName": "@openzeppelin/contracts/utils/Panic.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Panic"
+      ]
+    },
+    "C:\\Users\\47572115\\Documents\\Fraktal\\blockchain-hardhat\\node_modules\\@openzeppelin\\contracts\\token\\ERC1155\\utils\\ERC1155Utils.sol": {
+      "lastModificationDate": 1730208042437,
+      "contentHash": "346f1d25727e87df31335bbbc03a6c20",
+      "sourceName": "@openzeppelin/contracts/token/ERC1155/utils/ERC1155Utils.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../IERC1155Receiver.sol",
+        "../../../interfaces/draft-IERC6093.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "ERC1155Utils"
+      ]
+    },
+    "C:\\Users\\47572115\\Documents\\Fraktal\\blockchain-hardhat\\node_modules\\@openzeppelin\\contracts\\utils\\Comparators.sol": {
+      "lastModificationDate": 1730208042318,
+      "contentHash": "0e57405a6f979853cbfeb0df3546c3a3",
+      "sourceName": "@openzeppelin/contracts/utils/Comparators.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Comparators"
+      ]
+    },
+    "C:\\Users\\47572115\\Documents\\Fraktal\\blockchain-hardhat\\node_modules\\@openzeppelin\\contracts\\utils\\SlotDerivation.sol": {
+      "lastModificationDate": 1730208043218,
+      "contentHash": "b1b4d2a2542c75ed7ce12036009f3617",
+      "sourceName": "@openzeppelin/contracts/utils/SlotDerivation.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "SlotDerivation"
       ]
     }
   }
