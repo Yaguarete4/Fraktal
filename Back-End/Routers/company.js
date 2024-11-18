@@ -5,16 +5,10 @@ const { ethers } = require('ethers');
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
-const { PinataSDK } = require('pinata');
 
-const tokenAbi = require('../ContractABI/MyToken.json')['abi'];
+const tokenAbi = require('../ContractABI/Definitivo.json')['abi'];
 
-const CONTRACT_ADDRESS = '0xb1E3c3bf25ce15C4B557ad83d8D897E17A47771D';
-
-const pinata = new PinataSDK({
-    pinataJwt: process.env.PINATA_JWT,
-    pinataGateway: "rose-biological-clownfish-94.mypinata.cloud",
-  });
+const CONTRACT_ADDRESS = '0xb4DF53b019008EF5299682823652073F4739EABA';
 
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL
@@ -78,7 +72,7 @@ router.post("/add", upload.single('imageURL'), async (req, res) => {
         res.status(400).send("Token Benefits field must not be empty");
         return;
     }
-    if(!req.body.price) {
+    if(!req.body.price || isNaN(req.body.price)) {
         res.status(400).send("You must add a price");
         return;
     }
@@ -90,23 +84,22 @@ router.post("/add", upload.single('imageURL'), async (req, res) => {
     if(!req.body.publicKey) return res.status(400).send("publicKey field must not be empty");
     if(!req.body.tokenAmount) return res.status(400).send("tokenAmount field must not be empty or equal to 0");
 
-    //Gets the last generated value in the id column of company via the company_id_seq and 
+    //Gets the last generated value in the id column of token via the public.token_id_seq and 
     //adds 1 to get the id that will be generated in the insert of this company
-    let companyId = await makeQuery("SELECT last_value FROM company_id_seq");
-    companyId = parseInt(companyId.rows[0].last_value) + 1;
-
     let tokenId = await makeQuery("SELECT last_value FROM public.token_id_seq");
     tokenId = parseInt(tokenId.rows[0].last_value) + 1;
 
     //Creates the token in the Block-Chain
-    // const makeToken = await createToken(req.body.publicKey, tokenId, req.body.tokenAmount, req.body.price, '0x');
-    // if(!makeToken) return res.status(500).send("Something whent wrong when creating token");
+    const makeToken = await createToken(req.body.publicKey, tokenId, req.body.tokenAmount, req.body.price, '0x');
+    if(!makeToken) return res.status(500).send("Something whent wrong when creating token");
 
     //Pins the json file to IPFS via pinata
     const tokenJson = {
+        id: tokenId,
         name: req.body.name,
         description: req.body.tokenBenefits,
         image: req.file.path,
+        price: req.body.price,
         totalAmount: req.body.tokenAmount
     }
 
@@ -115,8 +108,8 @@ router.post("/add", upload.single('imageURL'), async (req, res) => {
 
     //Insert Tables in Data Base
     await makeQuery('BEGIN');
-    const insertCompany = await makeQuery('INSERT INTO company (name, description, members, sector, "imageURL") VALUES ($1, $2, $3, $4, $5)', [req.body.name, req.body.description, req.body.members, req.body.sector, req.file.path]);
-    const insertToken = await makeQuery("INSERT INTO token (id) VALUES (DEFAULT)");
+    const insertCompany = await makeQuery('INSERT INTO company (name, description, members, sector, "imageURL") VALUES ($1, $2, $3, $4, $5) RETURNING id', [req.body.name, req.body.description, req.body.members, req.body.sector, req.file.path]);
+    const insertToken = await makeQuery("INSERT INTO token (company_id) VALUES ($1)", [insertCompany.rows[0].id]);
     if(!insertCompany || !insertToken) return res.status(400).send("Error while registering data in the database");
     await makeQuery('COMMIT');
 
@@ -128,24 +121,41 @@ router.post("/add", upload.single('imageURL'), async (req, res) => {
 });
 
 router.get('/all', async (req, res) => {
-    const result = await makeQuery('SELECT * FROM company');
-    if(!result) {
+    const query = await makeQuery('SELECT company.*, token.id AS tokenid FROM token INNER JOIN company ON token.company_id = company.id');
+    if(!query) {
         res.sendStatus(502);
         return;
     }
-    res.json(result.rows).status(200);
+
+    let result = []
+    const dataTokens = await getTokenData();
+
+    for (i in query.rows) {
+        result.push({
+            tokenData: dataTokens.find(x => x.id == query.rows[i].tokenid),
+            companyData: query.rows[i]
+        })
+    }
+
+    res.json(result).status(200);
 });
 
 router.get('/get/:id', async (req, res) => {
     const id = req.params.id;
     if (!id) return res.status(400).send('ID must be included');
 
-    const result = await makeQuery('SELECT * FROM company WHERE id = $1', [id]);
-    if(!result) {
+    const query = await makeQuery('SELECT company.* FROM token INNER JOIN company ON token.company_id = company.id WHERE token.id = $1', [id]);
+    if(!query) {
         res.sendStatus(502);
         return;
     }
-    res.json(result.rows).status(200);
+
+    result = {
+        tokenData: (await getTokenData(id))[0],
+        companyData: query.rows[0]
+    }
+
+    res.json(result).status(200);
 });
 
 router.post('/balance', async (req, res) => {
@@ -157,7 +167,7 @@ router.post('/balance', async (req, res) => {
         return;
     }
 
-    const validTokenID = await makeQuery('SELECT "tokenID" FROM company WHERE "tokenID" = $1', [tokenID]);
+    const validTokenID = await makeQuery('SELECT id FROM token WHERE id = $1', [tokenID]);
     if(!validTokenID.rows.length) return res.status(400).send("tokenID doesn't exist or is invalid");
 
     const balance = await getBalance(publicKey, tokenID);
@@ -223,17 +233,88 @@ const getBalance = async (publicKey, tokenID) => {
 }
 
 const uploadJsonPinata = async (tokenId, tokenJson) => {
-    const metadata = {
-        name: `${tokenId}.json`,
-        keyvalues: {
-            folder: 'TokenJson'
-        }
-    };
-    
-    const upload = await pinata.upload.json(tokenJson).addMetadata(metadata);
-    if(!upload) return false
+    try {
+        const data = JSON.stringify({
+            pinataContent: tokenJson,
+            pinataOptions: {
+                groupId: '28a4a187-079c-40b3-8e9f-2b235b1ef452'
+            },
+            pinataMetadata: {
+                name: `${tokenId}`
+            }
+        });
 
-    return true
+        const res = await fetch("https://api.pinata.cloud/pinning/pinJSONToIPFS", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${process.env.PINATA_JWT}`,
+        },
+        body: data,
+        });
+        const resData = await res.json();
+        return true;
+
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+}
+
+const getDataPinata = async (tokenId) => {
+    try {
+        const queryParams = new URLSearchParams({
+            groupId: "28a4a187-079c-40b3-8e9f-2b235b1ef452",
+            'metadata[name]': tokenId ? tokenId : ""
+        });
+
+        const res = await fetch(`https://api.pinata.cloud/data/pinList?${queryParams}`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${process.env.PINATA_JWT}`
+            },
+        });
+
+        const data = await res.json();
+
+        // Verifica si hay resultados
+        if (data.count > 0) {
+            return data.rows;
+        } else {
+            return false;
+        }
+    } catch (error) {
+        console.error("Error buscando archivo en Pinata:", error);
+        return false;
+    }
+}
+
+const fetchTokenIpfs = async (ipfsPinHash) => {
+    try {
+        const result = await fetch(`https://gateway.pinata.cloud/ipfs/${ipfsPinHash}`,{
+            method: 'GET'
+        });
+    
+        const data = await result.json();
+        return data;
+
+    } catch (error) {
+        console.error("Error buscando archivo en Pinata:", error);
+        return false;
+    }
+}
+
+const getTokenData = async (tokenId) => {
+    tokenData = [];
+
+    tokenHash = await getDataPinata(tokenId);
+ 
+    for (i in tokenHash) {
+        hash = tokenHash[i].ipfs_pin_hash;
+        tokenData.push(await fetchTokenIpfs(hash)); 
+    }
+
+    return tokenData;
 }
 
 module.exports = router;
