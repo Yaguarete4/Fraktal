@@ -5,10 +5,16 @@ const { ethers } = require('ethers');
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const { PinataSDK } = require('pinata');
 
 const tokenAbi = require('../ContractABI/MyToken.json')['abi'];
 
 const CONTRACT_ADDRESS = '0xb1E3c3bf25ce15C4B557ad83d8D897E17A47771D';
+
+const pinata = new PinataSDK({
+    pinataJwt: process.env.PINATA_JWT,
+    pinataGateway: "rose-biological-clownfish-94.mypinata.cloud",
+  });
 
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL
@@ -72,34 +78,47 @@ router.post("/add", upload.single('imageURL'), async (req, res) => {
         res.status(400).send("Token Benefits field must not be empty");
         return;
     }
-    // if(!req.body.tokenID) {
-    //     res.status(400).send("Token ID field must not be empty");
-    //     return;
-    // }
-    // if(!req.file) {
-    //     res.status(400).send("Token must have an image");
-    //     return;
-    // }
+    if(!req.body.price) {
+        res.status(400).send("You must add a price");
+        return;
+    }
+    if(!req.file) {
+        res.status(400).send("Token must have an image");
+        return;
+    }
 
     if(!req.body.publicKey) return res.status(400).send("publicKey field must not be empty");
     if(!req.body.tokenAmount) return res.status(400).send("tokenAmount field must not be empty or equal to 0");
 
-    const query = await makeQuery("SELECT nextval(pg_get_serial_sequence('company', 'id'))");
-    console.log(query);
+    //Gets the last generated value in the id column of company via the company_id_seq and 
+    //adds 1 to get the id that will be generated in the insert of this company
+    let companyId = await makeQuery("SELECT last_value FROM company_id_seq");
+    companyId = parseInt(companyId.rows[0].last_value) + 1;
 
-    // let tokenID = await makeQuery('SELECT id FROM company ORDER BY id DESC LIMIT 1');
-    // tokenID = parseInt(tokenID.rows[0].id) + 1;
+    let tokenId = await makeQuery("SELECT last_value FROM public.token_id_seq");
+    tokenId = parseInt(tokenId.rows[0].last_value) + 1;
 
-    // //chaeck if tokenID already exist | doesn't need this line if the token id is the last id + 1
-    // // const validTokenID = await makeQuery('SELECT "tokenID" FROM company WHERE "tokenID" = $1', [tokenID]);
-    // // if(validTokenID.rows.length !== 0) return res.status(400).send("tokenID already exist");
-
-    // const makeToken = await createToken(req.body.publicKey, tokenID, req.body.tokenAmount, '0x');
+    //Creates the token in the Block-Chain
+    // const makeToken = await createToken(req.body.publicKey, tokenId, req.body.tokenAmount, req.body.price, '0x');
     // if(!makeToken) return res.status(500).send("Something whent wrong when creating token");
 
-    // const result = await makeQuery('INSERT INTO company (name, description, members, sector, "imageURL", "tokenBenefits", "tokenImageURL", "tokenID") VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', [req.body.name, req.body.description, req.body.members, req.body.sector, req.file.path, req.body.tokenBenefits, req.body.tokenImageURL, tokenID]);
+    //Pins the json file to IPFS via pinata
+    const tokenJson = {
+        name: req.body.name,
+        description: req.body.tokenBenefits,
+        image: req.file.path,
+        totalAmount: req.body.tokenAmount
+    }
 
-    // if(!result) return res.status(400).send("Error while registering data in the database");
+    const uploadPinata = await uploadJsonPinata(tokenId, tokenJson);
+    if(!uploadPinata) return res.status(500).send("Something went wrong when uploading token info to IPFS");
+
+    //Insert Tables in Data Base
+    await makeQuery('BEGIN');
+    const insertCompany = await makeQuery('INSERT INTO company (name, description, members, sector, "imageURL") VALUES ($1, $2, $3, $4, $5)', [req.body.name, req.body.description, req.body.members, req.body.sector, req.file.path]);
+    const insertToken = await makeQuery("INSERT INTO token (id) VALUES (DEFAULT)");
+    if(!insertCompany || !insertToken) return res.status(400).send("Error while registering data in the database");
+    await makeQuery('COMMIT');
 
     res.sendStatus(200);
 }, (err, req, res, next) => {
@@ -164,14 +183,14 @@ const makeQuery = async (query, params) => {
 }
 
 // If the function returns false is because something has failed in the creation of the token
-const createToken = async (publicKey, tokenID, amount, data) => {
+const createToken = async (publicKey, tokenID, amount, price, data) => {
     const provider = new ethers.InfuraProvider('sepolia', process.env.INFURA_API);
     const signer = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
     const contract = new ethers.Contract(CONTRACT_ADDRESS, tokenAbi, provider);
     const contractSigner = contract.connect(signer);
 
     try {
-        const tx = await contractSigner.mint(publicKey, tokenID, amount, data);
+        const tx = await contractSigner.mint(publicKey, tokenID, amount, price, data);
         const receipt = await tx.wait();
 
         if(receipt.status === 1) {
@@ -201,6 +220,20 @@ const getBalance = async (publicKey, tokenID) => {
     }
 
     return balance;
+}
+
+const uploadJsonPinata = async (tokenId, tokenJson) => {
+    const metadata = {
+        name: `${tokenId}.json`,
+        keyvalues: {
+            folder: 'TokenJson'
+        }
+    };
+    
+    const upload = await pinata.upload.json(tokenJson).addMetadata(metadata);
+    if(!upload) return false
+
+    return true
 }
 
 module.exports = router;
