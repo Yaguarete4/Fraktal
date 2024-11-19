@@ -1,0 +1,61 @@
+.todo{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    margin-top: 32px;
+    background-color: #3D3D3D;
+    width: 51.7vw;
+    border-radius: 10px;
+    padding-top: 32px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 32px;
+}
+.but-vender{
+    background-color: #FFAB07;
+    padding: 15px 36px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: black;
+    border-radius: 10px;
+    transition: all 0.3s ease; /* Añade una transición suave */
+}
+.but-comprar{
+    background-color: transparent;
+    border: 1px solid #05DB74;
+    padding: 15px 36px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: #05DB74;
+    border-radius: 10px;
+    transition: all 0.3s ease; /* Añade una transición suave */
+}
+.contvender{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 24px;
+}
+.contnombre{
+    display: flex;
+    width: 100%;
+}
+.logonombre{
+    height: 100px;
+    width: 100px;
+    border-radius: 100px;
+    background-color: thistle;
+    align-items: center;
+}
+.contnombres{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ntoken{
+    
+}

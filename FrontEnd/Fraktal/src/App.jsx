@@ -13,6 +13,8 @@ import { PaginaPrincipal } from './components/PaginaPrincipal';
 import { SignupWeb } from './components/SignupWeb';
 import { AuthProvider } from './components/AuthContext';  // Importa el AuthProvider
 import { ProtectedPages } from './components/ProtectedPages';
+import { Formcompra } from './components/Formcompra';
+
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
           <Route path="/login" element={<LoginWeb />} />
           <Route path="/token-register" element={<ProtectedPages><TokenRegisterPage /></ProtectedPages>} />
           <Route path="/signup" element={<SignupWeb />} />
+          <Route path="/compra" element={<Formcompra />} />
+
           <Route path="/market" element={<MarketPage />} />
           <Route path="/market/:tokenId" element={<Tokeninfo />} />
         </Routes>
