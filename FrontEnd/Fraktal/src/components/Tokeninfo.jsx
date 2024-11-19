@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react'; // Elimina la importación r
 import { useParams } from 'react-router-dom';
 import { Cel } from './Cel';
 import { Navbar } from './Navbar';
+import { Link } from 'react-router-dom';
+
 
 export const Tokeninfo = () => {
   const [isCelVisible, setIsCelVisible] = useState(false);
@@ -49,12 +51,13 @@ export const Tokeninfo = () => {
             <div className="modal2">
                 <Cel className="cel-center" />
             </div>
-        )}
+        )}          
+
         <div className="caja-g">
             <div className="caja-nombre">
                 <img className="logo-token" src={info.tokenData.image}></img>
                 <div className="titu-token">{info.tokenData.name}</div>
-                <button className="info-comprar">Comprar</button>
+                <Link to="/compra" className="info-comprar">Comprar</Link>
             </div>
             <div className="caja-ben">
               <div className="titu-ben">Beneficios</div>
