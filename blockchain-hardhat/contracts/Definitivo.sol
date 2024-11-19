@@ -12,7 +12,7 @@ import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 //converts variable type to string
 import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract Definitivo is ERC1155, Ownable, ERC1155Burnable, ERC1155Supply, ReentrancyGuard {
+contract Definitivo is ERC1155, ERC1155Burnable, ERC1155Supply, ReentrancyGuard {
     
     address public ownerOfContract;
     mapping(uint256 id => uint256) private _prices;
@@ -21,7 +21,7 @@ contract Definitivo is ERC1155, Ownable, ERC1155Burnable, ERC1155Supply, Reentra
 
     receive() external payable{}
 
-    constructor(address initialOwner) ERC1155("https://ipfs.io/ipfs/Qmc61UdkuBMDsNDRJ3CKJTMVKRWzihGQBDfkrmXCEGghEc/{id}.json") Ownable(initialOwner) {
+    constructor() ERC1155("https://ipfs.io/ipfs/Qmc61UdkuBMDsNDRJ3CKJTMVKRWzihGQBDfkrmXCEGghEc/{id}.json") {
         ownerOfContract = msg.sender;
     }
  

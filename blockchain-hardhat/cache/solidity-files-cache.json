@@ -876,8 +876,8 @@
       ]
     },
     "C:\\Users\\Matu\\Documents\\PROYECTO 2024\\Fraktal\\blockchain-hardhat\\contracts\\Definitivo.sol": {
-      "lastModificationDate": 1731967701486,
-      "contentHash": "66f4d1e4db85f73543394c5ef2be1fe2",
+      "lastModificationDate": 1731979820076,
+      "contentHash": "3c1f39f2fbfaceb2d75980ee3a89ea63",
       "sourceName": "contracts/Definitivo.sol",
       "solcConfig": {
         "version": "0.8.20",
