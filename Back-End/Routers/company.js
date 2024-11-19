@@ -129,16 +129,16 @@ router.get('/all', async (req, res) => {
 
     let result = []
     const dataTokens = await getTokenData();
-    if(dataTokens.length == 0 || !dataTokens) return res.status(500).send("Error retriving data from IPFS");
+    res.json(dataTokens).status(200);
 
-    for (i in query.rows) {
-        result.push({
-            tokenData: dataTokens.find(x => x.id == query.rows[i].tokenid),
-            companyData: query.rows[i]
-        })
-    }
+    // for (i in query.rows) {
+    //     result.push({
+    //         tokenData: dataTokens.find(x => x.id == query.rows[i].tokenid),
+    //         companyData: query.rows[i]
+    //     })
+    // }
 
-    res.json(result).status(200);
+    // res.json(result).status(200);
 });
 
 router.get('/get/:id', async (req, res) => {
