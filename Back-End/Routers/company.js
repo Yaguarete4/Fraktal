@@ -90,8 +90,8 @@ router.post("/add", upload.single('imageURL'), async (req, res) => {
     tokenId = parseInt(tokenId.rows[0].last_value) + 1;
 
     //Creates the token in the Block-Chain
-    // const makeToken = await createToken(req.body.publicKey, tokenId, req.body.tokenAmount, req.body.price, '0x');
-    // if(!makeToken) return res.status(500).send("Something whent wrong when creating token");
+    const makeToken = await createToken(req.body.publicKey, tokenId, req.body.tokenAmount, req.body.price, '0x');
+    if(!makeToken) return res.status(500).send("Something whent wrong when creating token");
 
     //Pins the json file to IPFS via pinata
     const tokenJson = {
