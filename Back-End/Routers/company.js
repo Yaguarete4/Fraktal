@@ -90,8 +90,8 @@ router.post("/add", upload.single('imageURL'), async (req, res) => {
     tokenId = parseInt(tokenId.rows[0].last_value) + 1;
 
     //Creates the token in the Block-Chain
-    const makeToken = await createToken(req.body.publicKey, tokenId, req.body.tokenAmount, req.body.price, '0x');
-    if(!makeToken) return res.status(500).send("Something whent wrong when creating token");
+    // const makeToken = await createToken(req.body.publicKey, tokenId, req.body.tokenAmount, req.body.price, '0x');
+    // if(!makeToken) return res.status(500).send("Something whent wrong when creating token");
 
     //Pins the json file to IPFS via pinata
     const tokenJson = {
@@ -109,7 +109,7 @@ router.post("/add", upload.single('imageURL'), async (req, res) => {
     //Insert Tables in Data Base
     await makeQuery('BEGIN');
     const insertCompany = await makeQuery('INSERT INTO company (name, description, members, sector, "imageURL") VALUES ($1, $2, $3, $4, $5) RETURNING id', [req.body.name, req.body.description, req.body.members, req.body.sector, req.file.path]);
-    const insertToken = await makeQuery("INSERT INTO token (company_id) VALUES ($1)", [insertCompany.rows[0].id]);
+    const insertToken = await makeQuery("INSERT INTO token (company_id, ipfs_hash) VALUES ($1, $2)", [insertCompany.rows[0].id, uploadPinata.IpfsHash]);
     if(!insertCompany || !insertToken) return res.status(400).send("Error while registering data in the database");
     await makeQuery('COMMIT');
 
@@ -121,18 +121,17 @@ router.post("/add", upload.single('imageURL'), async (req, res) => {
 });
 
 router.get('/all', async (req, res) => {
-    const query = await makeQuery('SELECT company.*, token.id AS tokenid FROM token INNER JOIN company ON token.company_id = company.id');
+    const query = await makeQuery('SELECT company.*, token.ipfs_hash FROM token INNER JOIN company ON token.company_id = company.id');
     if(!query) {
         res.sendStatus(502);
         return;
     }
 
     let result = []
-    // const dataTokens = await getTokenData();
 
     for (i in query.rows) {
         result.push({
-            tokenData: await getTokenData(query.rows[i].tokenid),
+            tokenData: await fetchTokenIpfs(query.rows[i].ipfs_hash),
             companyData: query.rows[i]
         })
     }
@@ -144,15 +143,14 @@ router.get('/get/:id', async (req, res) => {
     const id = req.params.id;
     if (!id) return res.status(400).send('ID must be included');
 
-    const query = await makeQuery('SELECT company.* FROM token INNER JOIN company ON token.company_id = company.id WHERE token.id = $1', [id]);
+    const query = await makeQuery('SELECT company.*, token.ipfs_hash FROM token INNER JOIN company ON token.company_id = company.id WHERE token.id = $1', [id]);
     if(query.rows.length == 0) return res.status(400).send("Token id doesn't exist");
 
-    const tokenData = await getTokenData(id)
-    if(tokenData.length == 0) return res.status(500).send("Could not retrive data from IPFS");
-
+    const tokenData = await fetchTokenIpfs(query.rows[0].ipfs_hash);
+    if(!tokenData) return res.status(400).send("Error while retriving data from IPFS");
 
     result = {
-        tokenData: tokenData[0],
+        tokenData: tokenData,
         companyData: query.rows[0]
     }
 
@@ -254,7 +252,7 @@ const uploadJsonPinata = async (tokenId, tokenJson) => {
         body: data,
         });
         const resData = await res.json();
-        return true;
+        return resData;
 
     } catch (error) {
         console.log(error);
