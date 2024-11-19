@@ -2,7 +2,6 @@ require('dotenv').config();
 const pg = require('pg');
 const { Pool } = pg;
 const { ethers } = require('ethers');
-const { Interface } = require('ethers');
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
@@ -307,14 +306,16 @@ const fetchTokenIpfs = async (ipfsPinHash) => {
 }
 
 const getTokenData = async (tokenId) => {
-    tokenData = [];
+    const tokenHash = await getDataPinata(tokenId);
+    if (!tokenHash) return []; // Maneja el caso en que no haya hashes
 
-    tokenHash = await getDataPinata(tokenId);
- 
-    for (i in tokenHash) {
-        hash = tokenHash[i].ipfs_pin_hash;
-        tokenData.push(await fetchTokenIpfs(hash)); 
-    }
+    // Procesa las solicitudes en paralelo
+    const tokenData = await Promise.all(
+        tokenHash.map(async (hashItem) => {
+            const hash = hashItem.ipfs_pin_hash;
+            return await fetchTokenIpfs(hash); // Devuelve los datos o null si falla
+        })
+    );
 
     return tokenData;
 }
