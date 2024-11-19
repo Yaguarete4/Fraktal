@@ -108,7 +108,7 @@ router.post("/add", upload.single('imageURL'), async (req, res) => {
 
     //Insert Tables in Data Base
     await makeQuery('BEGIN');
-    const insertCompany = await makeQuery('INSERT INTO company (name, description, members, sector, "imageURL") VALUES ($1, $2, $3, $4, $5) RETURNING id', [req.body.name, req.body.description, req.body.members, req.body.sector, req.file.path]);
+    const insertCompany = await makeQuery('INSERT INTO company (name, description, members, sector, "imageURL", public_key) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id', [req.body.name, req.body.description, req.body.members, req.body.sector, req.file.path, req.body.publicKey]);
     const insertToken = await makeQuery("INSERT INTO token (company_id, ipfs_hash) VALUES ($1, $2)", [insertCompany.rows[0].id, uploadPinata.IpfsHash]);
     if(!insertCompany || !insertToken) return res.status(400).send("Error while registering data in the database");
     await makeQuery('COMMIT');
