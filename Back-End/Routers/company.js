@@ -296,7 +296,9 @@ const fetchTokenIpfs = async (ipfsPinHash) => {
         const result = await fetch(`https://gateway.pinata.cloud/ipfs/${ipfsPinHash}`,{
             method: 'GET'
         });
-    
+        
+        if(!result.ok) return false;
+
         const data = await result.json();
         return data;
 
