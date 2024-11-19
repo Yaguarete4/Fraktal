@@ -23,7 +23,7 @@ export const Tokeninfo = () => {
         }
 
         const data = await response.json();
-        setInfo(data[0]);
+        setInfo(data);
       } catch (err) {
         console.error('Error:', err);
       }
@@ -52,21 +52,21 @@ export const Tokeninfo = () => {
         )}
         <div className="caja-g">
             <div className="caja-nombre">
-                <img className="logo-token" src={info.imageURL}></img>
-                <div className="titu-token">{info.name}</div>
+                <img className="logo-token" src={info.tokenData.image}></img>
+                <div className="titu-token">{info.tokenData.name}</div>
                 <button className="info-comprar">Comprar</button>
             </div>
             <div className="caja-ben">
               <div className="titu-ben">Beneficios</div>
-              <div className="cont-ben">{info.tokenBenefits}</div>
+              <div className="cont-ben">{info.tokenData.description}</div>
             </div>
             <div className="caja-inf">
               <div className="titu-ben">Informacion sobre el proyecto</div>
-              <div className="cont-ben">{info.description}</div>
+              <div className="cont-ben">{info.companyData.description}</div>
             </div>
             <div className="caja-inf">
               <div className="titu-ben">Miembros</div>
-              <div className="cont-ben">{splitMembers(info.members)}</div>
+              <div className="cont-ben">{splitMembers(info.companyData.members)}</div>
             </div>
         </div>
     </>

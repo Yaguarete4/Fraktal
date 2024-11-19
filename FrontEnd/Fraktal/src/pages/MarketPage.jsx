@@ -67,7 +67,8 @@ const TagsDivision = (props) => {
             <h1>{`${tag.tagName}`}</h1>
             <div>
                 {tag.companies.map((value, index) => {
-                    return <TokenCell key={index} to={value.id} img={value.imageURL} name={value.name}>{value.description}</TokenCell>
+                    if (!value.tokenData || !value.companyData) return <div key={index}>Error</div>
+                    return <TokenCell key={index} to={`${value.companyData.tokenid}`} img={value.tokenData.image} name={value.tokenData.name}>{value.companyData.description}</TokenCell>
                 })}
             </div>
         </div>
