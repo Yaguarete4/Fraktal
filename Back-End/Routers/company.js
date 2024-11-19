@@ -128,17 +128,16 @@ router.get('/all', async (req, res) => {
     }
 
     let result = []
-    const dataTokens = await getTokenData();
-    res.json(dataTokens).status(200);
+    // const dataTokens = await getTokenData();
 
-    // for (i in query.rows) {
-    //     result.push({
-    //         tokenData: dataTokens.find(x => x.id == query.rows[i].tokenid),
-    //         companyData: query.rows[i]
-    //     })
-    // }
+    for (i in query.rows) {
+        result.push({
+            tokenData: await getTokenData(query.rows[i].tokenid),
+            companyData: query.rows[i]
+        })
+    }
 
-    // res.json(result).status(200);
+    res.json(result).status(200);
 });
 
 router.get('/get/:id', async (req, res) => {
