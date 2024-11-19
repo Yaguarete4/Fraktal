@@ -129,6 +129,7 @@ router.get('/all', async (req, res) => {
 
     let result = []
     const dataTokens = await getTokenData();
+    if(dataTokens.length == 0) return res.status(500).send("Error retriving data from IPFS");
 
     for (i in query.rows) {
         result.push({

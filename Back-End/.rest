@@ -20,7 +20,7 @@ GET http://localhost:3000/company/all
 
 ###
 
-GET http://localhost:3000/company/get/100
+GET http://localhost:3000/company/get/20
 
 ###
 
