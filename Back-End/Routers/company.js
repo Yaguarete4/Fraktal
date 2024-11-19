@@ -2,13 +2,14 @@ require('dotenv').config();
 const pg = require('pg');
 const { Pool } = pg;
 const { ethers } = require('ethers');
+const { Interface } = require('ethers');
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
 const tokenAbi = require('../ContractABI/Definitivo.json')['abi'];
 
-const CONTRACT_ADDRESS = '0xb4DF53b019008EF5299682823652073F4739EABA';
+const CONTRACT_ADDRESS = '0xb464931bBD82F8Ce7301FE4fD067e87613684522';
 
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL
