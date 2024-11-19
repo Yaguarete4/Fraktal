@@ -116,9 +116,9 @@ export const TokenRegisterPage = () => {
             imageURL: file,
             tokenBenefits: investorBenefits,
             tokenImageURL: "",
-            tokenID: 15,
             publicKey: "0x6Fdc66cf1c2D108e3eAe95DfBa6FeffCcF90F932",
             tokenAmount: tokenQuantity,
+            price: pricePerToken
         };
 
         for (const name in data) {

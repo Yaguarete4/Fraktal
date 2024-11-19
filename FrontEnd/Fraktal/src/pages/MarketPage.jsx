@@ -21,11 +21,11 @@ export const MarketPage = () => {
                 }
 
                 const data = await response.json();
-
+                console.log(data);
                 setTags([
                     {
                         tagName: "Todo",
-                        companies: data
+                        companies: data.filter(company => company.tokenData && company.companyData)
                     }
                 ]);
             } catch (err) {
@@ -68,7 +68,7 @@ const TagsDivision = (props) => {
             <div>
                 {tag.companies.map((value, index) => {
                     if (!value.tokenData || !value.companyData) return <div key={index}>Error</div>
-                    return <TokenCell key={index} to={`${value.companyData.tokenid}`} img={value.tokenData.image} name={value.tokenData.name}>{value.companyData.description}</TokenCell>
+                    return <TokenCell key={index} to={`${value.tokenData.id}`} img={value.tokenData.image} name={value.tokenData.name}>{value.companyData.description}</TokenCell>
                 })}
             </div>
         </div>
