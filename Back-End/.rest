@@ -20,7 +20,7 @@ GET http://localhost:3000/company/all
 
 ###
 
-GET http://localhost:3000/company/get/17
+GET http://localhost:3000/company/get/100
 
 ###
 
@@ -34,7 +34,7 @@ Content-Type: application/json
 
 ###
 
-GET https://fraktalapi.vercel.app/company/get/30
+GET https://fraktalapi.vercel.app/company/get/20
 
 ###
 

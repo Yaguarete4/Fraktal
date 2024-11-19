@@ -146,13 +146,14 @@ router.get('/get/:id', async (req, res) => {
     if (!id) return res.status(400).send('ID must be included');
 
     const query = await makeQuery('SELECT company.* FROM token INNER JOIN company ON token.company_id = company.id WHERE token.id = $1', [id]);
-    if(!query) {
-        res.sendStatus(502);
-        return;
-    }
+    if(query.rows.length == 0) return res.status(400).send("Token id doesn't exist");
+
+    const tokenData = await getTokenData(id)
+    if(tokenData.length == 0) return res.status(500).send("Could not retrive data from IPFS");
+
 
     result = {
-        tokenData: (await getTokenData(id))[0],
+        tokenData: tokenData[0],
         companyData: query.rows[0]
     }
 
