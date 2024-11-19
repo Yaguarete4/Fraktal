@@ -8,8 +8,13 @@
     border-radius: 10px;
     padding-top: 32px;
     padding-left: 32px;
-    padding-right: 32px;
+    padding-right: 32px;   
     padding-bottom: 32px;
+    z-index: 99999;
+    position: absolute; /* O fixed */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Mueve el centro del elemento */
 }
 .but-vender{
     background-color: #FFAB07;
@@ -42,20 +47,97 @@
 }
 .contnombre{
     display: flex;
+    flex-direction: row;
     width: 100%;
+    margin-bottom: 32px;
 }
 .logonombre{
-    height: 100px;
-    width: 100px;
+    height: 70px;
+    width: 70px;
     border-radius: 100px;
     background-color: thistle;
     align-items: center;
+    margin-right: 32px;
 }
 .contnombres{
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+}
+.contnombre2{
+    display: flex;
+    width: 100%;
     align-items: center;
 }
 .ntoken{
-    
+    font-size: 22px;
+    color: white;
+    font-weight: bold;
+}
+.n2token{
+color: rgb(201, 201, 201);
+}
+.plati{
+    font-size: 22px;
+    font-weight: 600;
+    color: white;
+    margin-left: auto;
+}
+.contresto{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.rtitle{
+    font-size: 18px;
+    color: #F4F0E7;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.platy{
+    background-color: rgba( 57, 57, 57, 0.05 );
+    height: 47px;
+    padding: 14px;
+    color: #BCB3A3;
+    /* text-align: center; */
+    border: 1px solid #BCB3A3;
+    border-radius: 10px;
+    margin: 0 auto;
+    width: 100%;
+    margin-bottom: 12px;
+}
+.platy2{
+    background-color: rgba( 57, 57, 57, 0.05 );
+    padding: 14px;
+    color: #BCB3A3;
+    /* text-align: center; */
+    border: 1px solid #BCB3A3;
+    border-radius: 10px;
+    margin: 0 auto;
+    width: 100%;
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.logonombre2{
+    height: 45px;
+    width: 45px;
+    border-radius: 100px;
+    background-color: thistle;
+    align-items: center;
+}
+.but-comprar2{
+    background-color: #05DB74;
+    padding: 25px 75px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: black;
+    border-radius: 10px;
+    transition: all 0.3s ease; /* Añade una transición suave */
+    margin: 0 auto;
+    margin-top: 16px;
 }

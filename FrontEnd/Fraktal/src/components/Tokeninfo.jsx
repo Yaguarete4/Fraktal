@@ -17,7 +17,7 @@ export const Tokeninfo = () => {
           method: 'GET'
         })
 
-        if(!response.ok) {
+        if(!response.ok) { 
           console.log(await response.text())
           throw new Error(`HTTP error! status: ${response.status}`);
         }

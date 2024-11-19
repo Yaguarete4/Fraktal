@@ -269,7 +269,7 @@ export const TokenRegisterPage = () => {
                         </div>
                     </div>
                 )}
-            </div>
+            </div> 
             <Waves />
         </>
     );
