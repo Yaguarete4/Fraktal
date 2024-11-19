@@ -58,3 +58,17 @@ margin-bottom: 15px;
     width: 211px;
     height: auto;
 }
+@media (width < 501px){
+footer{
+display: none;}
+/* .fbut{
+    padding: 7px 16px;
+align-items: center;
+justify-content: center;
+display: flex;
+border-radius: 6px;
+margin-right: 6px;
+margin-left: 6px;
+margin-bottom: 15px;
+} */
+}
