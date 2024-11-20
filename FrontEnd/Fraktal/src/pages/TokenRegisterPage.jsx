@@ -110,6 +110,7 @@ export const TokenRegisterPage = () => {
 
         const data = {
             name: tokenName,
+            acronym: abbreviation,
             description: companyDescription,
             members: fixMembers(),
             sector: "Tecnologico",

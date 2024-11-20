@@ -8,7 +8,9 @@ export const connectToWallet = async () => {
     return {message: "Success", success: true};
 }
 
-export const buyToken = async (seller, tokenId, amount) => {
+export const buyToken = async (seller, tokenId, amount, price) => {
+    if(amount == 0) return {message: "Amount can not be 0", success: false}
+
     const connect = await connectToWallet()
     if (!connect.success) return connect
 
@@ -20,7 +22,7 @@ export const buyToken = async (seller, tokenId, amount) => {
     const contractSigner = contract.connect(signer);
 
     try {
-        const tx = await contractSigner.buyTokenWithEther(seller, tokenId, amount);
+        const tx = await contractSigner.buyTokenWithEther(seller, tokenId, amount, {value: amount * price});
         const receipt = await tx.wait();
     
         if(receipt.status === 1) {

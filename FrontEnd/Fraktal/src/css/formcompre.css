@@ -55,7 +55,6 @@
     height: 70px;
     width: 70px;
     border-radius: 100px;
-    background-color: thistle;
     align-items: center;
     margin-right: 32px;
 }
@@ -125,7 +124,6 @@ color: rgb(201, 201, 201);
     height: 45px;
     width: 45px;
     border-radius: 100px;
-    background-color: thistle;
     align-items: center;
 }
 .but-comprar2{
