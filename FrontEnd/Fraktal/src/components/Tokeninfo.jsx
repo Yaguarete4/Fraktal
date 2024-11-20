@@ -50,7 +50,8 @@ export const Tokeninfo = () => {
             <div className="modal2">
                 <Cel className="cel-center" />
             </div>
-        )}
+        )}          
+
         <div className="caja-g">
             <div className="caja-nombre">
                 <img className="logo-token" src={info.tokenData.image}></img>
