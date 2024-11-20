@@ -56,6 +56,10 @@ router.post("/add", upload.single('imageURL'), async (req, res) => {
         res.status(400).send("Name field must not be empty");
         return;
     }
+    if(!req.body.acronym) {
+        res.status(400).send("Acronym field must not be empty");
+        return;
+    }
     if(!req.body.description || req.body.description.length < 20) {
         res.status(400).send("Description field must not be empty or have less than 20 characters");
         return;
@@ -97,6 +101,7 @@ router.post("/add", upload.single('imageURL'), async (req, res) => {
     const tokenJson = {
         id: tokenId,
         name: req.body.name,
+        acronym: req.body.acronym,
         description: req.body.tokenBenefits,
         image: req.file.path,
         price: req.body.price,
