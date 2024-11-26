@@ -8,7 +8,7 @@ const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
 const tokenAbi = require('../ContractABI/Definitivo.json')['abi'];
 
-const CONTRACT_ADDRESS = '0xb464931bBD82F8Ce7301FE4fD067e87613684522';
+const CONTRACT_ADDRESS = '0xB42A840A256fc60a155922F0Ef4D04d54c426027';
 
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL

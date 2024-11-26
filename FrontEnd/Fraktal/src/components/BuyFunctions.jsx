@@ -14,7 +14,7 @@ export const buyToken = async (seller, tokenId, amount, price) => {
     const connect = await connectToWallet()
     if (!connect.success) return connect
 
-    const CONTRACT_ADDRESS = '0xb464931bBD82F8Ce7301FE4fD067e87613684522';
+    const CONTRACT_ADDRESS = '0xB42A840A256fc60a155922F0Ef4D04d54c426027';
 
     const provider = new ethers.BrowserProvider(window.ethereum);
     const signer = await provider.getSigner()

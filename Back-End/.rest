@@ -64,6 +64,6 @@ POST http://fraktalapi.vercel.app/company/balance
 Content-Type: application/json
 
 {
-    "publicKey": "0x6Fdc66cf1c2D108e3eAe95DfBa6FeffCcF90F932",
-    "tokenID": 4
+    "publicKey": "0x8CBC19A354E42b7b4765ab3342DAf9d834E56947",
+    "tokenID": 25
 }
