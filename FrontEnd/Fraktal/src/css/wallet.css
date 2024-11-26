@@ -1,6 +1,7 @@
 ::-webkit-scrollbar{
   width: 9px;
 }
+
 ::-webkit-scrollbar-thumb{
   background-color: #FFAB07;
   border-radius: 3px;
@@ -419,10 +420,28 @@ margin-top: 37px;
     height: 6vw;
     font-size: 1.6vw;
   }
+  .t1{
+    font-size: 1vw;
+  }
+  .caja-rendimiento{
+    margin: 0 auto;
+  }
   .caj-port{
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-bottom: 20px;
+  }
+  .caja-fle{
+    display: flex;
+    flex-direction: row;
+  }
+  .porc{
+    font-size: 14px;
+  }
+  .t-img{
+    height: 20px;
+    width: 20px;
   }
   .caja-but{
     margin-left: 20vw;
@@ -471,9 +490,39 @@ margin-top: 37px;
   .caja-rendimiento{
     height: auto;
     width: 36.1vw;
-    margin: 1px;
   }
   .caja-chiki{
     width: 31.6vw;
+  }
+  .info-img{
+    height: 7vw;
+    width: 7vw;
+  }
+  .caja-fle{
+    display: flex;
+  }
+  .compra{
+    font-size: 2vw;
+  }
+  .qcompra{
+    font-size: 1.5vw;
+  }
+  .info-porc1{
+    font-size: 2vw;
+
+  }
+  .info-porc{
+    font-size: 2vw;
+    
+  }
+  .fecha{
+    font-size: 2vw;
+  }
+  .infoo{
+    height: 100px;
+    width: 100%;
+  }
+  .caja-porcentaje{
+    width: 240px;
   }
 }

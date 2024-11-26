@@ -139,3 +139,9 @@ color: rgb(201, 201, 201);
     margin: 0 auto;
     margin-top: 16px;
 }
+
+@media (max-width: 600px) {
+    .todo {
+        width: 90vw;
+    }
+}
