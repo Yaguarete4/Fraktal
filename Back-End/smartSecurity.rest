@@ -34,7 +34,8 @@ Content-Type: application/json
     "name": "Luca",
     "surname": "Chami",
     "password": "5050",
-    "confirmPassword": "5050"
+    "confirmPassword": "5050",
+    "publicKey": "0x6Fdc66cf1c2D108e3eAe95DfBa6FeffCcF90F932"
 }
 
 ###

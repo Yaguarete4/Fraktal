@@ -2,6 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const router = express.Router();
+const { isAddress } = require ('ethers')
 require('dotenv').config();
 
 
@@ -53,6 +54,14 @@ router.post('/register', async (req, res) => {
         credential.message = "El usename no puede estar vacio";
         return res.status(400).json(credential);
     }
+    else if(!req.body.name || !req.body.surname){
+        credential.message = "El nombre y el apellido no puede estar vacio";
+        return res.status(400).json(credential);
+    }
+    else if(!req.body.publicKey || !isAddress(req.body.publicKey)){
+        credential.message = "Se debe incluir una publicKey o no es valido";
+        return res.status(400).json(credential);
+    }
 
     const {rows} =  await makeQuery(`SELECT username FROM users WHERE username = $1`, [req.body.username.toString()]);
     const email = await makeQuery('SELECT email FROM users WHERE email = $1', [req.body.email.toString()]);
@@ -72,20 +81,20 @@ router.post('/register', async (req, res) => {
     else if(password != confirmPassword || !password || !confirmPassword){
         credential.message = "Las contraseñas no coinciden";
     }
-    else if(!req.body.name || !req.body.surname){
-        credential.message = "El nombre y el apellido no puede estar vacio";
-    }
     else {
+        const refreshToken = getRefreshToken({username: req.body.username});
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const query = await makeQuery('INSERT INTO users (username, name, surname, email, password, refreshToken, publickey) VALUES ($1, $2, $3, $4, $5, $6, $7)', [req.body.username, req.body.name, req.body.surname, req.body.email, hashedPassword, refreshToken, req.body.publicKey]);
+        if(!query) {
+            credential.message = "Ocurrio un error subiendo los datos";
+            return res.status(500).json(credential);
+        }
+
         credential.success = true;
         credential.accessToken = generateAccessToken({username: req.body.username});
-        credential.message = "Inicio de sesion exitoso"
-    
-        refreshToken = getRefreshToken({username: req.body.username});
+        credential.message = "Inicio de sesion exitoso";
     
         res.cookie('refreshToken', refreshToken, refreshCookieConfig);
-     
-        const hashedPassword = await bcrypt.hash(password, 10);
-        await makeQuery('INSERT INTO users (username, name, surname, email, password, refreshToken) VALUES ($1, $2, $3, $4, $5, $6)', [req.body.username, req.body.name, req.body.surname, req.body.email, hashedPassword, refreshToken]);
     }
 
     res.status(200).json(credential);

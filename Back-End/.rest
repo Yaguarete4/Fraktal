@@ -24,6 +24,14 @@ GET http://localhost:3000/company/get/20
 
 ###
 
+GET  http://localhost:3000/company/owned/0x8cbc19a354e42b7b4765ab3342daf9d834e56947
+
+###
+
+GET  http://localhost:3000/company/transactions/0x8cbc19a354e42b7b4765ab3342daf9d834e56947
+
+###
+
 POST http://localhost:3000/company/balance
 Content-Type: application/json
 

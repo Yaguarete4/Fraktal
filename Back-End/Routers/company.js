@@ -1,19 +1,27 @@
 require('dotenv').config();
 const pg = require('pg');
 const { Pool } = pg;
-const { ethers } = require('ethers');
+const { ethers, isAddress } = require('ethers');
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
-const tokenAbi = require('../ContractABI/Definitivo.json')['abi'];
 
+// ethers js config
+const tokenAbi = require('../ContractABI/Definitivo.json')['abi'];
 const CONTRACT_ADDRESS = '0xB42A840A256fc60a155922F0Ef4D04d54c426027';
 
+const provider = new ethers.InfuraProvider('sepolia', process.env.INFURA_API);
+const signer = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
+const contract = new ethers.Contract(CONTRACT_ADDRESS, tokenAbi, provider);
+const contractSigner = contract.connect(signer);
+
+// Data base config
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL
 });
 
+// Cloudinady config
 cloudinary.config({
     cloud_name: 'dxf02usq1',
     api_key: '923797376654348',
@@ -34,7 +42,7 @@ const storage = new CloudinaryStorage({
         }
     },
 });
-
+//-------------------------------------------------------------------------------------------------
 
 // const storage = multer.diskStorage({
 //     destination: function (req, file, cb) {
@@ -162,6 +170,27 @@ router.get('/get/:id', async (req, res) => {
     res.json(result).status(200);
 });
 
+router.get('/owned/:address', async (req, res) => {
+    const address = req.params.address;
+    if(!address || !isAddress(address)) return res.status(400).send("Address isn't valid");
+
+    const owned = await getTokensFromAddress(address);
+    res.json(owned).status(200);
+});
+
+router.get('/transactions/:address', async (req, res) => {
+    const address = req.params.address;
+    if(!address || !isAddress(address)) return res.status(400).send("Address isn't valid");
+
+    const txs = await getTransactions(address);
+
+    const serializedTxs = JSON.stringify(txs, (_, value) =>
+        typeof value === "bigint" ? value.toString() : value
+    );
+
+    res.status(200).send(serializedTxs);
+});
+
 router.post('/balance', async (req, res) => {
     const publicKey = req.body.publicKey;
     const tokenID = req.body.tokenID;
@@ -198,10 +227,6 @@ const makeQuery = async (query, params) => {
 
 // If the function returns false is because something has failed in the creation of the token
 const createToken = async (publicKey, tokenID, amount, price, data) => {
-    const provider = new ethers.InfuraProvider('sepolia', process.env.INFURA_API);
-    const signer = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
-    const contract = new ethers.Contract(CONTRACT_ADDRESS, tokenAbi, provider);
-    const contractSigner = contract.connect(signer);
 
     try {
         const tx = await contractSigner.mint(publicKey, tokenID, amount, price, data);
@@ -223,8 +248,6 @@ const createToken = async (publicKey, tokenID, amount, price, data) => {
 }
 
 const getBalance = async (publicKey, tokenID) => {
-    const provider = new ethers.InfuraProvider('sepolia', process.env.INFURA_API);
-    const contract = new ethers.Contract(CONTRACT_ADDRESS, tokenAbi, provider);
     let balance;
     try {
         balance = await contract.balanceOf(publicKey, tokenID);
@@ -323,6 +346,67 @@ const getTokenData = async (tokenId) => {
     );
 
     return tokenData;
+}
+
+const getTokensFromAddress = async (address) => {
+    const transferSingleFilter = contract.filters.TransferSingle(null, null, address);
+    const tokenSoldFilter = contract.filters.TokenSold(address, null, null);
+
+    const singleEvents = await contract.queryFilter(transferSingleFilter, 0, "latest");
+    const soldEvents = await contract.queryFilter(tokenSoldFilter, 0, "latest");
+
+    let ownedTokens = [];
+
+    singleEvents.forEach(event => {
+        const tokenId = parseInt(event.args.id)
+        const amount = parseInt(event.args.value);
+
+        if(ownedTokens.some(element => element.id == tokenId)){
+            let token = ownedTokens.find(element => element.id == tokenId);
+            token.amount += amount;
+        }
+        else {
+            ownedTokens.push({
+                id: tokenId,
+                amount: amount
+            })
+        }
+    })
+
+    soldEvents.forEach((event) => {
+        const tokenId = parseInt(event.args.tokenId);
+        const amount = parseInt(event.args.amount);
+
+        if(event.args.seller.toString() != event.args.buyer.toString()){
+            if(ownedTokens.some(element => element.id == tokenId)){
+                let token = ownedTokens.find(element => element.id == tokenId);
+                token.amount -= amount;
+            }
+        }
+    });
+
+    ownedTokens = ownedTokens.filter(token => token.amount > 0);
+
+    return ownedTokens;
+}
+
+const getTransactions = async (address) => {
+    const sellerFilter = contract.filters.TokenSold(address, null, null);
+    const buyerFilter = contract.filters.TokenSold(null, address, null);
+
+    // Get the events that match the filters
+    const sellerEvents = await contract.queryFilter(sellerFilter, 0, "latest");
+    const buyerEvents = await contract.queryFilter(buyerFilter, 0, "latest");
+
+    // Combine the events avoiding duplicates
+    const allEvents = [
+        ...sellerEvents.map(event => event.args), 
+        ...buyerEvents
+            .filter(event => !sellerEvents.includes(event))
+            .map(event => event.args)
+    ];
+
+    return allEvents
 }
 
 module.exports = router;
