@@ -3,7 +3,7 @@ GET http://localhost:3000/tablas
 ###
 
 GET http://localhost:3000/auth/authenticate
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hdHV0ZXJvbmNvIiwiaWF0IjoxNzIyOTUzODMwLCJleHAiOjE3MjI5NTU2MzB9.fzOxxrSDaND-_yDNsi35XUiB8JMDCPINxHYls4oJeeE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ikpvc2VJbmdlbmllcm8iLCJpYXQiOjE3MzI4MTYyMjAsImV4cCI6MTczMjgxODAyMH0.hxz-bRmdKvn9StOGUKAG9m9hu5GLsZJ-pfrmbVuYCb8
 
 ###
 

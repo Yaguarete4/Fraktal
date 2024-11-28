@@ -58,10 +58,6 @@ router.post('/register', async (req, res) => {
         credential.message = "El nombre y el apellido no puede estar vacio";
         return res.status(400).json(credential);
     }
-    else if(!req.body.publicKey || !isAddress(req.body.publicKey)){
-        credential.message = "Se debe incluir una publicKey o no es valido";
-        return res.status(400).json(credential);
-    }
 
     const {rows} =  await makeQuery(`SELECT username FROM users WHERE username = $1`, [req.body.username.toString()]);
     const email = await makeQuery('SELECT email FROM users WHERE email = $1', [req.body.email.toString()]);
@@ -84,7 +80,7 @@ router.post('/register', async (req, res) => {
     else {
         const refreshToken = getRefreshToken({username: req.body.username});
         const hashedPassword = await bcrypt.hash(password, 10);
-        const query = await makeQuery('INSERT INTO users (username, name, surname, email, password, refreshToken, publickey) VALUES ($1, $2, $3, $4, $5, $6, $7)', [req.body.username, req.body.name, req.body.surname, req.body.email, hashedPassword, refreshToken, req.body.publicKey]);
+        const query = await makeQuery('INSERT INTO users (username, name, surname, email, password, refreshToken) VALUES ($1, $2, $3, $4, $5, $6)', [req.body.username, req.body.name, req.body.surname, req.body.email, hashedPassword, refreshToken]);
         if(!query) {
             credential.message = "Ocurrio un error subiendo los datos";
             return res.status(500).json(credential);
