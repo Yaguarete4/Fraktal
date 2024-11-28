@@ -5,6 +5,7 @@ import Background from '../img/wave.svg';
 import '../css/pages/TokenRegisterPage.css';
 import '../css/login.css';
 import { useNavigate } from 'react-router-dom';
+import { connectToWallet } from '../components/BuyFunctions';
 
 export const TokenRegisterPage = () => {
     const [imageSrc, setImageSrc] = useState(null);
@@ -108,6 +109,8 @@ export const TokenRegisterPage = () => {
             return m;
         };
 
+        const [publicKey] = await connectToWallet()
+
         const data = {
             name: tokenName,
             acronym: abbreviation,
@@ -117,7 +120,7 @@ export const TokenRegisterPage = () => {
             imageURL: file,
             tokenBenefits: investorBenefits,
             tokenImageURL: "",
-            publicKey: "0x6Fdc66cf1c2D108e3eAe95DfBa6FeffCcF90F932",
+            publicKey: publicKey,
             tokenAmount: tokenQuantity,
             price: pricePerToken
         };

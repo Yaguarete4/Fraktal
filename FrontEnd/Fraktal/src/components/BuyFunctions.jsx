@@ -2,17 +2,20 @@ import { ethers } from "ethers"
 import abi from '../Definitivo.json';
 
 export const connectToWallet = async () => {
-    if(!window.ethereum) return {message: "Please install a wallet", success: false};
-    await window.ethereum.send("eth_requestAccounts");
+    if(!window.ethereum) return false;
+    const publicKey = await window.ethereum.request({
+        "method": "eth_requestAccounts",
+        "params": []
+    });
 
-    return {message: "Success", success: true};
+    return publicKey;
 }
 
 export const buyToken = async (seller, tokenId, amount, price) => {
-    if(amount == 0) return {message: "Amount can not be 0", success: false}
+    if(amount == 0) return {message: "Amount can not be 0", success: false};
 
     const connect = await connectToWallet()
-    if (!connect.success) return connect
+    if (!connect) return {message: "Please install a wallet", success: false};
 
     const CONTRACT_ADDRESS = '0xB42A840A256fc60a155922F0Ef4D04d54c426027';
 
