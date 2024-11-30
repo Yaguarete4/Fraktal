@@ -19,6 +19,7 @@ router.use(cookieParser());
 const refreshCookieConfig = {
     httpOnly: true, 
     secure: true,
+    partitioned: true,
     sameSite: 'none'
 }
 

@@ -149,7 +149,7 @@ router.get('/all', async (req, res) => {
         })
     }
 
-    res.json(result).status(200);
+    res.status(200).json(result);
 });
 
 router.get('/get/:id', async (req, res) => {
@@ -167,7 +167,7 @@ router.get('/get/:id', async (req, res) => {
         companyData: query.rows[0]
     }
 
-    res.json(result).status(200);
+    res.status(200).json(result);
 });
 
 router.get('/owned/:address', async (req, res) => {
@@ -175,7 +175,7 @@ router.get('/owned/:address', async (req, res) => {
     if(!address || !isAddress(address)) return res.status(400).send("Address isn't valid");
 
     const owned = await getTokensFromAddress(address);
-    res.json(owned).status(200);
+    res.status(200).json(owned);
 });
 
 router.get('/transactions/:address', async (req, res) => {

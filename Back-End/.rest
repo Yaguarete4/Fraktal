@@ -75,3 +75,13 @@ Content-Type: application/json
     "publicKey": "0x8CBC19A354E42b7b4765ab3342DAf9d834E56947",
     "tokenID": 25
 }
+
+###
+
+GET  https://fraktalapi.vercel.app/company/owned/0x8cbc19a354e42b7b4765ab3342daf9d834e56947
+
+###
+
+GET  https://fraktalapi.vercel.app/company/transactions/0x8cbc19a354e42b7b4765ab3342daf9d834e56947
+
+###
