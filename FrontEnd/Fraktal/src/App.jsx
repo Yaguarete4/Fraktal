@@ -22,7 +22,7 @@ function App() {
       <section>
         <Routes>   
           <Route path="/" element={<PaginaPrincipal />} />
-          <Route path="/wallet" element={<Wallet />} />
+          <Route path="/wallet" element={<ProtectedPages><Wallet /></ProtectedPages>} />
           <Route path="/login" element={<LoginWeb />} />
           <Route path="/token-register" element={<ProtectedPages><TokenRegisterPage /></ProtectedPages>} />
           <Route path="/signup" element={<SignupWeb />} />

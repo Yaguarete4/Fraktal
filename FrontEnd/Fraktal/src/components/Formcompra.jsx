@@ -31,7 +31,7 @@ export const Formcompra = () => {
     }
 
     const handleSetError = () => {
-        setError(prev => [{...prev, isOn: false}]);
+        setError(prev => ({...prev, isOn: false}));
     }
 
   return (

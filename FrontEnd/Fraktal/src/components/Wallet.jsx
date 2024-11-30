@@ -2,60 +2,107 @@ import React, { useState, useEffect } from 'react';
 import '../css/wallet.css';
 import { Navbar } from './Navbar';
 import { Cel } from './Cel';
+import { connectToWallet } from './BuyFunctions';
 import a2 from '../img/l3.svg';
 import a1 from '../img/l1.svg';
 import a3 from '../img/l2.svg';
 import a5 from '../img/usd.png';
+import { ErrorWindow } from './ErrorWindow';
 
 export const Wallet = () => {
     const [isCelVisible, setIsCelVisible] = useState(false);
-    const [animateProfit, setAnimateProfit] = useState(false);
-    const [animateCajaBut, setAnimateCajaBut] = useState(false);  
-    const [animateRen, setAnimateRen] = useState(false);  
+    const [tokenData, setTokenData] = useState();
+    const [publicKey, setPublicKey] = useState();
+    const [data, setData] = useState({
+      owned: '',
+      txs: ''
+    });
+    const [error, setError] = useState({
+        message: "",
+        isOn: false
+    });
+
+    const handleSetError = () => {
+      setError(prev => ({...prev, isOn: false}));
+    }
 
     const handleMenuToggle = () => {
       setIsCelVisible(!isCelVisible);
     }
 
     useEffect(() => {
-      const handleScroll = () => {
-          const profitElement = document.querySelector('.profit');
-          const cajaButElement = document.querySelector('.caja-but');
-          const renElement = document.querySelector('.caja-rendimiento');
-
-          if (profitElement) {
-              const rect = profitElement.getBoundingClientRect();
-              if (rect.top < 140) {
-                  setAnimateProfit(true);
-              } else {
-                  setAnimateProfit(false);
-              }
+      const getPublicKey = async () => {
+        try {
+          const key = await connectToWallet();
+          if (!key) {
+            setError({ message: "Necesitas una billetera virtual", isOn: true });
+            return;
           }
-
-          if (cajaButElement) {
-              const rect = cajaButElement.getBoundingClientRect();
-              if (rect.top < 80) {
-                  setAnimateCajaBut(true);
-              } else {
-                  setAnimateCajaBut(false);
-              }
-          }
-
-          if (renElement) {
-            const rect = renElement.getBoundingClientRect();
-            if (rect.top < 140) {
-                setAnimateRen(true);
-            } else {
-                setAnimateRen(false);
-            }
-          }
+          setPublicKey(key);
+        } catch (err) {
+          setError({ message: "Error al conectar la billetera", isOn: true });
+          console.error(err);
+        }
       };
-
-      window.addEventListener('scroll', handleScroll);
-      return () => {
-          window.removeEventListener('scroll', handleScroll);
-      };
+    
+      getPublicKey();
     }, []);
+
+    useEffect(() => {
+      const fetchData = async () => {
+        const response = await fetch(`https://fraktalapi.vercel.app/company/all`, {
+          method: 'GET'
+        });
+  
+        if(!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  
+        const result = await response.json();
+        setTokenData(result);
+      }
+  
+      if(!tokenData) fetchData()
+    }, [tokenData])
+
+    useEffect(() => {
+      const fetchOwned = async () => {
+        if(!publicKey) return;
+
+        try {
+          const response = await fetch(`https://fraktalapi.vercel.app/company/owned/${publicKey}`, {
+            method: 'GET'
+          });
+    
+          if(!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  
+          const ownedData = await response.json();
+          setData(prev => ({...prev, owned: ownedData}))
+  
+        } catch (error) {
+          console.error("Error: ", error);
+        }
+      }
+
+      const fetchTransaction = async () => {
+        if(!publicKey) return;
+
+        try {
+          const response = await fetch(`https://fraktalapi.vercel.app/company/transactions/${publicKey}`, {
+            method: 'GET'
+          });
+    
+          if(!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  
+          const txData = await response.text();
+          setData(prev => ({...prev, txs: txData}))
+  
+        } catch (error) {
+          console.error("Error: ", error);
+        }
+      }
+
+      fetchTransaction();
+      fetchOwned();
+    }, [publicKey])
 
     return (
         <>
@@ -65,97 +112,30 @@ export const Wallet = () => {
                   <Cel className="cel-center" />
               </div>
           )}
+          
+          {error.isOn && <ErrorWindow handleError={handleSetError}>{error.message}</ErrorWindow>}
+
           <div className="caja-portafolio">
+
             <div className="caj-port">
               <div className="caj-port2">
                 <div className="titu-portafolio">Portafolio</div>
                 <div className="plata">$ 1.683,36</div>
-                {/* 
-                <div className={`profit ${animateProfit ? 'fade-out' : 'fade-in'}`}>
-                  7,34% (+$43,22)
-                </div> 
-                */}
                 <div className="profit">
                   7,34% (+$43,22)
                 </div>  
               </div>
-              {/* 
-              <div className={`caja-but ${animateCajaBut ? 'fade-out' : 'fade-in'}`}>
-                      <div className="but-portafolio">Ingresar</div>
-                      <div className="but-portafolio2">Retirar</div>
-              </div> 
-              */}
+
               <div className="caja-but">
                 <div className="but-portafolio">Ingresar</div>
                 <div className="but-portafolio2">Retirar</div>
               </div>   
-            </div>        
+            </div>
+
             <div className="caj-fle">
-              {/* 
-              <div className={`caja-rendimiento ${animateRen ? 'fade-out' : 'fade-in'}`}>
-              */}
-              <div className="caja-rendimiento">
-                <div className="rendimiento-titu">Rendimientos</div>
-                <div className="caja-chiki">
-                  <div className="ren">
-                    <img className="ren-img" src={a1} alt="Bitcoin" />
-                    <div className="ren-nombre">Aid Optics ADO</div>
-                    <div className="ren-ren">
-                      <div className="ren1-green">+254.71</div>
-                      <div className="ren-green">+0.36%</div>
-                    </div>
-                  </div>
-                  <div className="ren">
-                    <img className="ren-img" src={a2} alt="Etherium" />
-                    <div className="ren-nombre">Smart Security SEC</div>
-                    <div className="ren-ren">
-                      <div className="ren1-green">+74.95</div>
-                      <div className="ren-green">+0.27%</div>
-                    </div>
-                  </div>
-                  <div className="ren">
-                    <img className="ren-img" src={a3} alt="ChamiCoin" />
-                    <div className="ren-nombre">ChamiCoin CHM</div>
-                    <div className="ren-ren">
-                      <div className="ren1-red">-464.38</div>
-                      <div className="ren-red">-0.89%</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
               <div className="caja-reparticion">
-                <div className="dona-container">
-                  <div className="dona"></div>
-                  <div className="dona-text">$ 1.683,36</div>
-                </div>
-                <div className="caja-porcentaje">
-                  <div className="cuadra">
-                    <div className="sector">
-                      <div className="c1"></div>
-                      <div className="t1">CHM</div>
-                      <img className="t-img" src={a3}></img>
-                      <div className="porc">45%</div>
-                    </div>
-                    <div className="sector">
-                      <div className="c2"></div>
-                      <div className="t1">USD</div>
-                      <img className="t-img" src={a5}></img>
-                      <div className="porc">37.7%</div>
-                    </div>
-                    <div className="sector">
-                      <div className="c3"></div>
-                      <div className="t1">SEC</div>
-                      <img className="t-img" src={a2}></img>
-                      <div className="porc">10.8%</div>
-                    </div>
-                    <div className="sector">
-                      <div className="c4"></div>
-                      <div className="t1">ADO</div>
-                      <img className="t-img" src={a1}></img>
-                      <div className="porc">6.5%</div>
-                    </div>                  
-                  </div>
-                </div>
+                {(data.owned && tokenData) && <PercentageBox owned={data.owned} data={tokenData}/>}
               </div>
               <div className="caja-act">
                 <div className="act-pad">
@@ -210,3 +190,94 @@ export const Wallet = () => {
         </>
     );
 };
+
+
+// Percentage box
+
+const PercentageBox = ({ owned, data }) => {
+  const getRandomColor = () => {
+    return (
+      `#${Math.floor(
+        Math.random()*(256*256*256)
+      ).toString(16)}`
+    )
+  }
+
+  const getAcronym = (id) => {
+    return data.find(x => x.tokenData.id == id).tokenData.acronym;
+  }
+
+  const getImage = (id) => {
+    return data.find(x => x.tokenData.id == id).tokenData.image;
+  }
+
+  const getPercentage = (id) => {
+    let totalTokensPrice = 0;
+    let tokensPercentage = []
+
+    owned.map((value, _) => {
+      const price = data.find(x => x.tokenData.id == value.id).tokenData.price;
+      totalTokensPrice += price * value.amount;
+    })
+
+    if(id){
+      const tokenPrice = data.find(x => x.tokenData.id == id).tokenData.price;
+      const tokenAmount = owned.find(x => x.id == id).amount;
+      const price = tokenPrice * tokenAmount
+
+      return price * 100 / totalTokensPrice;
+    }
+
+    owned.map((value, _) => {
+      const price = data.find(x => x.tokenData.id == value.id).tokenData.price * value.amount;
+      tokensPercentage.push({
+        id: value.id,
+        percentage: price * 100 / totalTokensPrice
+      })
+    })
+
+    return tokensPercentage
+  }
+
+  const itemInfo = owned.map(item => ({
+    id: item.id,
+    color: getRandomColor()
+  }));
+
+  const gradientStops = itemInfo.reduce((acc, curr, index) => {
+    const start = acc.end;
+    const end = start + getPercentage(curr.id);
+    acc.stops.push(`${curr.color} ${start}% ${end}%`);
+    acc.end = end;
+    return acc;
+  }, { stops: [], end: 0 }).stops.join(', ');
+
+  const Item = ({acronym, color, src, percentage}) => {
+    return (
+      <div className="sector">
+        <div className="c1" style={{"backgroundColor": color}}></div>
+        <div className="t1">{acronym}</div>
+        <img className="t-img" src={src}></img>
+        <div className="porc">{percentage}%</div>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      {data && 
+        <>
+          <div className="dona-container">
+            <div className="dona" style={{"background": `conic-gradient(${gradientStops})` }}></div>
+            <div className="dona-text">$ 1.683,36</div>
+          </div>
+          <div className="caja-porcentaje">
+            <div className="cuadra">
+              {itemInfo.map((value, _) => <Item key={value.id} color={value.color} acronym={getAcronym(value.id)} src={getImage(value.id)} percentage={getPercentage(value.id)}/>)}
+            </div>
+          </div>
+        </>
+      }
+    </>
+  );
+}

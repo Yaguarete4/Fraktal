@@ -21,7 +21,7 @@ export const MarketPage = () => {
                 }
 
                 const data = await response.json();
-                console.log(data);
+                
                 setTags([
                     {
                         tagName: "Todo",

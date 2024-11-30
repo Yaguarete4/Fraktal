@@ -3,7 +3,7 @@ import abi from '../Definitivo.json';
 
 export const connectToWallet = async () => {
     if(!window.ethereum) return false;
-    const publicKey = await window.ethereum.request({
+    const [publicKey] = await window.ethereum.request({
         "method": "eth_requestAccounts",
         "params": []
     });
