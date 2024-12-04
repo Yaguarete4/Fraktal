@@ -3,10 +3,8 @@ import '../css/wallet.css';
 import { Navbar } from './Navbar';
 import { Cel } from './Cel';
 import { connectToWallet } from './BuyFunctions';
-import a2 from '../img/l3.svg';
-import a1 from '../img/l1.svg';
-import a3 from '../img/l2.svg';
-import a5 from '../img/usd.png';
+import plusIcon from '../img/plusIcon.svg';
+import uploadIcon from '../img/uploadIcon.svg';
 import { ErrorWindow } from './ErrorWindow';
 import { Link } from 'react-router-dom';
 
@@ -127,24 +125,32 @@ export const Wallet = () => {
                 </div>
 
                 <div className="caja-but">
-                  <Link to="/market" className="but-portafolio2">Comprar</Link>
-                  <Link to="/token-register" className="but-portafolio">Publicar</Link>
+                  <Link to="/market" className="but-portafolio buy-button">
+                    Comprar
+                    <img src={plusIcon} alt="+.svg" />
+                  </Link>
+
+                  <Link to="/token-register" className="but-portafolio">
+                    Publicar
+                    <img src={uploadIcon} alt="upload.svg" />
+                  </Link>
                 </div>   
               </div>
 
-              {data.txs && 
-                <div className="caj-fle">
+              <div className="caj-fle">
 
                 <div className="caja-reparticion">
                   <PercentageBox owned={data.owned} data={tokenData}/>
                 </div>
+              </div> 
+
+              {data.txs && 
                 <div className="caja-act">
                   <div className="act-pad">
                     <div className="rendimiento-titu">Ultimas Transacciones</div>
                     <TransactionBox txs={data.txs} publicKey={publicKey} tokenData={tokenData} />
                   </div>
                 </div>
-              </div> 
               }
 
             </div>
@@ -209,9 +215,12 @@ const PercentageBox = ({ owned, data }) => {
   const Item = ({acronym, color, src, percentage}) => {
     return (
       <div className="sector">
-        <div className="c1" style={{"backgroundColor": color}}></div>
-        <div className="t1">{acronym}</div>
-        <img className="t-img" src={src}></img>
+        <div>
+          <div className="c1" style={{"backgroundColor": color}}></div>
+          <div className="t1">{acronym}</div>
+          <img className="t-img" src={src}></img>
+        </div>
+        
         <div className="porc">{percentage}%</div>
       </div>
     );
