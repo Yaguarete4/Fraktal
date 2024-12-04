@@ -8,6 +8,7 @@ import a1 from '../img/l1.svg';
 import a3 from '../img/l2.svg';
 import a5 from '../img/usd.png';
 import { ErrorWindow } from './ErrorWindow';
+import { Link } from 'react-router-dom';
 
 export const Wallet = () => {
     const [isCelVisible, setIsCelVisible] = useState(false);
@@ -92,7 +93,8 @@ export const Wallet = () => {
     
           if(!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
   
-          const txData = await response.text();
+          let txData = await response.text();
+          txData = JSON.parse(txData);
           setData(prev => ({...prev, txs: txData}))
   
         } catch (error) {
@@ -115,84 +117,41 @@ export const Wallet = () => {
           
           {error.isOn && <ErrorWindow handleError={handleSetError}>{error.message}</ErrorWindow>}
 
-          <div className="caja-portafolio">
+          {(data.owned && tokenData) && 
+            <div className="caja-portafolio">
 
-            <div className="caj-port">
-              <div className="caj-port2">
-                <div className="titu-portafolio">Portafolio</div>
-                <div className="plata">$ 1.683,36</div>
-                <div className="profit">
-                  7,34% (+$43,22)
-                </div>  
-              </div>
-
-              <div className="caja-but">
-                <div className="but-portafolio">Ingresar</div>
-                <div className="but-portafolio2">Retirar</div>
-              </div>   
-            </div>
-
-            <div className="caj-fle">
-
-              <div className="caja-reparticion">
-                {(data.owned && tokenData) && <PercentageBox owned={data.owned} data={tokenData}/>}
-              </div>
-              <div className="caja-act">
-                <div className="act-pad">
-                  <div className="rendimiento-titu">Ultimas Transacciones</div>
-                  <div className="fecha">( 18 / 03 / 2024 )</div>       
-                  <div className="infoo">
-                    <img src={a1} className="info-img"></img>  
-                    <div className="caja-info">
-                      <div className="compra">Compra</div>
-                      <div className="qcompra">ADO</div>
-                    </div>
-                    <div className="info-porc1">-330 USD</div>
-                  </div>     
-                  <div className="fecha">( 11 / 03 / 2024 )</div>       
-                  <div className="infoo">
-                    <img src={a1} className="info-img"></img>  
-                    <div className="caja-info">
-                      <div className="compra">Venta</div>
-                      <div className="qcompra">ADO</div>
-                    </div>
-                    <div className="info-porc">+110 USD</div>
-                  </div>  
-                  <div className="infoo">
-                    <img src={a2} className="info-img"></img>  
-                    <div className="caja-info">
-                      <div className="compra">Venta</div>
-                      <div className="qcompra">SEC</div>
-                    </div>
-                    <div className="info-porc">+200 USD</div>
-                  </div>         
-                  <div className="fecha">( 10 / 03 / 2024 )</div>       
-                  <div className="infoo">
-                    <img src={a1} className="info-img"></img>  
-                    <div className="caja-info">
-                      <div className="compra">Compra</div>
-                      <div className="qcompra">ADO</div>
-                    </div>
-                    <div className="info-porc1">-100 USD</div>
-                  </div>     
-                  <div className="infoo">
-                    <img src={a2} className="info-img"></img>  
-                    <div className="caja-info">
-                      <div className="compra">Compra</div>
-                      <div className="qcompra">SEC</div>
-                    </div>
-                    <div className="info-porc1">-100 USD</div>
-                  </div>    
+              <div className="caj-port">
+                <div className="caj-port2">
+                  <div className="titu-portafolio">Portafolio</div>
+                  <div className="plata">$ {getTokensTotalPrice(data.owned, tokenData)}</div> 
                 </div>
+
+                <div className="caja-but">
+                  <Link to="/market" className="but-portafolio2">Comprar</Link>
+                  <Link to="/token-register" className="but-portafolio">Publicar</Link>
+                </div>   
               </div>
-            </div>  
-          </div>
-        </>
+
+              {data.txs && 
+                <div className="caj-fle">
+
+                <div className="caja-reparticion">
+                  <PercentageBox owned={data.owned} data={tokenData}/>
+                </div>
+                <div className="caja-act">
+                  <div className="act-pad">
+                    <div className="rendimiento-titu">Ultimas Transacciones</div>
+                    <TransactionBox txs={data.txs} publicKey={publicKey} tokenData={tokenData} />
+                  </div>
+                </div>
+              </div> 
+              }
+
+            </div>
+          }
+        </> 
     );
 };
-
-
-// Percentage box
 
 const PercentageBox = ({ owned, data }) => {
   const getRandomColor = () => {
@@ -212,27 +171,22 @@ const PercentageBox = ({ owned, data }) => {
   }
 
   const getPercentage = (id) => {
-    let totalTokensPrice = 0;
+    let totalTokensPrice = getTokensTotalPrice(owned, data);
     let tokensPercentage = []
-
-    owned.map((value, _) => {
-      const price = data.find(x => x.tokenData.id == value.id).tokenData.price;
-      totalTokensPrice += price * value.amount;
-    })
 
     if(id){
       const tokenPrice = data.find(x => x.tokenData.id == id).tokenData.price;
       const tokenAmount = owned.find(x => x.id == id).amount;
       const price = tokenPrice * tokenAmount
 
-      return price * 100 / totalTokensPrice;
+      return (price * 100 / totalTokensPrice).toFixed(2);
     }
 
     owned.map((value, _) => {
       const price = data.find(x => x.tokenData.id == value.id).tokenData.price * value.amount;
       tokensPercentage.push({
         id: value.id,
-        percentage: price * 100 / totalTokensPrice
+        percentage: (price * 100 / totalTokensPrice).toFixed(2)
       })
     })
 
@@ -245,8 +199,8 @@ const PercentageBox = ({ owned, data }) => {
   }));
 
   const gradientStops = itemInfo.reduce((acc, curr, index) => {
-    const start = acc.end;
-    const end = start + getPercentage(curr.id);
+    const start = parseFloat(acc.end);
+    const end = start + parseFloat(getPercentage(curr.id));
     acc.stops.push(`${curr.color} ${start}% ${end}%`);
     acc.end = end;
     return acc;
@@ -269,7 +223,7 @@ const PercentageBox = ({ owned, data }) => {
         <>
           <div className="dona-container">
             <div className="dona" style={{"background": `conic-gradient(${gradientStops})` }}></div>
-            <div className="dona-text">$ 1.683,36</div>
+            <div className="dona-text">{`$ ${getTokensTotalPrice(owned, data)}`}</div>
           </div>
           <div className="caja-porcentaje">
             <div className="cuadra">
@@ -280,4 +234,57 @@ const PercentageBox = ({ owned, data }) => {
       }
     </>
   );
+}
+
+const TransactionItem = ({ tx, publicKey, tokenData }) => {
+  const typeOfTransaction = () => {
+    if(tx[0] == publicKey) return 'Compra'
+    else return 'Venta'
+  }
+
+  return (
+    <div className="infoo">
+      <img src={tokenData.image} className="info-img"></img>  
+      <div className="caja-info">
+        <div className="compra">{typeOfTransaction()}</div>
+        <div className="qcompra">{tokenData.acronym}</div>
+      </div>
+      <div className="info-porc1" style={{"color": typeOfTransaction() == 'Compra' ? "#DB3805" : "#05DB74"}}>
+        {tokenData.price} USD
+      </div>
+    </div> 
+  );
+}
+
+const TransactionBox = ({ txs, publicKey, tokenData }) => {
+  return (
+    <div className="act-pad">
+      {txs.map((value, index) => {
+        const tData = tokenData.find(token => token.tokenData.id == value[2]).tokenData;
+        return <TransactionItem key={index} tx={value} publicKey={publicKey} tokenData={tData} />
+      })}
+    </div>
+  );
+}
+
+const getTokensTotalPrice = (ownedTokens, data) => {
+  // ownedTokens = [              data = [{
+  //   {                            tokenData: {...},
+  //     id: 1,                     companyData: {...}
+  //     amount: 10               }]
+  //   },
+  //   {
+  //     id: 2,
+  //     amount: 40
+  //   }
+  // ]
+
+  let totalTokensPrice = 0
+
+  ownedTokens.map((value, _) => {
+    const price = data.find(x => x.tokenData.id == value.id).tokenData.price;
+    totalTokensPrice += price * value.amount;
+  })
+
+  return totalTokensPrice;
 }
